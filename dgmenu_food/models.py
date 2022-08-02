@@ -17,6 +17,13 @@ def upload_image_path(instance, filename):
     return f"comestible/{final_name}"
 
 
+def upload_image_gallery_path(instance, filename):
+    new_name = randint(1, 100000)
+    name, ext = get_filename_ext(filename)
+    final_name = f"{new_name}{ext}"
+    return f"comestible/gallery/{final_name}"
+
+
 # Create your models here.
 class Food(models.Model):
     Image = models.ImageField(default='avatar.png', upload_to=upload_image_path, verbose_name='عکس اصلی غذا')
@@ -29,3 +36,9 @@ class Food(models.Model):
     Allergy = models.CharField(max_length=250, verbose_name='')
     Price = models.CharField(max_length=100, verbose_name='')
     Discount = models.CharField(max_length=200, null=True, blank=True, verbose_name='')
+
+
+class Gallery(models.Model):
+    Image = models.ImageField(upload_to=upload_image_gallery_path, null=True, blank=True, verbose_name='تصویر')
+    Is_Active = models.BooleanField(default=False, verbose_name='فعال/غیرفعال')
+    Food = models.ForeignKey(Food, on_delete=models.CASCADE, related_name="images")
