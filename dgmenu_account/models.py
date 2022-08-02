@@ -20,9 +20,10 @@ def upload_image_path(instance, filename):
 
 
 class CustomUser(AbstractUser):
-    profile = models.ImageField(default='avatar.png', upload_to=upload_image_path, verbose_name='پروفایل')
+    Profile = models.ImageField(default='avatar.png', upload_to=upload_image_path, verbose_name='پروفایل')
     PhoneNumber = models.CharField(max_length=100, verbose_name='موبایل')
     PhoneNumber_confirm = models.BooleanField(default=False, verbose_name='تایید حساب کاربری')
+    Gender = models.CharField(max_length=10, verbose_name='جنسیت')
 
     class Meta:
         ordering = ['last_name']
