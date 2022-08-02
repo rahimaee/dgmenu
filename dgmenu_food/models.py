@@ -27,15 +27,15 @@ def upload_image_gallery_path(instance, filename):
 # Create your models here.
 class Food(models.Model):
     Image = models.ImageField(default='avatar.png', upload_to=upload_image_path, verbose_name='عکس اصلی غذا')
-    Title = models.CharField(max_length=200, null=False, verbose_name='')
-    Description_Short = models.CharField(max_length=250, verbose_name='')
-    Description_Long = models.CharField(max_length=500, verbose_name='')
-    Ingredients = models.CharField(max_length=250, verbose_name='')
-    Calories = models.CharField(max_length=50, verbose_name='')
-    Tag = models.CharField(max_length=250, verbose_name='')
-    Allergy = models.CharField(max_length=250, verbose_name='')
-    Price = models.CharField(max_length=100, verbose_name='')
-    Discount = models.CharField(max_length=200, null=True, blank=True, verbose_name='')
+    Title = models.CharField(max_length=200, null=False, verbose_name='نام')
+    Description_Short = models.CharField(max_length=250, verbose_name='توضیح کوتاه')
+    Description_Long = models.CharField(max_length=500, verbose_name='توضیح زیاد')
+    Ingredients = models.CharField(max_length=250, verbose_name='مواد تشکیل دهنده')
+    Calories = models.CharField(max_length=50, verbose_name='کالری')
+    Tag = models.CharField(max_length=250, verbose_name='برچسب ها')
+    Allergy = models.CharField(max_length=250, verbose_name='الرژی')
+    Price = models.CharField(max_length=100, verbose_name='قیمت')
+    Discount = models.CharField(max_length=200, null=True, blank=True, verbose_name='قیمت باتخفیف')
 
 
 class Gallery(models.Model):
