@@ -7,6 +7,7 @@ from dgmenu_account.models import CustomUser as User
 class Cafe(models.Model):
     Manager = models.ForeignKey(User, models.CASCADE, verbose_name='مدیر کافه')
     Cafe_Name = models.CharField(max_length=150, verbose_name='', null=True, blank=True)
+    Cafe_UserName = models.CharField(max_length=150, verbose_name='', null=True, blank=False)
     Cafe_Description = models.CharField(max_length=250, verbose_name='', null=True, blank=True)
     Cafe_keywords = models.CharField(max_length=250, verbose_name='', null=True, blank=True)
     Cafe_Address = models.CharField(max_length=250, verbose_name='', null=True, blank=True)
