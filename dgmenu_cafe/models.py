@@ -1,5 +1,21 @@
+import os
+from random import randint
+
 from django.db import models
 from dgmenu_account.models import CustomUser as User
+
+
+def get_filename_ext(filepath):
+    base_name = os.path.basename(filepath)
+    name, ext = os.path.splitext(base_name)
+    return name, ext
+
+
+def upload_image_path(instance, filename):
+    new_name = randint(1, 100000)
+    name, ext = get_filename_ext(filename)
+    final_name = f"{new_name}{ext}"
+    return f"Cafe/{final_name}"
 
 
 # Create your models here.
@@ -17,11 +33,16 @@ class Cafe(models.Model):
     Cafe_Email = models.CharField(max_length=200, verbose_name='', null=True, blank=True)
     Cafe_Instagram = models.CharField(max_length=200, verbose_name='', null=True, blank=True)
     Cafe_Opening_Hours = models.CharField(max_length=250, verbose_name='', null=True, blank=True)
-    Cafe_Header_Logo = models.ImageField()
-    Cafe_favicon = models.ImageField()
-    Cafe_Apple_Touch_Icon152 = models.ImageField()
-    Cafe_Apple_Touch_Icon120 = models.ImageField()
-    Cafe_Apple_Touch_Icon76 = models.ImageField()
+    Cafe_Header_Logo = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
+                                         verbose_name='Header_Logo')
+    Cafe_favicon = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
+                                     verbose_name='favicon')
+    Cafe_Apple_Touch_Icon152 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
+                                                 verbose_name='Icon152')
+    Cafe_Apple_Touch_Icon120 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
+                                                 verbose_name='Icon120')
+    Cafe_Apple_Touch_Icon76 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
+                                                verbose_name='Icon76')
     Admin_Is_Active = models.BooleanField(default=False, verbose_name='')
     Is_Active = models.BooleanField(default=False, verbose_name='')
     Submit_Time = models.DateTimeField()
