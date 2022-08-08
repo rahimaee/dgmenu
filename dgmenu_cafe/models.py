@@ -21,3 +21,7 @@ class Cafe(models.Model):
     Cafe_Apple_Touch_Icon152 = models.ImageField()
     Cafe_Apple_Touch_Icon120 = models.ImageField()
     Cafe_Apple_Touch_Icon76 = models.ImageField()
+    Admin_Is_Active = models.BooleanField(default=False, verbose_name='')
+    Is_Active = models.BooleanField(default=False, verbose_name='')
+    Submit_Time = models.DateTimeField()
+    Last_Edit_Time = models.DateTimeField()
