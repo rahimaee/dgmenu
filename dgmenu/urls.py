@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 # debug setting for static files
 from django.conf import settings
@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('dgmenu_cafe.urls', namespace='dgmenu_cafe')),
 ]
 if settings.DEBUG:
     # add root static files
