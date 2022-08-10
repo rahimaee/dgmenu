@@ -36,7 +36,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # users account
-    'dgmenu_account'
+    'dgmenu_account',
+    # Cafe
+    'dgmenu_cafe',
+    # Food
+    'dgmenu_food',
+    'dgmenu_food_category',
+    # Tree
+    'mptt',
 ]
 
 MIDDLEWARE = [
