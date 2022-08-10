@@ -21,7 +21,7 @@ def upload_image_path(instance, filename):
 # Create your models here.
 
 class Cafe(models.Model):
-    Manager = models.ForeignKey(User, models.CASCADE, verbose_name='مدیر کافه')
+    Manager = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='مدیر کافه')
     Cafe_Name = models.CharField(max_length=150, verbose_name='نام کافه', null=True, blank=True)
     Cafe_UserName = models.CharField(max_length=150, verbose_name='نام کاربری کافه ', null=True, blank=False)
     Cafe_Description = models.CharField(max_length=250, verbose_name='توضیح کافه', null=True, blank=True)
