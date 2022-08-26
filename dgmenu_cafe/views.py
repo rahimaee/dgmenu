@@ -4,9 +4,9 @@ from django.shortcuts import render
 # Create your views here.
 
 def cafe_home_page(request, *args, **kwargs):
-    ct = {'CafeUserId': 12}
+    cx = {'CafeUserId': 12}
     print(request.path)
-    return render(request=request, template_name='dgmenu_cafe/cafe_home_page.html', context=ct)
+    return render(request=request, template_name='dgmenu_cafe/cafe_home_page.html', context=cx)
 
 
 def partial_view(request, *args, **kwargs):
