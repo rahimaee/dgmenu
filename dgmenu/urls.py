@@ -27,6 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('dgmenu_cafe.urls', namespace='dgmenu_cafe')),
     path('', include('dgmenu_cafe_team.urls', namespace='dgmenu_cafe_team')),
+    path('', include('dgmenu_cafe_about.urls', namespace='dgmenu_cafe_about')),
     url(r'^partial-view/(?P<CafeUserId>\w+)$',
         partial_view,
         name='partial_view'),
