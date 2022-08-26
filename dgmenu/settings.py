@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'dgmenu_cafe',
     # Cafe team
     'dgmenu_cafe_team',
+    # Cafe about
+    'dgmenu_cafe_about',
     # Food
     'dgmenu_food',
     'dgmenu_food_category',
