@@ -39,11 +39,15 @@ INSTALLED_APPS = [
     'dgmenu_account',
     # Cafe
     'dgmenu_cafe',
+    # Cafe team
+    'dgmenu_cafe_team',
     # Food
     'dgmenu_food',
     'dgmenu_food_category',
     # Tree
     'mptt',
+    # send data to partial view
+    'django_render_partial'
 ]
 
 MIDDLEWARE = [
@@ -70,6 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # django_render_partial
+                'django.template.context_processors.request',
             ],
         },
     },
