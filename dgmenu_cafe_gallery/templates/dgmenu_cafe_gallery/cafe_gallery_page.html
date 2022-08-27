@@ -1,10 +1,453 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'shared/cafe/_CafeMain.html' %}
+{% load static %}
+{% block page %}
+    <!-- PAGE HERO
+      ============================================= -->
+    <div id="gallery-page" class="page-hero-section division">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hero-txt text-center white-color">
 
-</body>
-</html>
+                        <!-- Breadcrumb -->
+                        <div id="breadcrumb">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="breadcrumb-nav">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><a href="demo-1.html">خانه</a></li>
+                                                <li class="breadcrumb-item active" aria-current="page">گالری</li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Title -->
+                        <h2 class="h2-xl">گالری عکس</h2>
+
+                    </div>
+                </div>
+            </div>      <!-- End row -->
+        </div>       <!-- End container -->
+    </div>    <!-- END PAGE HERO -->
+
+
+    <!-- GALLERY-2
+    ============================================= -->
+    <section id="gallery-2" class="gallery-section division">
+        <div class="container">
+            <div class="row">
+
+
+                <!-- IMAGE #1 -->
+                <div class="col-sm-6 col-lg-3">
+                    <div class="gallery-img">
+                        <a href="assets/images/gallery/img-01.jpg" class="image-link">
+                            <div class="hover-overlay">
+                                <img class="img-fluid" src="assets/images/gallery/img-01.jpg" alt="gallery-image"/>
+                                <div class="item-overlay"></div>
+
+                                <!-- Image Meta -->
+                                <div class="img-meta white-color">
+                                    <h5 class="h5-xs">کلاسیک کالیفرنیا</h5>
+                                    <div class="txt-block-rating">
+                                        <div class="stars-rating">
+                                            <span>4.5</span>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <span>(23)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- IMAGE #2 -->
+                <div class="col-sm-6 col-lg-3">
+                    <div class="gallery-img">
+                        <a href="assets/images/gallery/img-02.jpg" class="image-link">
+                            <div class="hover-overlay">
+                                <img class="img-fluid" src="assets/images/gallery/img-02.jpg" alt="gallery-image"/>
+                                <div class="item-overlay"></div>
+
+                                <!-- Image Meta -->
+                                <div class="img-meta white-color">
+                                    <h5 class="h5-xs">پیتزا مارگاریتا</h5>
+                                    <div class="txt-block-rating">
+                                        <div class="stars-rating">
+                                            <span>4.52</span>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <span>(58)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- IMAGE #3 -->
+                <div class="col-sm-6 col-lg-3">
+                    <div class="gallery-img">
+                        <a href="assets/images/gallery/img-03.jpg" class="image-link">
+                            <div class="hover-overlay">
+                                <img class="img-fluid" src="assets/images/gallery/img-03.jpg" alt="gallery-image"/>
+                                <div class="item-overlay"></div>
+
+                                <!-- Image Meta -->
+                                <div class="img-meta white-color">
+                                    <h5 class="h5-xs">دنده کبابی</h5>
+                                    <div class="txt-block-rating">
+                                        <div class="stars-rating">
+                                            <span>4.9</span>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span>(69)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- IMAGE #4 -->
+                <div class="col-sm-6 col-lg-3">
+                    <div class="gallery-img">
+                        <a href="assets/images/gallery/img-04.jpg" class="image-link">
+                            <div class="hover-overlay">
+                                <img class="img-fluid" src="assets/images/gallery/img-04.jpg" alt="gallery-image"/>
+                                <div class="item-overlay"></div>
+
+                                <!-- Image Meta -->
+                                <div class="img-meta white-color">
+                                    <h5 class="h5-xs">پیتزا سبزه میدانی</h5>
+                                    <div class="txt-block-rating">
+                                        <div class="stars-rating">
+                                            <span>4.38</span>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <span>(41)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- IMAGE #5 -->
+                <div class="col-sm-6 col-lg-3">
+                    <div class="gallery-img">
+                        <a href="assets/images/gallery/img-05.jpg" class="image-link">
+                            <div class="hover-overlay">
+                                <img class="img-fluid" src="assets/images/gallery/img-05.jpg" alt="gallery-image"/>
+                                <div class="item-overlay"></div>
+
+                                <!-- Image Meta -->
+                                <div class="img-meta white-color">
+                                    <h5 class="h5-xs">مینی پیتزا مرغ</h5>
+                                    <div class="txt-block-rating">
+                                        <div class="stars-rating">
+                                            <span>5</span>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span>(86)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- IMAGE #6 -->
+                <div class="col-sm-6 col-lg-3">
+                    <div class="gallery-img">
+                        <a href="assets/images/gallery/img-06.jpg" class="image-link">
+                            <div class="hover-overlay">
+                                <img class="img-fluid" src="assets/images/gallery/img-06.jpg" alt="gallery-image"/>
+                                <div class="item-overlay"></div>
+
+                                <!-- Image Meta -->
+                                <div class="img-meta white-color">
+                                    <h5 class="h5-xs">تخم مرغ بندیکت برگر</h5>
+                                    <div class="txt-block-rating">
+                                        <div class="stars-rating">
+                                            <span>4.65</span>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <span>(30)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- IMAGE #7 -->
+                <div class="col-sm-6 col-lg-3">
+                    <div class="gallery-img">
+                        <a href="assets/images/gallery/img-07.jpg" class="image-link">
+                            <div class="hover-overlay">
+                                <img class="img-fluid" src="assets/images/gallery/img-07.jpg" alt="gallery-image"/>
+                                <div class="item-overlay"></div>
+
+                                <!-- Image Meta -->
+                                <div class="img-meta white-color">
+                                    <h5 class="h5-xs">برگر دوبل بیکن</h5>
+                                    <div class="txt-block-rating">
+                                        <div class="stars-rating">
+                                            <span>4.85</span>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span>(71)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- IMAGE #8 -->
+                <div class="col-sm-6 col-lg-3">
+                    <div class="gallery-img">
+                        <a href="assets/images/gallery/img-08.jpg" class="image-link">
+                            <div class="hover-overlay">
+                                <img class="img-fluid" src="assets/images/gallery/img-08.jpg" alt="gallery-image"/>
+                                <div class="item-overlay"></div>
+
+                                <!-- Image Meta -->
+                                <div class="img-meta white-color">
+                                    <h5 class="h5-xs">کلاسیک کالیفرنیا</h5>
+                                    <div class="txt-block-rating">
+                                        <div class="stars-rating">
+                                            <span>4.64</span>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <span>(17)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- IMAGE #9 -->
+                <div class="col-sm-6 col-lg-3">
+                    <div class="gallery-img">
+                        <a href="assets/images/gallery/img-09.jpg" class="image-link">
+                            <div class="hover-overlay">
+                                <img class="img-fluid" src="assets/images/gallery/img-09.jpg" alt="gallery-image"/>
+                                <div class="item-overlay"></div>
+
+                                <!-- Image Meta -->
+                                <div class="img-meta white-color">
+                                    <h5 class="h5-xs">ماهی سالمون گریل شده</h5>
+                                    <div class="txt-block-rating">
+                                        <div class="stars-rating">
+                                            <span>5</span>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span>(64)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- IMAGE #10 -->
+                <div class="col-sm-6 col-lg-3">
+                    <div class="gallery-img">
+                        <a href="assets/images/gallery/img-10.jpg" class="image-link">
+                            <div class="hover-overlay">
+                                <img class="img-fluid" src="assets/images/gallery/img-10.jpg" alt="gallery-image"/>
+                                <div class="item-overlay"></div>
+
+                                <!-- Image Meta -->
+                                <div class="img-meta white-color">
+                                    <h5 class="h5-xs">رول فیلادلفیا</h5>
+                                    <div class="txt-block-rating">
+                                        <div class="stars-rating">
+                                            <span>4.65</span>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <span>(89)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- IMAGE #11 -->
+                <div class="col-sm-6 col-lg-3">
+                    <div class="gallery-img">
+                        <a href="assets/images/gallery/img-11.jpg" class="image-link">
+                            <div class="hover-overlay">
+                                <img class="img-fluid" src="assets/images/gallery/img-11.jpg" alt="gallery-image"/>
+                                <div class="item-overlay"></div>
+
+                                <!-- Image Meta -->
+                                <div class="img-meta white-color">
+                                    <h5 class="h5-xs">Lemon Garlic Shrimp</h5>
+                                    <div class="txt-block-rating">
+                                        <div class="stars-rating">
+                                            <span>4.85</span>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span>(71)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- IMAGE #12 -->
+                <div class="col-sm-6 col-lg-3">
+                    <div class="gallery-img">
+                        <a href="assets/images/gallery/img-12.jpg" class="image-link">
+                            <div class="hover-overlay">
+                                <img class="img-fluid" src="assets/images/gallery/img-12.jpg" alt="gallery-image"/>
+                                <div class="item-overlay"></div>
+
+                                <!-- Image Meta -->
+                                <div class="img-meta white-color">
+                                    <h5 class="h5-xs">بلونز اسپاگتی</h5>
+                                    <div class="txt-block-rating">
+                                        <div class="stars-rating">
+                                            <span>4.64</span>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <span>(116)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>      <!-- End row -->
+        </div>       <!-- End container -->
+    </section>    <!-- END GALLERY-2 -->
+
+
+    <!-- NEWSLETTER-1
+    ============================================= -->
+    <section id="newsletter-1" class="mb-20 newsletter-section division">
+        <div class="container">
+            <div class="inner-bg bg-lightgrey">
+                <div class="row" style="direction: ltr;">
+
+
+                    <!-- NEWSLETTER FORM -->
+                    <div class="col-md-10 col-xl-8 offset-md-1 offset-xl-2">
+                        <div class="newsletter-txt text-center">
+
+                            <!-- Title -->
+                            <h3 class="h3-sm">در خبرنامه ما عضو شوید</h3>
+
+                            <!-- Text -->
+                            <p class="p-md grey-color">برای اطلاع از آخرین به روز رسانی ها در خبرنامه هفتگی مشترک
+                                شوید</p>
+
+                            <!-- Form -->
+                            <form class="newsletter-form">
+
+                                <div class="input-group">
+                                    <input type="email" class="form-control" placeholder="ایمیل" required id="s-email">
+                                    <span class="input-group-btn">
+												<button type="submit" class="btn btn-red tra-red-hover">عضویت</button>
+											</span>
+                                </div>
+
+                                <!-- Newsletter Form Notification -->
+                                <label for="s-email" class="form-notification"></label>
+
+                            </form>
+
+                        </div>
+                    </div>      <!-- END NEWSLETTER FORM -->
+
+
+                </div>     <!-- End row -->
+            </div>    <!-- End Inner Bg -->
+        </div>       <!-- End container -->
+    </section>    <!-- END NEWSLETTER-1 -->
+
+{% endblock %}
