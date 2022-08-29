@@ -45,7 +45,7 @@
 	font-weight: 500;
 	src: url('../fonts/Pelak/eot/Pelak-SemiBold.eot');
 	src: url('../fonts/Pelak/eot/Pelak-SemiBold.eot?#iefix') format('embedded-opentype'),
-		 url('../fonts/Pelak/woff2/Pelak-SemiBold.woff2') format('woff2'),
+		 url('../fonts/Pelak/Pelak-SemiBold.woff2') format('woff2'),
 		 url('../fonts/Pelak/woff/Pelak-SemiBold.woff') format('woff'),
 		 url('../fonts/Pelak/otf/Pelak-SemiBold.otf') format('opentype');
 }
@@ -65,7 +65,7 @@
 	font-weight: 800;
 	src: url('../fonts/Pelak/eot/Pelak-ExtraBold.eot');
 	src: url('../fonts/Pelak/eot/Pelak-ExtraBold.eot?#iefix') format('embedded-opentype'),
-		 url('../fonts/Pelak/woff2/Pelak-ExtraBold.woff2') format('woff2'),
+		 url('../fonts/Pelak/Pelak-ExtraBold.woff2') format('woff2'),
 		 url('../fonts/Pelak/woff/Pelak-ExtraBold.woff') format('woff'),
 		 url('../fonts/Pelak/otf/Pelak-ExtraBold.otf') format('opentype');
 }

@@ -25,6 +25,7 @@ from dgmenu_cafe.views import partial_view, header_partial_view, footer_partial_
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('dgmenu_site_home.urls', namespace='dgmenu_site_home')),
     path('', include('dgmenu_cafe.urls', namespace='dgmenu_cafe')),
     path('', include('dgmenu_cafe_team.urls', namespace='dgmenu_cafe_team')),
     path('', include('dgmenu_cafe_about.urls', namespace='dgmenu_cafe_about')),

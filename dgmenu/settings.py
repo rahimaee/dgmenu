@@ -51,7 +51,9 @@ INSTALLED_APPS = [
     # Tree
     'mptt',
     # send data to partial view
-    'django_render_partial'
+    'django_render_partial',
+    # site
+    'dgmenu_site_home',
 ]
 
 MIDDLEWARE = [

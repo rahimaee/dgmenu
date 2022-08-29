@@ -9,6 +9,12 @@ def cafe_home_page(request, *args, **kwargs):
     return render(request=request, template_name='dgmenu_cafe/cafe_home_page.html', context=cx)
 
 
+def cafe_food_detail(request, *args, **kwargs):
+    cx = {'CafeUserId': 12}
+    print(request.path)
+    return render(request=request, template_name='dgmenu_cafe/cafe_food_detail_page.html', context=cx)
+
+
 def partial_view(request, *args, **kwargs):
     result = kwargs['CafeUserId']
     kwargs['result'] = result
