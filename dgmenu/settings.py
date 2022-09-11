@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'dgmenu_cafe_gallery',
     # Food
     'dgmenu_food',
+    # food category
+    'dgmenu_food_category',
     # send data to partial view
     'django_render_partial',
     # site
