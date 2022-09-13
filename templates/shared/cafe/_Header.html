@@ -9,14 +9,19 @@
 
 
             <!-- CALL BUTTON -->
-            <div class="callusbtn text-right"><a href="tel:123456789"><i class="fas fa-phone"></i></a></div>
-
+            {% if cafe.Cafe_Tel1 %}
+                <div class="callusbtn text-right"><a href="tel:{{ cafe.Cafe_Tel1 }}"><i class="fas fa-phone"></i></a>
+                </div>
+            {% endif %}
 
             <!-- LOGO IMAGE -->
-            <div class="logo" data-mobile-logo="assets/images/logo-01.png" data-sticky-logo="assets/images/logo-01.png">
-                <a href="index.html"><img src="assets/images/logo-01.png" alt="header-logo"/></a>
-            </div>
-
+            {% if cafe.Cafe_Header_Logo %}
+                <div class="logo" data-mobile-logo="{{ cafe.Cafe_Header_Logo.url }}"
+                     data-sticky-logo="{{ cafe.Cafe_Header_Logo.url }}">
+                    <a href="index.html"><img src="{{ cafe.Cafe_Header_Logo.url }}"
+                                              alt="{{ cafe.Cafe_UserName }}-header-logo"/></a>
+                </div>
+            {% endif %}
 
             <!-- BURGER MENU -->
             <div class="burger-menu">
@@ -33,7 +38,7 @@
                     <!-- DROPDOWN MENU -->
                     <li><a href="#">درباره</a>
                         <ul>
-                            <li><a href="about.html">درباره برگی</a></li>
+                            <li><a href="about.html">درباره ما</a></li>
                             <li><a href="team.html">تیم ما</a></li>
                             <li><a href="gallery.html">گالری عکس</a></li>
                             <li><a href="gift-cards.html">تخفیف ها</a></li>
@@ -77,8 +82,10 @@
                     </li>
 
                     <!-- HEADER BUTTON  -->
-                    <li class="nav-btn yellow-color"><a href="tel:123456789">789-654-3210</a></li>
-
+                    {% if cafe.Cafe_Tel1 %}
+                        <li class="nav-btn yellow-color"><a href="tel:{{ cafe.Cafe_Tel1 }}">{{ cafe.Cafe_Tel1 }}</a>
+                        </li>
+                    {% endif %}
                     <!-- BASKET ICON -->
                     <li class="basket-ico ico-30">
                         <a href="cart.html">

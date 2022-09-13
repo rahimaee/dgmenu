@@ -29,9 +29,15 @@ def partial_view(request, *args, **kwargs):
 
 
 def header_partial_view(request, *args, **kwargs):
-    result = kwargs['CafeUserId']
-    kwargs['result'] = result
-    return render(request, 'shared/cafe/_Header.html', kwargs)
+    CafeUserId = kwargs['CafeUserId']
+    cafe = Cafe.objects.filter(id=CafeUserId).first()
+    if cafe is None:
+        raise Http404("کافه پیدا نشد")
+    if cafe.Is_Active is True:
+        raise Http404("کافه غیرفعال می باشد")
+    cx = {'cafe': cafe,
+          'CafeUserId': cafe.id}
+    return render(request, 'shared/cafe/_Header.html', cx)
 
 
 def footer_partial_view(request, *args, **kwargs):
