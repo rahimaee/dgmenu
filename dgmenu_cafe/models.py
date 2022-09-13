@@ -32,6 +32,9 @@ class Cafe(models.Model):
     Cafe_Tel3 = models.CharField(max_length=100, verbose_name='شماره تماس 3', null=True, blank=True)
     Cafe_Email = models.CharField(max_length=200, verbose_name='ادرس ایمیل', null=True, blank=True)
     Cafe_Instagram = models.CharField(max_length=200, verbose_name='اینستاگرام', null=True, blank=True)
+    Cafe_Facebook = models.CharField(max_length=200, verbose_name='اینستاگرام', null=True, blank=True)
+    Cafe_YouTube = models.CharField(max_length=200, verbose_name='اینستاگرام', null=True, blank=True)
+    Cafe_Twitter = models.CharField(max_length=200, verbose_name='اینستاگرام', null=True, blank=True)
     Cafe_Opening_Hours = models.CharField(max_length=250, verbose_name='ساعت کاری', null=True, blank=True)
     Cafe_Header_Logo = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
                                          verbose_name='Header_Logo')
