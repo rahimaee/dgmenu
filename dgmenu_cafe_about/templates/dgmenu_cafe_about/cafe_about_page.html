@@ -11,24 +11,9 @@
                 <div class="col-lg-12">
                     <div class="hero-txt text-center white-color">
 
-                        <!-- Breadcrumb -->
-                        <div id="breadcrumb">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="breadcrumb-nav">
-                                        <nav aria-label="breadcrumb">
-                                            <ol class="breadcrumb">
-                                                <li class="breadcrumb-item"><a href="demo-1.html">خانه</a></li>
-                                                <li class="breadcrumb-item active" aria-current="page">درباره ما</li>
-                                            </ol>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                         <!-- Title -->
-                        <h2 class="h2-xl">درباره برگی</h2>
+                        <h2 class="h2-xl">{{ cafe.Cafe_Name }}</h2>
 
                     </div>
                 </div>
@@ -47,7 +32,7 @@
                 <!-- ABOUT IMAGE -->
                 <div class="col-md-5 col-lg-6">
                     <div class="about-3-img text-center mb-40">
-                        <img class="img-fluid" src="assets/images/about-01-img.png" alt="about-image">
+                        <img class="img-fluid" src="{{ about.Image.url }}" alt="-درباره-کافه-{{ cafe.Cafe_Name }}">
                     </div>
                 </div>
 
@@ -57,35 +42,19 @@
                     <div class="about-3-txt mb-40">
 
                         <!-- Title -->
-                        <h2 class="h2-sm">هیچ چیز مثل یک همبرگر خوب مردم را دور هم جمع نمی کند</h2>
+                        {% if about.Title %}
+                            <h2 class="h2-sm">{{ about.Title }}</h2>
+                        {% else %}
+                            <p>اطلاعات یافت نشد</p>
+                        {% endif %}
 
                         <!-- Text -->
-                        <p class="p-md"> این یک نوشته آزمایشی است که به طراحان و برنامه نویسان کمک میکند تا این عزیزان
-                            با بهره گیری از این نوشته تستی و آزمایشی بتوانند نمونه تکمیل شده از پروژه و طرح خودشان را به
-                            کارفرما نمایش دهند، استفاده از این متن تستی می تواند سرعت پیشرفت پروژه را افزایش ده
-                        </p>
-
-                        <!-- List -->
-                        <ul class="txt-list">
-
-                            <li class="list-item">
-                                <p class="p-md">طراحان به جای تایپ و نگارش متن می توانند تنها با یک کپی و پست این متن را
-                                    در کادرهای مختلف جایگزین نمائید. این نوشته توسط سایت لورم
-                                </p>
-                            </li>
-
-                            <li class="list-item">
-                                <p class="p-md">این یک نوشته آزمایشی است که به طراحان و برنامه نویسان</p>
-                            </li>
-
-                            <li class="list-item">
-                                <p class="p-md">کمک میکند تا این عزیزان با بهره گیری از این نوشته تستی و آزمایشی بتوانند
-                                    نمونه تکمیل شده از پروژه و طرح خودشان را به کارفرما نمایش دهند
-                                </p>
-                            </li>
-
-                        </ul>
-
+                        {% if about.Description %}
+                            <p class="p-md">{{ about.Description }}
+                            </p>
+                        {% else %}
+                            <p>اطلاعات یافت نشد</p>
+                        {% endif %}
                     </div>
                 </div>    <!-- END ABOUT TEXT -->
 
