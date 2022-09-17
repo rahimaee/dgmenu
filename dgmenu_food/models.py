@@ -2,6 +2,8 @@ import os
 from random import randint
 
 from django.db import models
+from dgmenu_cafe.models import Cafe
+from dgmenu_food_category.models import FoodCategory
 
 
 def get_filename_ext(filepath):
@@ -26,10 +28,13 @@ def upload_image_gallery_path(instance, filename):
 
 # Create your models here.
 class Food(models.Model):
+    Cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE, verbose_name='کافه')
     Image = models.ImageField(default='avatar.png', upload_to=upload_image_path, verbose_name='عکس اصلی غذا')
     Title = models.CharField(max_length=200, null=False, verbose_name='نام')
     Description_Short = models.CharField(max_length=250, verbose_name='توضیح کوتاه')
     Description_Long = models.CharField(max_length=500, verbose_name='توضیح زیاد')
+    FoodCategory = models.ForeignKey(FoodCategory, on_delete=models.CASCADE, verbose_name='دسته بندی', blank=True,
+                                     null=True)
     Ingredients = models.CharField(max_length=250, verbose_name='مواد تشکیل دهنده')
     Calories = models.CharField(max_length=50, verbose_name='کالری')
     Tag = models.CharField(max_length=250, verbose_name='برچسب ها')
