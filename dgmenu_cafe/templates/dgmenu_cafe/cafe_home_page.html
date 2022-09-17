@@ -26,31 +26,16 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <ul class="tabs-1 ico-55 red-tabs clearfix">
-
-                            <!-- TAB-1 LINK -->
-                            <li class="tab-link current" data-tab="tab-1">
-                                <span class="flaticon-burger"></span>
-                                <h5 class="h5-sm">همبرگر</h5>
-                            </li>
-
-                            <!-- TAB-2 LINK -->
-                            <li class="tab-link" data-tab="tab-2">
-                                <span class="flaticon-fries"></span>
-                                <h5 class="h5-sm">سایر</h5>
-                            </li>
-
-                            <!-- TAB-3 LINK -->
-                            <li class="tab-link" data-tab="tab-3">
-                                <span class="flaticon-salad-1"></span>
-                                <h5 class="h5-sm">سالاد</h5>
-                            </li>
-
-                            <!-- TAB-3 LINK -->
-                            <li class="tab-link" data-tab="tab-4">
-                                <span class="flaticon-doughnut"></span>
-                                <h5 class="h5-sm">دسر</h5>
-                            </li>
-
+                            {% if category %}
+                                {% for cat in category %}
+                                    <li class="tab-link current" data-tab="tab-{{ cat.First }}">
+                                        <span><img src="{{ cat.Img.url }}" alt="{{ cat.First }}"></span>
+                                        <h5 class="h5-sm">{{ cat.NameFa }}</h5>
+                                    </li>
+                                {% endfor %}
+                            {% else %}
+                                <p>دسته بندی ثبت نشده</p>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -60,9 +45,75 @@
             <!-- TABS CONTENT -->
             <div id="tabs-content">
 
+                {% for cat in category %}
+                    <div id="tab-{{ cat.First }}" class="tab-content current">
+                        <div class="row">
+                            {% for Foo in food %}
+                                {% if Foo.FoodCategory_id == cat.id %}
+
+
+                                    <!-- MENU ITEM #1 -->
+                                    <div class="col-sm-6 col-lg-3">
+                                        <div class="menu-7-item">
+
+                                            <!-- IMAGE -->
+                                            <div class="menu-7-img rel">
+
+                                                <!-- Image -->
+                                                <img class="img-fluid" src="{{ Foo.Image.url }}"
+                                                     alt="menu-image"/>
+
+                                                <!-- Price -->
+                                                <div class="menu-7-price bg-coffee">
+                                                    <h5 class="h5-xs yellow-color">{{ Foo.Price }} ت</h5>
+                                                </div>
+
+                                                <!-- Rating -->
+                                                <div class="item-rating">
+                                                    <div class="stars-rating stars-lg">
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star-half-alt"></i>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Like Icon -->
+                                                <div class="like-ico ico-20">
+                                                    <a href="#"><span class="flaticon-heart"></span></a>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- TEXT -->
+                                            <div class="menu-7-txt rel">
+
+                                                <!-- Title -->
+                                                <h5 class="h5-sm">{{ Foo.Title }}</h5>
+
+                                                <!-- Description -->
+                                                <p class="grey-color">{{ Foo.Ingredients }}</p>
+
+                                                <!-- Button -->
+                                                <a href="product-single.html"
+                                                   class="btn btn-sm btn-tra-grey yellow-hover">
+                                                    <span class="flaticon-shopping-bag"></span> سبد خرید
+                                                </a>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>  <!-- End row -->
+
+                    </div>    <!-- END TAB-1 CONTENT -->
+                {% endfor %}
 
                 <!-- TAB-1 CONTENT -->
-                <div id="tab-1" class="tab-content current">
+                <div id="tab-" class="tab-content current">
                     <div class="row">
 
 
