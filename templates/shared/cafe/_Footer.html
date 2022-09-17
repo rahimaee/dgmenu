@@ -89,34 +89,24 @@
                 <div class="footer-img mb-40">
 
                     <!-- Title -->
-                    <h5 class="h5-sm">فید اینستاگرام</h5>
+                    <h5 class="h5-sm">فید گالری تصاویر</h5>
 
                     <!-- Instagram Images -->
                     <ul class="text-center clearfix">
-                        <li><a href="{{ cafe.Cafe_Instagram }}" target="_blank"><img class="insta-img"
-                                                                                     src="assets/images/instagram/img-01.jpg"
-                                                                                     alt="insta-img"></a></li>
-                        <li><a href="{{ cafe.Ca }}" target="_blank"><img class="insta-img"
-                                                                         src="assets/images/instagram/img-02.jpg"
-                                                                         alt="insta-img"></a></li>
-                        <li><a href="#" target="_blank"><img class="insta-img"
-                                                             src="assets/images/instagram/img-03.jpg"
-                                                             alt="insta-img"></a></li>
-                        <li><a href="#" target="_blank"><img class="insta-img"
-                                                             src="assets/images/instagram/img-04.jpg"
-                                                             alt="insta-img"></a></li>
-                        <li><a href="#" target="_blank"><img class="insta-img"
-                                                             src="assets/images/instagram/img-05.jpg"
-                                                             alt="insta-img"></a></li>
-                        <li><a href="#" target="_blank"><img class="insta-img"
-                                                             src="assets/images/instagram/img-06.jpg"
-                                                             alt="insta-img"></a></li>
+                        {% if cafe_gallery %}
+                            {% for post in cafe_gallery %}
+                                <li><a href="#" target="_blank"><img class="insta-img"
+                                                                     src="{{ post.Img.url }}"
+                                                                     alt="insta-img"></a></li>
+
+                            {% endfor %}
+                        {% else %}
+                            <p>عکس ثب نشده</p>
+                        {% endif %}
                     </ul>
 
                 </div>
             </div>    <!-- END FOOTER IMAGES -->
-
-
         </div>      <!-- END FOOTER CONTENT -->
 
 
