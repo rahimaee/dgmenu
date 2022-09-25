@@ -34,50 +34,15 @@
             <!-- MAIN MENU -->
             <nav class="navik-menu menu-caret navik-yellow">
                 <ul class="top-list text-right">
-
                     <!-- DROPDOWN MENU -->
-                    <li><a href="#">درباره</a>
-                        <ul>
-                            <li><a href="about.html">درباره ما</a></li>
-                            <li><a href="team.html">تیم ما</a></li>
-                            <li><a href="gallery.html">گالری عکس</a></li>
-                            <li><a href="gift-cards.html">تخفیف ها</a></li>
-                            <li><a href="faqs.html">سوالات متداول</a></li>
-                            <li><a href="terms.html">شرایط و حریم خصوصی</a></li>
-                        </ul>
-                    </li>
-
+                    <li><a href="{{ url }}/about">درباره ما</a></li>
+                    <li><a href="{{ url }}/team">تیم ما</a></li>
+                    <li><a href="{{ url }}/gallery">گالری عکس</a></li>
                     <!-- DROPDOWN MENU -->
                     <li><a href="#">منو</a>
                         <ul>
-                            <li><a href="menu-1.html">منو 1 - تب کارت</a></li>
-                            <li><a href="menu-2.html">منو 2 - کارت</a></li>
-                            <li><a href="menu-3.html">منو 3 - بخش ها</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- DROPDOWN MENU -->
-                    <li><a href="#">فروشگاه</a>
-                        <ul>
-                            <li><a href="product-single.html">جزئیات محصول</a></li>
-                            <li><a href="cart.html">سبد خرید</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- DROPDOWN MENU -->
-                    <li><a href="#">وبلاگ</a>
-                        <ul>
-                            <li><a href="blog-listing.html">وبلاگ</a></li>
-                            <li><a href="single-post.html">جزئیات وبلاگ</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- DROPDOWN MENU -->
-                    <li><a href="#">ساعات و اماکن</a>
-                        <ul>
-                            <li><a href="booking.html">رزرو میز</a></li>
-                            <li><a href="locations.html">شعب ما</a></li>
-                            <li><a href="contacts.html">ارتباط</a></li>
+                            <li><a href="menu-1.html">منو کلاسیک</a></li>
+                            <li><a href="menu-2.html">منو پیشرفته</a></li>
                         </ul>
                     </li>
 
@@ -86,12 +51,7 @@
                         <li class="nav-btn yellow-color"><a href="tel:{{ cafe.Cafe_Tel1 }}">{{ cafe.Cafe_Tel1 }}</a>
                         </li>
                     {% endif %}
-                    <!-- BASKET ICON -->
-                    <li class="basket-ico ico-30">
-                        <a href="cart.html">
-                            <span class="ico-holder"><span class="flaticon-shopping-bag"></span> <em class="roundpoint">2</em></span>
-                        </a>
-                    </li>
+
 
                 </ul>
             </nav>    <!-- END MAIN MENU -->

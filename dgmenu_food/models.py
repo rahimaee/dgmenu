@@ -45,6 +45,7 @@ class Food(models.Model):
     Is_Active = models.BooleanField(default=False, verbose_name='فعال/غیرفعال')
     Submit_Time = models.DateTimeField()
     Last_Edit_Time = models.DateTimeField()
+    First = models.IntegerField(verbose_name='ترتیب نمایش')
 
 
 class Gallery(models.Model):

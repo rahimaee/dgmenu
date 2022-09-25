@@ -27,8 +27,21 @@ def cafe_home_page(request, *args, **kwargs):
 
 
 def cafe_food_detail(request, *args, **kwargs):
-    cx = {'CafeUserId': 12}
-    print(request.path)
+    cafe_name = str(request.path).split('/')[1]
+    cafe = Cafe.objects.filter(Cafe_UserName=cafe_name).first()
+    if cafe is None:
+        raise Http404("کافه پیدا نشد")
+    if cafe.Is_Active is True:
+        raise Http404("کافه غیرفعال می باشد")
+    category = FoodCategory.objects.filter(Cafe_id=cafe.id, IsActive=True, IsActiveAdmin=True).all()
+    if category is not None:
+        category = category.order_by('First')
+    food = Food.objects.filter(Cafe_id=cafe.id, Is_Active=True, Admin_Is_Active=True).all()
+
+    cx = {'cafe': cafe,
+          'CafeUserId': cafe.id,
+          'category': category,
+          'food': food}
     return render(request=request, template_name='dgmenu_cafe/cafe_food_detail_page.html', context=cx)
 
 
@@ -41,12 +54,17 @@ def partial_view(request, *args, **kwargs):
 def header_partial_view(request, *args, **kwargs):
     CafeUserId = kwargs['CafeUserId']
     cafe = Cafe.objects.filter(id=CafeUserId).first()
+    url1 = request.build_absolute_uri().split('/')[0]
+    url2 = request.build_absolute_uri().split('/')[2]
     if cafe is None:
         raise Http404("کافه پیدا نشد")
     if cafe.Is_Active is True:
         raise Http404("کافه غیرفعال می باشد")
+    url = url1 + '//' + url2 + "/" + cafe.Cafe_UserName
+    print("my url :" + url)
     cx = {'cafe': cafe,
-          'CafeUserId': cafe.id}
+          'CafeUserId': cafe.id,
+          'url': url}
     return render(request, 'shared/cafe/_Header.html', cx)
 
 
@@ -61,6 +79,6 @@ def footer_partial_view(request, *args, **kwargs):
     cafe_gallery = cafe_gallery[:5]
     cx = {'cafe': cafe,
           'CafeUserId': cafe.id,
-          'cafe_gallery': cafe_gallery}
+          'cafe_gallery': cafe_gallery, }
 
     return render(request, 'shared/cafe/_Footer.html', cx)
