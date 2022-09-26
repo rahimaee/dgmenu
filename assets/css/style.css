@@ -2,20 +2,6 @@
 
 
 
-/*
-  Template Name: Testo - Pizza and Fast Food Landing Page Template
-  Theme URL: https://themeforest.net/user/jthemes
-  Description: Testo - Pizza and Fast Food Landing Page Template
-  Author: Jthemes
-  Author URL: https://themeforest.net/user/jthemes
-  Version: 1.0.0
-  Website: www.jthemes.net
-  Tags: Jthemes, Food, Fast Food, Restaurant, Pizzeria, Restaurant Menu, Pizza, Burger, Sushi, Steak, Grill, Snack
-*/
-
-
-
-
 /* ==========================================================================
   01. GENERAL & BASIC STYLES
   =========================================================================== */
@@ -4037,7 +4023,7 @@ span.ico-holder {
 }
 
 #banner-4 {
-  background-image: url(../images/banner-4.jpg);
+  background-image: url(../../static_cdn/media_root/default/banner.jpg);
   background-position: top center;
 }
 
@@ -5447,58 +5433,6 @@ select:-webkit-autofill:focus {
   background-attachment: scroll!important;
   padding-top: 170px;
   padding-bottom: 120px;
-}
-
-#about-page {
-  background-image: url(../images/about-page.jpg);
-}
-
-#blog-page {
-  background-image: url(../images/blog-page.jpg);
-}
-
-#booking-page {
-  background-image: url(../images/booking-page.jpg);
-}
-
-#cart-page {
-  background-image: url(../images/cart-page.jpg);
-}
-
-#contacts-page {
-  background-image: url(../images/contacts-page.jpg);
-}
-
-#gallery-page {
-  background-image: url(../images/gallery-page.jpg);
-}
-
-#gift-page {
-  background-image: url(../images/gift-page.jpg);
-}
-
-#faqs-page {
-  background-image: url(../images/faqs-page.jpg);
-}
-
-#locations-page {
-  background-image: url(../images/locations-page.jpg);
-}
-
-#menu-page {
-  background-image: url(../images/menu-page.jpg);
-}
-
-#product-page {
-  background-image: url(../images/product-page.jpg);
-}
-
-#team-page {
-  background-image: url(../images/team-page.jpg);
-}
-
-#terms-page {
-  background-image: url(../images/terms-page.jpg);
 }
 
 /*------------------------------------------*/

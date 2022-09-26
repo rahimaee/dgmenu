@@ -46,6 +46,24 @@ class Cafe(models.Model):
                                                  verbose_name='Icon120')
     Cafe_Apple_Touch_Icon76 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
                                                 verbose_name='Icon76')
+    Cafe_Header_Home_Background = models.ImageField(default="default/menu-page.jpg", upload_to=upload_image_path,
+                                                    null=True, blank=True,
+                                                    verbose_name='عکس بنر سقحه اصلی')
+    Cafe_Header_Detail_Background = models.ImageField(default="default/menu-page.jpg", upload_to=upload_image_path,
+                                                      null=True, blank=True,
+                                                      verbose_name='عکس بنر محصول')
+    Cafe_Header_About_Background = models.ImageField(default="default/menu-page.jpg", upload_to=upload_image_path,
+                                                     null=True, blank=True,
+                                                     verbose_name='عکس بنر سقحه درباره ما')
+    Cafe_Header_Team_Background = models.ImageField(default="default/menu-page.jpg", upload_to=upload_image_path,
+                                                    null=True, blank=True,
+                                                    verbose_name='عکس بنر سقحه تیم')
+    Cafe_Header_Gallery_Background = models.ImageField(default="default/menu-page.jpg", upload_to=upload_image_path,
+                                                       null=True, blank=True,
+                                                       verbose_name='عکس بنر سقحه گالری')
+    Cafe_Banner_Home = models.ImageField(default="default/banner.jpg", upload_to=upload_image_path,
+                                         null=True, blank=True,
+                                         verbose_name='عکس بنر سقحه کافه')
     Admin_Is_Active = models.BooleanField(default=False, verbose_name='فعال/غیرفعال مدیرت')
     Is_Active = models.BooleanField(default=False, verbose_name='فعال/غیرفعال کاربر')
     Submit_Time = models.DateTimeField()

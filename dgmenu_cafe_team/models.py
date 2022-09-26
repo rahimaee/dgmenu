@@ -25,6 +25,9 @@ class CafeTeam(models.Model):
     JobType = models.CharField(max_length=120, verbose_name='شغل')
     Profile = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
                                 verbose_name='عکس پروفایل')
+    facebook = models.CharField(max_length=250, null=True, blank=True, verbose_name='فیسبوک')
+    instagram = models.CharField(max_length=250, null=True, blank=True, verbose_name='اینستاگرام')
+    linkedin = models.CharField(max_length=250, null=True, blank=True, verbose_name='اینک ان')
     IsActive = models.BooleanField(default=True, verbose_name='فعال/غیرفعال')
     IsActiveAdmin = models.BooleanField(default=True, verbose_name='فعال/غیرفعال مدیر')
     SubmitTime = models.DateTimeField(verbose_name='زمان ثبت ')

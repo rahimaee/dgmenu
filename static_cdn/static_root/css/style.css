@@ -5449,9 +5449,7 @@ select:-webkit-autofill:focus {
   padding-bottom: 120px;
 }
 
-#about-page {
-  background-image: url(../images/about-page.jpg);
-}
+
 
 #blog-page {
   background-image: url(../images/blog-page.jpg);
@@ -5485,9 +5483,7 @@ select:-webkit-autofill:focus {
   background-image: url(../images/locations-page.jpg);
 }
 
-#menu-page {
-  background-image: url(../images/menu-page.jpg);
-}
+
 
 #product-page {
   background-image: url(../images/product-page.jpg);

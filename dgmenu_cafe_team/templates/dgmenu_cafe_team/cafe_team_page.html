@@ -4,7 +4,8 @@
 
     <!-- PAGE HERO
     ============================================= -->
-    <div id="team-page" class="page-hero-section division">
+    <div id="team-page" style="background-image: url({{ cafe.Cafe_Header_Gallery_Background.url }});"
+         class="page-hero-section division">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -46,247 +47,54 @@
             <div class="team-1-wrapper text-center">
                 <div class="row">
 
+                    {% if Cafe_Team %}
+                        {% for p in Cafe_Team %}
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="team-member">
 
+                                    <!-- Team Member Photo -->
+                                    <div class="team-member-photo">
+
+                                        <img class="img-fluid" src="{{ p.Profile.url }}"
+                                             alt="{{ cafe.Cafe_Name }}-{{ p.Name }} {{ p.Family }}">
+
+                                        <!-- Social Icons -->
+                                        <div class="tm-social clearfix">
+                                            <ul class="text-center clearfix">
+                                                {% if p.facebook %}
+                                                    <li><a href="{{ p.facebook }}" class="ico-facebook"><i
+                                                            class="fab fa-facebook-f"></i></a>
+                                                    </li>
+                                                {% endif %}
+                                                {% if p.instagram %}
+                                                    <li><a href="{{ p.instagram }}" class="ico-instagram"><i
+                                                            class="fab fa-instagram"></i></a></li>
+                                                {% endif %}
+                                                {% if p.linkedin %}
+                                                    <li><a href="{{ p.linkedin }}" class="ico-linkedin"><i
+                                                            class="fab fa-linkedin-in"></i></a>
+                                                    </li>
+                                                {% endif %}
+
+                                            </ul>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Team Member Meta -->
+                                    <div class="tm-meta">
+                                        <h5 class="h5-xs">متین عزیزپور</h5>
+                                        <span class="yellow-color">سرآشپز</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    {% else %}
+                        <p> اطلاعات ثبت نشده</p>
+                    {% endif %}
                     <!-- TEAM MEMBER #1 -->
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="team-member">
-
-                            <!-- Team Member Photo -->
-                            <div class="team-member-photo">
-
-                                <img class="img-fluid" src="assets/images/team-1.jpg" alt="team-member-foto">
-
-                                <!-- Social Icons -->
-                                <div class="tm-social clearfix">
-                                    <ul class="text-center clearfix">
-                                        <li><a href="#" class="ico-facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#" class="ico-twitter"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#" class="ico-linkedin"><i class="fab fa-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-                            <!-- Team Member Meta -->
-                            <div class="tm-meta">
-                                <h5 class="h5-xs">متین عزیزپور</h5>
-                                <span class="yellow-color">سرآشپز</span>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <!-- TEAM MEMBER #2 -->
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="team-member">
-
-                            <!-- Team Member Photo -->
-                            <div class="team-member-photo">
-
-                                <img class="img-fluid" src="assets/images/team-2.jpg" alt="team-member-foto">
-
-                                <!-- Social Icons -->
-                                <div class="tm-social clearfix">
-                                    <ul class="text-center clearfix">
-                                        <li><a href="#" class="ico-facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#" class="ico-twitter"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#" class="ico-instagram"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-                            <!-- Team Member Meta -->
-                            <div class="tm-meta">
-                                <h5 class="h5-xs">زهرا اویسی</h5>
-                                <span class="yellow-color">کمک آشپز</span>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <!-- TEAM MEMBER #3 -->
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="team-member">
-
-                            <!-- Team Member Photo -->
-                            <div class="team-member-photo">
-
-                                <img class="img-fluid" src="assets/images/team-3.jpg" alt="team-member-foto">
-
-                                <!-- Social Icons -->
-                                <div class="tm-social clearfix">
-                                    <ul class="text-center clearfix">
-                                        <li><a href="#" class="ico-facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#" class="ico-twitter"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#" class="ico-linkedin"><i class="fab fa-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-                            <!-- Team Member Meta -->
-                            <div class="tm-meta">
-                                <h5 class="h5-xs">عباس امیری</h5>
-                                <span class="yellow-color">سرآشپز برگر</span>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <!-- TEAM MEMBER #4 -->
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="team-member">
-
-                            <!-- Team Member Photo -->
-                            <div class="team-member-photo">
-
-                                <img class="img-fluid" src="assets/images/team-4.jpg" alt="team-member-foto">
-
-                                <!-- Social Icons -->
-                                <div class="tm-social clearfix">
-                                    <ul class="text-center clearfix">
-                                        <li><a href="#" class="ico-facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#" class="ico-twitter"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#" class="ico-instagram"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-                            <!-- Team Member Meta -->
-                            <div class="tm-meta">
-                                <h5 class="h5-xs">حسن پورشیرازی</h5>
-                                <span class="yellow-color">سرآشپز کبابی</span>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <!-- TEAM MEMBER #5 -->
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="team-member">
-
-                            <!-- Team Member Photo -->
-                            <div class="team-member-photo">
-
-                                <img class="img-fluid" src="assets/images/team-5.jpg" alt="team-member-foto">
-
-                                <!-- Social Icons -->
-                                <div class="tm-social clearfix">
-                                    <ul class="text-center clearfix">
-                                        <li><a href="#" class="ico-facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#" class="ico-twitter"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#" class="ico-linkedin"><i class="fab fa-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-                            <!-- Team Member Meta -->
-                            <div class="tm-meta">
-                                <h5 class="h5-xs">محمود پاک‌نیت</h5>
-                                <span class="yellow-color">سرآشپز سرخ کردنی</span>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <!-- TEAM MEMBER #6 -->
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="team-member">
-
-                            <!-- Team Member Photo -->
-                            <div class="team-member-photo">
-
-                                <img class="img-fluid" src="assets/images/team-6.jpg" alt="team-member-foto">
-
-                                <!-- Social Icons -->
-                                <div class="tm-social clearfix">
-                                    <ul class="text-center clearfix">
-                                        <li><a href="#" class="ico-facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#" class="ico-twitter"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#" class="ico-instagram"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-                            <!-- Team Member Meta -->
-                            <div class="tm-meta">
-                                <h5 class="h5-xs">ویشکا آسایش</h5>
-                                <span class="yellow-color">سرآشپز کبابی</span>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <!-- TEAM MEMBER #7 -->
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="team-member">
-
-                            <!-- Team Member Photo -->
-                            <div class="team-member-photo">
-
-                                <img class="img-fluid" src="assets/images/team-7.jpg" alt="team-member-foto">
-
-                                <!-- Social Icons -->
-                                <div class="tm-social clearfix">
-                                    <ul class="text-center clearfix">
-                                        <li><a href="#" class="ico-facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#" class="ico-twitter"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#" class="ico-linkedin"><i class="fab fa-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-                            <!-- Team Member Meta -->
-                            <div class="tm-meta">
-                                <h5 class="h5-xs">محمدرضا فروتن</h5>
-                                <span class="yellow-color">پیتزا ساز</span>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <!-- TEAM MEMBER #8 -->
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="team-member">
-
-                            <!-- Team Member Photo -->
-                            <div class="team-member-photo">
-
-                                <img class="img-fluid" src="assets/images/team-8.jpg" alt="team-member-foto">
-
-                                <!-- Social Icons -->
-                                <div class="tm-social clearfix">
-                                    <ul class="text-center clearfix">
-                                        <li><a href="#" class="ico-facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#" class="ico-twitter"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#" class="ico-instagram"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-                            <!-- Team Member Meta -->
-                            <div class="tm-meta">
-                                <h5 class="h5-xs">مهدی سلوکی</h5>
-                                <span class="yellow-color">آشپز اجرایی</span>
-                            </div>
-
-                        </div>
-                    </div>
-
-
                 </div>
             </div>    <!-- END TEAM-1 WRAPPER -->
 

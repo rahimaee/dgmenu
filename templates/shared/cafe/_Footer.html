@@ -71,19 +71,16 @@
                     <!-- Title -->
                     <h5 class="h5-sm">ساعات کاری</h5>
 
-                    <!-- Text -->
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                        است.</p>
+                    {% if WorkTime %}
+                        {% for time in WorkTime %}
+                            <p class="mt-15">{{ time }}</p>
+                        {% endfor %}
+                    {% else %}
+                        <p>ساعت کاری ثبت نشده</p>
 
-                    <!-- Text -->
-                    <p class="mt-15">شنبه-جمعه: <span>9:00 ب.ظ - 10:00 ب.ظ</span></p>
-                    <p>شنبه: <span>10:00 ب.ظ - 8:30 ق.ظ</span></p>
-                    <p>یکشنبه: <span>12:00 ق.ظ - 5:00 ق.ظ</span></p>
-
+                    {% endif %}
                 </div>
             </div>
-
-
             <!-- FOOTER IMAGES -->
             <div class="col-md-12 col-lg-4 col-xl-3">
                 <div class="footer-img mb-40">
@@ -134,12 +131,14 @@
                         {% endif %}
 
                         {% if cafe.Cafe_Instagram %}
-                            <li><p><a href="{{ cafe.Cafe_Instagram }}"><i class="fab fa-instagram"></i> Instagram</a>
+                            <li><p><a href="{{ cafe.Cafe_Instagram }}"><i class="fab fa-instagram"></i>
+                                Instagram</a>
                             </p>
                             </li>
                         {% endif %}
                         {% if cafe.Cafe_YouTube %}
-                            <li><p><a href="{{ cafe.Cafe_YouTube }}"><i class="fab fa-youtube"></i> YouTube</a></p></li>
+                            <li><p><a href="{{ cafe.Cafe_YouTube }}"><i class="fab fa-youtube"></i> YouTube</a></p>
+                            </li>
                         {% endif %}
 
                         {% if cafe.Cafe_Twitter %}

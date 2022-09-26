@@ -1,4 +1,4 @@
-from django.shortcuts import render, Http404
+from django.shortcuts import render, Http404, HttpResponse
 from dgmenu_cafe.models import Cafe
 from dgmenu_cafe_gallery.models import CafeGallery
 from dgmenu_food_category.models import FoodCategory
@@ -18,7 +18,7 @@ def cafe_home_page(request, *args, **kwargs):
     if category is not None:
         category = category.order_by('First')
     food = Food.objects.filter(Cafe_id=cafe.id, Is_Active=True, Admin_Is_Active=True).all()
-
+    food = food.order_by('First')
     cx = {'cafe': cafe,
           'CafeUserId': cafe.id,
           'category': category,
@@ -77,8 +77,13 @@ def footer_partial_view(request, *args, **kwargs):
         raise Http404("کافه غیرفعال می باشد")
     cafe_gallery = CafeGallery.objects.filter(Cafe_id=cafe.id, IsActive=True, IsActiveAdmin=True).all()
     cafe_gallery = cafe_gallery[:5]
+    WorkTime = list()
+    if cafe.Cafe_Opening_Hours is not None:
+        WorkTime = cafe.Cafe_Opening_Hours.split('،')
+
     cx = {'cafe': cafe,
           'CafeUserId': cafe.id,
-          'cafe_gallery': cafe_gallery, }
+          'cafe_gallery': cafe_gallery,
+          'WorkTime': WorkTime}
 
     return render(request, 'shared/cafe/_Footer.html', cx)
