@@ -2,7 +2,7 @@ from django.shortcuts import render, Http404, HttpResponse
 from dgmenu_cafe.models import Cafe
 from dgmenu_cafe_gallery.models import CafeGallery
 from dgmenu_food_category.models import FoodCategory
-from dgmenu_food.models import Food
+from dgmenu_food.models import Food, Gallery
 
 
 # Create your views here.
@@ -29,6 +29,7 @@ def cafe_home_page(request, *args, **kwargs):
 def cafe_food_detail(request, *args, **kwargs):
     cafe_name = str(request.path).split('/')[1]
     cafe = Cafe.objects.filter(Cafe_UserName=cafe_name).first()
+    food_id = kwargs.get('id')
     if cafe is None:
         raise Http404("کافه پیدا نشد")
     if cafe.Is_Active is True:
@@ -36,12 +37,23 @@ def cafe_food_detail(request, *args, **kwargs):
     category = FoodCategory.objects.filter(Cafe_id=cafe.id, IsActive=True, IsActiveAdmin=True).all()
     if category is not None:
         category = category.order_by('First')
-    food = Food.objects.filter(Cafe_id=cafe.id, Is_Active=True, Admin_Is_Active=True).all()
+    food = Food.objects.filter(Cafe_id=cafe.id, Is_Active=True, Admin_Is_Active=True, pk=food_id).first()
+    if food is None:
+        raise Http404("خطا دیتابیس")
+
+    food_gallery = Gallery.objects.filter(Food_id=food.id, Is_Active=True, Admin_Is_Active=True).all()
+    food_suggestion = Food.objects.filter(FoodCategory_id=food.FoodCategory_id, Is_Active=True,
+                                          Admin_Is_Active=True).all()
+    if food_suggestion is not None:
+        food_suggestion = food_suggestion.order_by(
+            'pk')[:4]
 
     cx = {'cafe': cafe,
           'CafeUserId': cafe.id,
           'category': category,
-          'food': food}
+          'food': food,
+          'food_gallery': food_gallery,
+          'food_suggestion': food_suggestion}
     return render(request=request, template_name='dgmenu_cafe/cafe_food_detail_page.html', context=cx)
 
 

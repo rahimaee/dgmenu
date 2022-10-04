@@ -3,7 +3,8 @@
 {% block page %}
     <!-- PAGE HERO
       ============================================= -->
-    <div id="product-page" style="background-image: url({{ cafe.Cafe_Header_Home_Background.url }});" class="page-hero-section division">
+    <div id="product-page" style="background-image: url({{ cafe.Cafe_Header_Home_Background.url }});"
+         class="page-hero-section division">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -27,7 +28,7 @@
                         </div>
 
                         <!-- Title -->
-                        <h2 class="h2-xl"> ساندویچ بوف</h2>
+                        <h2 class="h2-xl"> {{ food.Title }}</h2>
 
                     </div>
                 </div>
@@ -53,19 +54,19 @@
 
                             <!-- TAB-1 CONTENT -->
                             <div id="tab-1-img" class="tab-content text-center displayed">
-                                <img class="img-fluid" src="{% static 'images/instagram/img-01.jpg' %}" alt="menu-image"/>
+                                <img class="img-fluid" src="{{ food.Image.url }}"
+                                     alt="menu-image"/>
                             </div>
 
-                            <!-- TAB-2 CONTENT -->
-                            <div id="tab-2-img" class="tab-content text-center">
-                                <img class="img-fluid" src="{% static 'images/menu/burger-02.png' %}" alt="menu-image"/>
-                            </div>
+                            {% if food_gallery %}
+                                {% for fg in food_gallery %}
+                                    <div id="tab-{{ fg.id }}-img" class="tab-content text-center">
+                                        <img class="img-fluid" src="{{ fg.Image.url }}"
+                                             alt="menu-image"/>
+                                    </div>
+                                {% endfor %}
 
-                            <!-- TAB-3 CONTENT -->
-                            <div id="tab-3-img" class="tab-content text-center">
-                                <img class="img-fluid" src="{% static 'images/menu/burger-02.png' %}" alt="menu-image"/>
-                            </div>
-
+                            {% endif %}
                         </div>    <!-- END TABS CONTENT -->
 
 
@@ -77,19 +78,17 @@
 
                                         <!-- TAB-1 LINK -->
                                         <li class="tab-link displayed" data-tab="tab-1-img">
-                                            <img src="{% static 'images/menu/burger-02.png' %}" alt="menu-image"/>
+                                            <img src="{{ food.Image.url }}" alt="menu-image"/>
                                         </li>
 
-                                        <!-- TAB-2 LINK -->
-                                        <li class="tab-link" data-tab="tab-2-img">
-                                            <img src="{% static 'images/menu/burger-02.png' %}" alt="menu-image"/>
-                                        </li>
+                                        {% if food_gallery %}
+                                            {% for fg in food_gallery %}
+                                                <li class="tab-link" data-tab="tab-{{ fg.id }}-img">
+                                                    <img src="{{ fg.Image.url }}" alt="menu-image"/>
+                                                </li>
+                                            {% endfor %}
 
-                                        <!-- TAB-2 LINK -->
-                                        <li class="tab-link" data-tab="tab-3-img">
-                                            <img src="assets/images/menu/burger-07.png" alt="menu-image"/>
-                                        </li>
-
+                                        {% endif %}
                                     </ul>
                                 </div>
                             </div>
@@ -108,22 +107,14 @@
                         <div class="project-title">
 
                             <!-- Title -->
-                            <h2 class="h2-lg"> ساندویچ بوف</h2>
+                            <h2 class="h2-lg">{{ food.Title }}</h2>
 
-                            <!-- Rating -->
-                            <div class="stars-rating">
-                                <span>4.38</span>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(3 نظرات مشتریان)</span>
-                            </div>
 
                             <!-- Price -->
                             <div class="project-price">
-                                <h4 class="h4-xl yellow-color"><span class="old-price">9,900 ت</span> 6,600 ت</h4>
+                                <h4 class="h4-xl yellow-color"><span
+                                        class="old-price">{{ food.Price }} ت</span> {{ food.Discount }} ت
+                                </h4>
                             </div>
 
                         </div>
@@ -132,17 +123,24 @@
                         <div class="product-txt">
 
                             <!-- Text -->
-                            <p class="p-md grey-color">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-                                استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
-                                لازم است و برای شرایط فعلی
+                            <p class="p-md grey-color">
+                                {{ food.Description_Short }}
                             </p>
 
                             <!-- Product Data -->
                             <div class="product-info">
-                                <p>حجم: <span>390 گ</span></p>
-                                <p>کالری: <span>680 کیلو کالری</span></p>
-                                <p>آلرژی: <span>لاکتوز، گلوتن، خردل</span></p>
-                                <p>تگ: <span>برگر، فست فود، برگی</span></p>
+                                {% if food.Ingredients %}
+                                    <p>مواد تشکیل دهنده: <span>{{ food.Ingredients }}</span></p>
+                                {% endif %}
+                                {% if food.Calories %}
+                                    <p>کالری: <span>{{ food.Calories }} کیلو کالری</span></p>
+                                {% endif %}
+                                {% if food.Allergy %}
+                                    <p>آلرژی: <span>{{ food.Allergy }}</span></p>
+                                {% endif %}
+                                {% if food.Tag %}
+                                    <p>تگ: <span>{{ food.Tag }}</span></p>
+                                {% endif %}
                             </div>
 
                             <input class="qty" type="number" min="1" max="20" value="1">
@@ -411,8 +409,9 @@
 
             <div class="row">
 
-
-                <!-- MENU ITEM #1 -->
+                {% if food_suggestion %}
+                    {% for fs in food_suggestion %}
+                         <!-- MENU ITEM #1 -->
                 <div class="col-sm-6 col-lg-3">
                     <div class="menu-6-item bg-white">
 
@@ -421,14 +420,14 @@
                             <div class="hover-overlay">
 
                                 <!-- Image -->
-                                <img class="img-fluid" src="assets/images/menu/burger-11.jpg" alt="menu-image"/>
+                                <img class="img-fluid" src="{{ fs.Image.url }}" alt="{{ fs.Title }}"/>
 
                                 <!-- Item Code -->
                                 <span class="item-code bg-tra-dark">کد: 0850</span>
 
                                 <!-- Zoom Icon -->
                                 <div class="menu-img-zoom ico-25">
-                                    <a href="assets/images/menu/burger-11.jpg" class="image-link">
+                                    <a href="{{ fs.Image.url }}" class="{{ fs.Title }}">
                                         <span class="flaticon-zoom"></span>
                                     </a>
                                 </div>
@@ -456,14 +455,14 @@
                             </div>
 
                             <!-- Title -->
-                            <h5 class="h5-sm">بازگشت مرغ بریان</h5>
+                            <h5 class="h5-sm">{{ fs.Title }}</h5>
 
                             <!-- Description -->
-                            <p class="grey-color">سینه مرغ، سس فلفل، گوجه فرنگی، ترشی، سالاد کلم</p>
+                            <p class="grey-color">{{ fs.Ingredients }}</p>
 
                             <!-- Price -->
                             <div class="menu-6-price bg-coffee">
-                                <h5 class="h5-xs yellow-color">18,500 ت</h5>
+                                <h5 class="h5-xs yellow-color">{{ fs.Price }} ت</h5>
                             </div>
 
                             <!-- Add To Cart -->
@@ -475,201 +474,9 @@
 
                     </div>
                 </div>    <!-- END MENU ITEM #1 -->
+                    {% endfor %}
 
-
-                <!-- MENU ITEM #2 -->
-                <div class="col-sm-6 col-lg-3">
-                    <div class="menu-6-item bg-white">
-
-                        <!-- IMAGE -->
-                        <div class="menu-6-img rel">
-                            <div class="hover-overlay">
-
-                                <!-- Image -->
-                                <img class="img-fluid" src="assets/images/menu/burger-12.jpg" alt="menu-image"/>
-
-                                <!-- Item Code -->
-                                <span class="item-code bg-tra-dark">کد: 0858</span>
-
-                                <!-- Zoom Icon -->
-                                <div class="menu-img-zoom ico-25">
-                                    <a href="assets/images/menu/burger-12.jpg" class="image-link">
-                                        <span class="flaticon-zoom"></span>
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- TEXT -->
-                        <div class="menu-6-txt rel">
-
-                            <!-- Rating -->
-                            <div class="item-rating">
-                                <div class="stars-rating stars-lg">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                            </div>
-
-                            <!-- Like Icon -->
-                            <div class="like-ico ico-25">
-                                <a href="#"><span class="flaticon-heart"></span></a>
-                            </div>
-
-                            <!-- Title -->
-                            <h5 class="h5-sm">رویال برگر با سس قارچ</h5>
-
-                            <!-- Description -->
-                            <p class="grey-color">گوشت گاو خانگی، پنیر چدار، بیکن، پیاز، خردل</p>
-
-                            <!-- Price -->
-                            <div class="menu-6-price bg-coffee">
-                                <h5 class="h5-xs yellow-color">19,900 ت</h5>
-                            </div>
-
-                            <!-- Add To Cart -->
-                            <div class="add-to-cart bg-yellow ico-10">
-                                <a href="#"><span class="flaticon-shopping-bag"></span> سبد خرید</a>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>    <!-- END MENU ITEM #2 -->
-
-
-                <!-- MENU ITEM #3 -->
-                <div class="col-sm-6 col-lg-3">
-                    <div class="menu-6-item bg-white">
-
-                        <!-- IMAGE -->
-                        <div class="menu-6-img rel">
-                            <div class="hover-overlay">
-
-                                <!-- Image -->
-                                <img class="img-fluid" src="assets/images/menu/burger-13.jpg" alt="menu-image"/>
-
-                                <!-- Item Code -->
-                                <span class="item-code bg-tra-dark">کد: 0847</span>
-
-                                <!-- Zoom Icon -->
-                                <div class="menu-img-zoom ico-25">
-                                    <a href="assets/images/menu/burger-13.jpg" class="image-link">
-                                        <span class="flaticon-zoom"></span>
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- TEXT -->
-                        <div class="menu-6-txt rel">
-
-                            <!-- Rating -->
-                            <div class="item-rating">
-                                <div class="stars-rating stars-lg">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-
-                            <!-- Like Icon -->
-                            <div class="like-ico ico-25">
-                                <a href="#"><span class="flaticon-heart"></span></a>
-                            </div>
-
-                            <!-- Title -->
-                            <h5 class="h5-sm">برگر مغزدار</h5>
-
-                            <!-- Description -->
-                            <p class="grey-color">پنیر ایرانی، طعم گوجه فرنگی، آووکادو، کاهو، پیاز قرمز</p>
-
-                            <!-- Price -->
-                            <div class="menu-6-price bg-coffee">
-                                <h5 class="h5-xs yellow-color">19,700 ت</h5>
-                            </div>
-
-                            <!-- Add To Cart -->
-                            <div class="add-to-cart bg-yellow ico-10">
-                                <a href="#"><span class="flaticon-shopping-bag"></span> سبد خرید</a>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>    <!-- END MENU ITEM #3 -->
-
-
-                <!-- MENU ITEM #4 -->
-                <div class="col-sm-6 col-lg-3">
-                    <div class="menu-6-item bg-white">
-
-                        <!-- IMAGE -->
-                        <div class="menu-6-img rel">
-                            <div class="hover-overlay">
-
-                                <!-- Image -->
-                                <img class="img-fluid" src="assets/images/menu/burger-14.jpg" alt="menu-image"/>
-
-                                <!-- Item Code -->
-                                <span class="item-code bg-tra-dark">کد: 0859</span>
-
-                                <!-- Zoom Icon -->
-                                <div class="menu-img-zoom ico-25">
-                                    <a href="assets/images/menu/burger-14.jpg" class="image-link">
-                                        <span class="flaticon-zoom"></span>
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- TEXT -->
-                        <div class="menu-6-txt rel">
-
-                            <!-- Rating -->
-                            <div class="item-rating">
-                                <div class="stars-rating stars-lg">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                </div>
-                            </div>
-
-                            <!-- Like Icon -->
-                            <div class="like-ico ico-25">
-                                <a href="#"><span class="flaticon-heart"></span></a>
-                            </div>
-
-                            <!-- Title -->
-                            <h5 class="h5-sm">مرغ برگر پنیری</h5>
-
-                            <!-- Description -->
-                            <p class="grey-color">2 عدد گوشت مرغ، پنیر چدار، خردل، ترشی، گوجه فرنگی</p>
-
-                            <!-- Price -->
-                            <div class="menu-6-price bg-coffee">
-                                <h5 class="h5-xs yellow-color">32,000 ت</h5>
-                            </div>
-
-                            <!-- Add To Cart -->
-                            <div class="add-to-cart bg-yellow ico-10">
-                                <a href="#"><span class="flaticon-shopping-bag"></span> سبد خرید</a>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>    <!-- END MENU ITEM #4 -->
+                {% endif %}
 
 
             </div>      <!-- End row -->

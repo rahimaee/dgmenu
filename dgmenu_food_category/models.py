@@ -1,6 +1,5 @@
 from django.db import models
 from dgmenu_cafe.models import Cafe
-
 import os
 from random import randint
 
