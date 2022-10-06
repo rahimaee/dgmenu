@@ -53,6 +53,9 @@ INSTALLED_APPS = [
     'django_render_partial',
     # site
     'dgmenu_site_home',
+    ## admin panel ##
+    # admin panel
+    'adminpanel'
 ]
 
 MIDDLEWARE = [
