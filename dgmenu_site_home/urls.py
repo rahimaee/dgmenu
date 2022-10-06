@@ -4,6 +4,6 @@ from .views import home_page
 
 app_name = 'dgmenu_site_home'
 urlpatterns = [
-    path('', home_page),
+    path('', home_page, name='site_home_page'),
 
 ]
