@@ -1,0 +1,21 @@
+{% load render_partial %}
+<html>
+
+<head>
+    {% render_partial 'header_references_partial_view' %}
+</head>
+<body class="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
+
+{% render_partial 'header_panel_partial_view' %}
+<!-- Main Content -->
+<main class="body-content">
+    {% render_partial 'navbar_panel_partial_view' %}
+    {% block main %}no data{% endblock %}
+</main>
+
+<!-- MODALS -->
+{% render_partial 'quick_bar_panel_partial_view' %}
+{% include 'shared/panel/_FooterReferences.html' %}
+</body>
+
+</html>
