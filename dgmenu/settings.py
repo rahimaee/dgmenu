@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'dgmenu_site_home',
     ## admin panel ##
     # admin panel
-    'adminpanel'
+    'adminpanel',
+    'adminpanel_category',
 ]
 
 MIDDLEWARE = [
@@ -152,3 +153,15 @@ AUTH_USER_MODEL = 'dgmenu_account.CustomUser'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'mail.dgtag.ir'
+# EMAIL_USE_TLS = True
+# HOSTNAME = 'localhost'
+# DEFAULT_FROM_EMAIL = 'no_reply@dgtag.ir'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'no_reply@dgtag.ir'
+# EMAIL_HOST_PASSWORD = 'mohammad13271326'
+
+
+DEFAULT_FROM_EMAIL = 'mohammad.rahimaee@gmail.com'

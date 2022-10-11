@@ -901,7 +901,7 @@ body:not(.ms-aside-left-open) .ms-aside-toggler .ms-toggler-bar{
   max-width: 40px;
   cursor: pointer;
 }
-.ms-navbar .ms-nav-list li.ms-nav-item:last-child{
+.ms-navbar .ms-nav-list li.ms-nav-item:first-child{
   padding-right: 0;
 }
 .ms-inline li.ms-nav-item a i[class^="flaticon-"]::before,
@@ -1443,7 +1443,7 @@ a.ms-confirm-trigger:hover{
     display: block;
   }
   .ms-aside-left-open  .ms-aside-left.side-nav{
-    transform: translateX(-100%);
+    transform: translateX(100%);
   }
   .ms-aside-left.ms-aside-open.side-nav{
     transform: translateX(0);
@@ -1474,7 +1474,7 @@ a.ms-confirm-trigger:hover{
   }
   .ms-navbar .ms-nav-list{
     position: absolute;
-    width: 100%;
+    width: 200%;
     background-color: transparent;
     top: 0;
     left: 0;
@@ -1557,8 +1557,8 @@ a.ms-confirm-trigger:hover{
   top: 100%;
 }
 .dropdown-menu-right{
-  right: 0;
-  left: auto;
+  left: 0;
+  right: auto;
 }
 .ms-dropdown-list{
   max-height: 18rem;
@@ -3683,12 +3683,12 @@ a .badge[class*='badge-outline-']{
   color: #ff0018;
 }
 .pagination-pill .page-item:first-child .page-link{
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
-}
-.pagination-pill .page-item:last-child .page-link{
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
+}
+.pagination-pill .page-item:last-child .page-link{
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
 }
 .pagination-input input[type="number"]{
   width: 51px;
@@ -7494,4 +7494,11 @@ button.close {
 }
 div#driver-popover-item .driver-popover-title,driver-popover-description,driver-btn-group{
   font-family: IranSans;
+}
+li.dropdown-menu-header {
+  text-align: right;
+}
+
+.ms-nav-list.ms-inline.mb-0.ms-slide-down li{
+  float: left;
 }

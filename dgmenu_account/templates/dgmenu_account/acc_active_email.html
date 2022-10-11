@@ -1,0 +1,5 @@
+{% autoescape off %}
+    سلام  {{ user.username }},
+   برای فعال سازی حساب کاربری روی ایمیل کلیک کنید,
+    https://{{ domain }}{% url 'account:activate' uidb64=uid token=token %}
+{% endautoescape %}
