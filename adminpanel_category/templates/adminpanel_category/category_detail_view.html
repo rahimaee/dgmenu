@@ -1,0 +1,80 @@
+{% extends 'shared/panel/_PanelMain.html' %}
+{% load static %}
+{% block main %}
+    <div class="ms-content-wrapper">
+        <div class="row">
+
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb pl-0">
+                        <li class="breadcrumb-item"><a href="#"><i class="material-icons">home</i> خانه</a></li>
+                        <li class="breadcrumb-item"><a href="#">منو</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">جزییات محصول</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class=" col-md-6">
+                <div class="ms-panel ms-panel-fh">
+                    <div class="ms-panel-body">
+                        <h4 class="section-title bold">اطلاعات دسته بندی</h4>
+                        <table class="table ms-profile-information">
+                            <tbody>
+                            <tr>
+                                <th scope="row">ایکون</th>
+                                <td><img src="{{ cat.Img.url }}" alt="icon"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">نام فارسی</th>
+                                <td>{{ cat.NameFa }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">نام انگلیسی</th>
+                                <td>{{ cat.NameEn }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">وضعیت نمایش</th>
+                                {% if cat.IsActive %}
+                                    <td><span class="badge badge-pill badge-success">فعال</span></td>
+                                {% else %}
+                                    <td><span class="badge badge-pill badge-primary">غیرفعال</span></td>
+
+                                {% endif %}
+
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button type="button" class="btn btn-primary">ویرایش</button>
+                        <button type="button" class="btn btn-secondary">حذف</button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class=" col-md-6">
+                <div class="ms-panel ms-panel-fh">
+                    <div class="ms-panel-body">
+
+                        <h4 class="section-title bold">امار بازدید </h4>
+                        <p class="description">امار بازدید از تمامی ایتم های موجود در {{ cat.NameFa }}</p>
+
+
+                    </div>
+                    <div class="ms-quick-stats">
+                        <div class="ms-stats-grid">
+                            <i class="fa fa-bullhorn"></i>
+                            <p class="ms-text-dark">1,033</p>
+                            <span>کل بازدید</span>
+                        </div>
+                        <div class="ms-stats-grid">
+                            <i class="fa fa-heart"></i>
+                            <p class="ms-text-dark">3,039</p>
+                            <span>محبوبیت</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}
