@@ -53,13 +53,16 @@
                                                     <div class="align-self-center align-left">
                                                         <h5> {{ cat.NameFa }} </h5>
                                                     </div>
-                                                    <button type="button" class="btn btn-primary">جزئیات</button>
+                                                    <button type="button"
+                                                            onclick="location.href='{% url 'category:category_detail' pk=cat.id %}';"
+                                                            class="btn btn-primary">جزئیات
+                                                    </button>
                                                 </div>
                                             </div>
                                         </li>
                                     {% endfor %}
                                 </ul>
-                                <button type="button" class="btn btn-primary" onclick="UpdateData()">جزئیات</button>
+                                <button type="button" class="btn btn-primary" onclick="UpdateData()">ثبت</button>
                             </div>
                         </div>
                     </div>
@@ -79,7 +82,6 @@
             var response = {data: list}
             json_response = JSON.stringify(response);
             $.post('http://127.0.0.1:8000/adminpanel/category/url/', json_response);
-            console.log(list);
         }
 
     </script>
