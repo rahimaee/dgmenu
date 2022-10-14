@@ -1,9 +1,66 @@
-<form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <table>
-        {{ form }}
+{#<form action="" method="post" enctype="multipart/form-data">#}
+{#    {% csrf_token %}#}
+{#    <table>#}
+{#        {{ form }}#}
+{#    </table>#}
+{#    <input type="submit" value="Submit">#}
+{#    <input type="submit" onclick="window.location='{% url 'category:all' %}' ; return false;" value="Cancel">#}
+{#</form>#}
 
-    </table>
-    <input type="submit" value="Submit">
-    <input type="submit" onclick="window.location='{% url 'category:all' %}' ; return false;" value="Cancel">
-</form>
+{% extends 'shared/panel/_PanelMain.html' %}
+{% load static %}
+{% block main %}
+    <div class="ms-content-wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb pl-0">
+                        <li class="breadcrumb-item"><a href="#"><i class="material-icons">home</i> خانه</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#">فرمها</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">عناصر فرم</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-xl-12">
+                <div class="ms-panel">
+                    <div class="ms-panel-header">
+                        <h6>اضافه کردن دسته بندی</h6>
+                    </div>
+                    <div class="ms-panel-body">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                {% if field is not form.Img and field is not form.IsActive %}
+                                    <div class="form-group">
+                                        <label for="{{ field.label }}">{{ field.label }}</label>
+                                        {{ field }}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                            <div class="form-group">
+                                {{ form.Img.label }}
+                                <br>
+                                <br>
+                                {{ form.Img }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.IsActive.label }}
+                                <br>
+                                <label class="ms-switch">
+                                    {{ form.IsActive }} <span
+                                        class="ms-switch-slider ms-switch-success round"></span>
+
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-block btn-success">ثبت</button>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

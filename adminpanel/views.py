@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from dgmenu_account.models import CustomUser as User
 
-
 # Create your views here.
+from dgmenu_cafe.models import Cafe
+
 
 def index(request, *args, **kwargs):
     cx = {}
@@ -15,7 +16,11 @@ def header_references_partial_view(request, *args, **kwargs):
 
 
 def header_panel_partial_view(request, *args, **kwargs):
-    cx = {}
+    userid = request.user
+    user = User.objects.filter(id=userid.id).first()
+    cafe = Cafe.objects.filter(Manager_id=user.id).first()
+    cx = {'user': user,
+          'cafe': cafe}
     return render(request, 'shared/panel/_Header.html', cx)
 
 
@@ -27,6 +32,7 @@ def quick_bar_panel_partial_view(request, *args, **kwargs):
 def navbar_panel_partial_view(request, *args, **kwargs):
     userid = request.user
     user = User.objects.filter(id=userid.id).first()
-
-    cx = {'user': user}
+    cafe = Cafe.objects.filter(Manager_id=user.id).first()
+    cx = {'user': user,
+          'cafe': cafe}
     return render(request, 'shared/panel/_Navbar.html', cx)

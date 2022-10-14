@@ -4,19 +4,23 @@ from django import forms
 
 class CategoryForm(forms.Form):
     Img = forms.ImageField(
-        label='عکس'
-
+        label='ایکون'
     )
     NameFa = forms.CharField(
         widget=forms.TextInput(
-            attrs={}),
+            attrs={'class': "form-control", 'id': "NameFa"}),
         label='نام فارسی'
     )
     NameEn = forms.CharField(
         widget=forms.TextInput(
-            attrs={}),
-        label='نام فارسی'
+            attrs={'class': "form-control", 'id': "NameEn"}),
+        label='نام انگلیسی'
+
     )
     IsActive = forms.BooleanField(
-        label='فعال/غیرفعال'
+        widget=forms.CheckboxInput(
+            attrs={'type': "checkbox", 'name': "IsActive", 'id': "id_IsActive"}
+        ),
+        label='نمایش در سایت',
+        required=False
     )
