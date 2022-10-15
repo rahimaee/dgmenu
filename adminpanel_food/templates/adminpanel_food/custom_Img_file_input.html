@@ -1,0 +1,22 @@
+{% if widget.is_initial %}
+    <p>
+    <p> تصویر فعلی</p>
+    <img style="width: 50px;height: 50px" class="rounded app-icon" src="{{ widget.value.url }}">
+    {% if not widget.required %}
+        <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"
+                {% if widget.attrs.disabled %} disabled{% endif %}>
+        <label for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label>
+    {% endif %}<br>
+    </p>
+    <label for="validationCustom12">تغییر تصویر</label>
+    {% comment %} <span class="text-muted">{{ widget.input_text }}:</span> {% endcomment %}
+{% endif %}
+
+
+<div class="custom-file">
+    <input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}
+           class="custom-file-input">
+    <label class="custom-file-label" for="{{ widget.name }}">آپلود تصویر...</label>
+    <div class="invalid-feedback">انتخاب نوع ورودی</div>
+</div>
+
