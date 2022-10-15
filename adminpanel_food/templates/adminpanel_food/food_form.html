@@ -1,0 +1,230 @@
+{% extends 'shared/panel/_PanelMain.html' %}
+{% load static %}
+{% block main %}
+
+    <!-- Body Content Wrapper -->
+    <div class="ms-content-wrapper">
+        <div class="row">
+
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb pl-0">
+                        <li class="breadcrumb-item"><a href="#"><i class="material-icons">home</i> خانه</a></li>
+                        <li class="breadcrumb-item"><a href="#">منو</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">افزودن محصول</li>
+                    </ol>
+                </nav>
+
+                <div class="alert alert-success" role="alert">
+                    <strong>کاملا صحیح!</strong>شما این پیام موفقیت را خواندید.
+                </div>
+            </div>
+
+            <form method="post" class="row" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="col-xl-6 col-md-12">
+                    <div class="ms-panel ms-panel-fh">
+                        <div class="ms-panel-header">
+                            <h6>فرم افزودن محصول</h6>
+                            {{ form.errors }}
+                            {{ form_food_active.errors }}
+                        </div>
+                        <div class="ms-panel-body">
+                            <div class="needs-validation clearfix">
+                                <div class="form-row">
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom18">{{ form.Title.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Title }}
+                                            <div class="valid-feedback">
+                                                همه چیز درسته!
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom22">{{ form.FoodCategory.label }} </label>
+                                        <div class="input-group">
+                                            {{ form.FoodCategory }}
+                                            <div class="invalid-feedback">
+                                                لطفا یک دسته‌بندی را انتخاب نمایید
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationCustom25">{{ form.Price.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Price }}
+                                            <div class="invalid-feedback">
+                                                قیمت
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationCustom25">{{ form.Discount.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Discount }}
+                                            <div class="invalid-feedback">
+                                                قیمت
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom12">{{ form.Description_Short.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Description_Short }}
+                                            <div class="invalid-feedback">
+                                                پیام خود را وارد نمایید
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom12">{{ form.Description_Long.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Description_Long }}
+                                            <div class="invalid-feedback">
+                                                پیام خود را وارد نمایید
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom20">{{ form.Tag.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Tag }}
+                                            <div class="invalid-feedback">
+                                                food, itely, cream.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom20">{{ form.Ingredients.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Ingredients }}
+                                            <div class="invalid-feedback">
+                                                food, itely, cream.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom20">{{ form.Calories.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Calories }}
+                                            <div class="invalid-feedback">
+                                                food, itely, cream.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom20">{{ form.Allergy.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Allergy }}
+                                            <div class="invalid-feedback">
+                                                food, itely, cream.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom20">{{ form.Tag.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Tag }}
+                                            <div class="invalid-feedback">
+                                                food, itely, cream.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+
+                                            {{ form.Image }}
+
+                                    </div>
+                                </div>
+
+
+                                <button class="btn btn-primary d-block" type="submit">ذخیره و ادامه</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xl-6 col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="ms-panel">
+                                <div class="ms-panel-header">
+                                    <h6>محصول </h6>
+                                </div>
+                                <div class="ms-panel-body">
+                                    <div id="imagesSlider" class="ms-image-slider carousel slide" data-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img class="d-block w-100"
+                                                     src="{% static 'panel/img/costic/add-product-1.jpg' %}"
+                                                     alt="First slide">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img class="d-block w-100"
+                                                     src="{% static 'panel/img/costic/add-product-1.jpg' %}"
+                                                     alt="Second slide">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img class="d-block w-100"
+                                                     src="{% static 'panel/img/costic/add-product-1.jpg' %}"
+                                                     alt="Third slide">
+                                            </div>
+                                        </div>
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#imagesSlider" data-slide-to="0" class="active"><img
+                                                    class="d-block w-100"
+                                                    src="{% static 'panel/img/costic/add-product-1.jpg' %}"
+                                                    alt="First slide"></li>
+                                            <li data-target="#imagesSlider" data-slide-to="1"><img class="d-block w-100"
+                                                                                                   src="{% static 'panel/img/costic/add-product-1.jpg' %}"
+                                                                                                   alt="Second slide">
+                                            </li>
+                                            <li data-target="#imagesSlider" data-slide-to="2"><img class="d-block w-100"
+                                                                                                   src="{% static 'panel/img/costic/add-product-1.jpg' %}"
+                                                                                                   alt="Third slide">
+                                            </li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+
+                            <div class="ms-panel ms-btn-display">
+                                <div class="ms-panel-header new">
+                                    <h6>{{ form.Is_Active.label }}</h6>
+                                    <div>
+                                        <label class="ms-switch">
+                                            {{ form.Is_Active }}
+                                            <span class="ms-switch-slider round"></span>
+                                        </label>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+{#<form action="" method="post">#}
+{#    {% csrf_token %}#}
+{#   {{ form.as_p }}#}
+{#    <button type="submit">test</button>#}
+{#</form>#}
+{##}

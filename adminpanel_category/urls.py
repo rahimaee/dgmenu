@@ -8,6 +8,6 @@ urlpatterns = [
     path('main/create/', views.CategoryCreate.as_view(), name='category_create'),
     path('main/<int:pk>/update/', views.CategoryUpdate.as_view(), name='category_update'),
     path('main/<int:pk>/detail/', views.CategoryDetail.as_view(), name='category_detail'),
-    # path('main/<int:pk>/delete/', views.AutoDelete.as_view(), name='auto_delete'),
+    # path('main/<int:pk>/delete/', views.CategoryDetailDelete.as_view(), name='CategoryDetail_delete'),
     path('url/', save_data, name='ss'),
 ]

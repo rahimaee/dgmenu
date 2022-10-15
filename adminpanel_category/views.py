@@ -9,6 +9,7 @@ from django.shortcuts import render
 from dgmenu_food_category.models import FoodCategory
 from dgmenu_cafe.models import Cafe
 from .forms import CategoryForm
+import json
 
 
 # Create your views here.
@@ -89,7 +90,18 @@ class CategoryUpdate(LoginRequiredMixin, View):
         return redirect(self.success_url)
 
 
-import json
+# class MakeDelete(LoginRequiredMixin, View):
+#     success_url = reverse_lazy('category:all')
+#
+#     def get(self, request, pk):
+#
+#         ctx = {'make': make}
+#         return render(request, self.template, ctx)
+#
+#     def post(self, request, pk):
+#         make = get_object_or_404(self.model, pk=pk)
+#         make.delete()
+#         return redirect(self.success_url)
 
 
 @csrf_exempt

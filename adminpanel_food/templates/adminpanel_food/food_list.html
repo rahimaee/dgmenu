@@ -1,0 +1,70 @@
+{% extends 'shared/panel/_PanelMain.html' %}
+{% load static %}
+{% block main %}
+    <div class="ms-content-wrapper">
+        <div class="row">
+
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb pl-0">
+                        <li class="breadcrumb-item"><a href="#"><i class="material-icons">home</i> خانه</a></li>
+                        <li class="breadcrumb-item"><a href="#">عناصر پیشرفته رابط کاربری </a></li>
+                        <li class="breadcrumb-item active" aria-current="page">عناصر قابل جابجایی</li>
+                    </ol>
+                </nav>
+                <div class="ms-panel">
+                    <div class="ms-panel-header">
+                        <h6>عناصر قابل جابجایی لیستی</h6>
+                        <p>عناصر را جا به جا نمایید</p>
+                    </div>
+                    <div class="ms-panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h6 class="section-title">در حال انجام</h6>
+                                <ul class="ms-list ms-sortable-list" id="category_id">
+
+                                    {% for food in Food %}
+
+                                        <li class="ms-list-item bordered media"
+                                            id="id_{{ food.id }}_cat_order_{{ food.First }}">
+                                            {% if food.Image %}
+                                                <img class="ms-img-round" src="{{ food.Image.url }}" alt="icon">
+                                            {% endif %}
+                                            <div class="media-body">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="align-self-center align-left">
+                                                        <h5> {{ food.Title }} </h5>
+                                                    </div>
+{#                                                    <button type="button"#}
+{#                                                            onclick="location.href='{% url 'category:category_detail' pk=cat.id %}';"#}
+{#                                                            class="btn btn-primary">جزئیات#}
+{#                                                    </button>#}
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                                <button type="button" class="btn btn-primary" onclick="UpdateData()">ثبت</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function UpdateData() {
+            let list = [];
+            let my = document.getElementById('category_id').getElementsByTagName('li')
+            for (let i = 0; i < my.length; i++) {
+                var t = my[i];
+                console.log(t.id);
+                list.push(t.id);
+            }
+            var response = {data: list}
+            json_response = JSON.stringify(response);
+            $.post('http://127.0.0.1:8000/adminpanel/category/url/', json_response);
+        }
+
+    </script>
+{% endblock %}

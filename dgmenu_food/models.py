@@ -53,6 +53,5 @@ class Gallery(models.Model):
     Is_Active = models.BooleanField(default=False, verbose_name='فعال/غیرفعال')
     Food = models.ForeignKey(Food, on_delete=models.CASCADE, related_name="images")
     Admin_Is_Active = models.BooleanField(default=False, verbose_name='فعال/غیرفعال مدیر')
-    Is_Active = models.BooleanField(default=False, verbose_name='فعال/غیرفعال')
     Submit_Time = models.DateTimeField()
     Last_Edit_Time = models.DateTimeField()

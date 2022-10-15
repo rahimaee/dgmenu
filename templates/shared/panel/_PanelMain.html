@@ -3,6 +3,9 @@
 
 <head>
     {% render_partial 'header_references_partial_view' %}
+    {% block header %}
+    
+    {% endblock %}
 </head>
 <body class="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
 
@@ -16,6 +19,9 @@
 <!-- MODALS -->
 {% render_partial 'quick_bar_panel_partial_view' %}
 {% include 'shared/panel/_FooterReferences.html' %}
+{% block footer %}
+
+{% endblock %}
 </body>
 
 </html>

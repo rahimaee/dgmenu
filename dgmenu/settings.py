@@ -57,8 +57,10 @@ INSTALLED_APPS = [
     # admin panel
     'adminpanel',
     'adminpanel_category',
+    'adminpanel_food',
+    'django.forms',
 ]
-
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

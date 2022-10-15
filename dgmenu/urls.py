@@ -29,6 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('adminpanel/', include('adminpanel.urls', namespace='adminpanel')),
     path('adminpanel/category/', include('adminpanel_category.urls', namespace='adminpanel_category')),
+    path('adminpanel/food/', include('adminpanel_food.urls', namespace='adminpanel_food')),
     path('', include('dgmenu_site_home.urls', namespace='dgmenu_site_home')),
     path('', include('dgmenu_cafe.urls', namespace='dgmenu_cafe')),
     path('', include('dgmenu_cafe_team.urls', namespace='dgmenu_cafe_team')),
