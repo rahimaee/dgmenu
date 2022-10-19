@@ -23,7 +23,6 @@ class CafeGallery(models.Model):
     Name = models.CharField(max_length=120, verbose_name='نام عکس')
     Img = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
                             verbose_name='عکس')
-    IsActive = models.BooleanField(default=True, verbose_name='فعال/غیرفعال')
     IsActiveAdmin = models.BooleanField(default=True, verbose_name='فعال/غیرفعال مدیر')
     TimeUpload = models.DateTimeField(verbose_name='زمان ثبت عکس')
     Cafe = models.ForeignKey(Cafe, verbose_name='کافه', on_delete=models.CASCADE)

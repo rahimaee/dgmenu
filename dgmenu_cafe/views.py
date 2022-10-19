@@ -2,7 +2,7 @@ from django.shortcuts import render, Http404, HttpResponse
 from dgmenu_cafe.models import Cafe
 from dgmenu_cafe_gallery.models import CafeGallery
 from dgmenu_food_category.models import FoodCategory
-from dgmenu_food.models import Food, Gallery
+from dgmenu_food.models import Food
 
 
 # Create your views here.
@@ -41,7 +41,6 @@ def cafe_food_detail(request, *args, **kwargs):
     if food is None:
         raise Http404("خطا دیتابیس")
 
-    food_gallery = Gallery.objects.filter(Food_id=food.id, Is_Active=True, Admin_Is_Active=True).all()
     food_suggestion = Food.objects.filter(FoodCategory_id=food.FoodCategory_id, Is_Active=True,
                                           Admin_Is_Active=True).all()
     if food_suggestion is not None:
@@ -52,7 +51,6 @@ def cafe_food_detail(request, *args, **kwargs):
           'CafeUserId': cafe.id,
           'category': category,
           'food': food,
-          'food_gallery': food_gallery,
           'food_suggestion': food_suggestion}
     return render(request=request, template_name='dgmenu_cafe/cafe_food_detail_page.html', context=cx)
 
@@ -87,7 +85,7 @@ def footer_partial_view(request, *args, **kwargs):
         raise Http404("کافه پیدا نشد")
     if cafe.Is_Active is True:
         raise Http404("کافه غیرفعال می باشد")
-    cafe_gallery = CafeGallery.objects.filter(Cafe_id=cafe.id, IsActive=True, IsActiveAdmin=True).all()
+    cafe_gallery = CafeGallery.objects.filter(Cafe_id=cafe.id, IsActiveAdmin=True).all()
     cafe_gallery = cafe_gallery[:5]
     WorkTime = list()
     if cafe.Cafe_Opening_Hours is not None:

@@ -1,9 +1,13 @@
+import json
+
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.urls import reverse_lazy
 from django.views import View
+from django.views.decorators.csrf import csrf_exempt
 
 from adminpanel_food.forms import FoodForm
 from dgmenu_cafe.models import Cafe
@@ -16,7 +20,7 @@ class MainView(LoginRequiredMixin, View):
     def get(self, request):
         user = request.user
         cafe_id = Cafe.objects.filter(Manager_id=user.id).first()
-        food = Food.objects.filter(Cafe_id=cafe_id, Cafe__Manager_id=user.id, Admin_Is_Active=True)
+        food = Food.objects.filter(Cafe_id=cafe_id, Cafe__Manager_id=user.id, Admin_Is_Active=True).order_by('First')
         ctx = {'Food': food, }
         return render(request, 'adminpanel_food/food_list.html', ctx)
 
@@ -68,6 +72,9 @@ class FoodCreate(LoginRequiredMixin, View):
         fd.Submit_Time = datetime.datetime.now()
         fd.Last_Edit_Time = datetime.datetime.now()
         fd.First = count
+        fd.Gallery_Image_1 = form.cleaned_data['Gallery_Img_1']
+        fd.Gallery_Image_2 = form.cleaned_data['Gallery_Img_2']
+        fd.Gallery_Image_3 = form.cleaned_data['Gallery_Img_3']
         fd.save()
         return redirect(self.success_url)
 
@@ -87,7 +94,13 @@ class FoodUpdate(LoginRequiredMixin, View):
 
     def get(self, request, pk):
         fd = Food.objects.filter(pk=pk).first()
-        form = FoodForm(initial={'Image': fd.Image, 'Is_Active': fd.Is_Active})
+        form = FoodForm(initial={'Image': fd.Image, 'Is_Active': fd.Is_Active, })
+        if fd.Gallery_Image_1 is not None:
+            form.fields['Gallery_Img_1'].initial = fd.Gallery_Image_1
+        if fd.Gallery_Image_2 is not None:
+            form.fields['Gallery_Img_2'].initial = fd.Gallery_Image_2
+        if fd.Gallery_Image_3 is not None:
+            form.fields['Gallery_Img_3'].initial = fd.Gallery_Image_3
         get_cat_food = FoodCategory.objects.filter(Cafe__Manager_id=request.user.id).all()
         get_cat_food_list = []
         for item in get_cat_food:
@@ -103,12 +116,19 @@ class FoodUpdate(LoginRequiredMixin, View):
         form.initial['Allergy'] = fd.Allergy
         form.initial['Price'] = fd.Price
         form.initial['Discount'] = fd.Discount
-        ctx = {'form': form}
+        ctx = {'form': form, 'food': fd}
         return render(request, self.template, ctx)
 
     def post(self, request, pk):
         fd = Food.objects.filter(id=pk).first()
-        form = FoodForm(request.POST, request.FILES or None, initial={'Image': fd.Image, 'Is_Active': fd.Is_Active})
+
+        form = FoodForm(request.POST, request.FILES or None, initial={'Image': fd.Image, 'Is_Active': fd.Is_Active, })
+        if fd.Gallery_Image_1 is not None:
+            form.fields['Gallery_Img_1'].initial = fd.Gallery_Image_1
+        if fd.Gallery_Image_2 is not None:
+            form.fields['Gallery_Img_2'].initial = fd.Gallery_Image_2
+        if fd.Gallery_Image_3 is not None:
+            form.fields['Gallery_Img_3'].initial = fd.Gallery_Image_3
         get_cat_food = FoodCategory.objects.filter(Cafe__Manager_id=request.user.id).all()
         get_cat_food_list = []
         for item in get_cat_food:
@@ -139,5 +159,54 @@ class FoodUpdate(LoginRequiredMixin, View):
         fd.Price = form.cleaned_data['Price']
         fd.Discount = form.cleaned_data['Discount']
         fd.Is_Active = form.cleaned_data['Is_Active']
+        if not form.cleaned_data['Gallery_Img_1']:
+            fd.Gallery_Image_1.delete()
+        else:
+            fd.Gallery_Image_1 = form.cleaned_data['Gallery_Img_1']
+
+        if not form.cleaned_data['Gallery_Img_2']:
+            fd.Gallery_Image_2.delete()
+        else:
+            fd.Gallery_Image_2 = form.cleaned_data['Gallery_Img_2']
+        if not form.cleaned_data['Gallery_Img_3']:
+            fd.Gallery_Image_3.delete()
+        else:
+            fd.Gallery_Image_3 = form.cleaned_data['Gallery_Img_3']
         fd.save()
         return redirect(self.success_url)
+
+
+@csrf_exempt
+def save_data(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            json_data = json.loads(request.body)
+            data = json_data['data']
+            data = list(data)
+            for item in data:
+                food_id = str(item).split('_')[1]
+                a_user = Food.objects.filter(Cafe__Manager_id=request.user.id, pk=food_id).first()
+                if a_user is None:
+                    return HttpResponse("error")
+            temp = 1
+            for item in data:
+                food_id = str(item).split('_')[1]
+
+                cafe = Cafe.objects.filter(Manager_id=request.user.id).first()
+                f_food = Food.objects.filter(pk=food_id, Cafe_id=cafe.id, Admin_Is_Active=True,
+                                             Cafe__Manager_id=request.user.id).first()
+                f_food.First = temp
+                temp = temp + 1
+                f_food.save()
+
+    return HttpResponse("save")
+
+
+@csrf_exempt
+def FoodDelete(request, *args, **kwargs):
+    success_url = reverse_lazy('food:all')
+    food_id = kwargs.get('pk')
+    if food_id is not None:
+        food = Food.objects.filter(pk=food_id, Cafe__Manager_id=request.user.id).delete()
+        return redirect(success_url)
+    raise Http404()

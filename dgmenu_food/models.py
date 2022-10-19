@@ -41,6 +41,9 @@ class Food(models.Model):
     Allergy = models.CharField(max_length=250, verbose_name='الرژی')
     Price = models.CharField(max_length=100, verbose_name='قیمت')
     Discount = models.CharField(max_length=200, null=True, blank=True, verbose_name='قیمت باتخفیف')
+    Gallery_Image_1 = models.ImageField(default='avatar.png', upload_to=upload_image_path, verbose_name='عکس اصلی غذا')
+    Gallery_Image_2 = models.ImageField(default='avatar.png', upload_to=upload_image_path, verbose_name='عکس اصلی غذا')
+    Gallery_Image_3 = models.ImageField(default='avatar.png', upload_to=upload_image_path, verbose_name='عکس اصلی غذا')
     Admin_Is_Active = models.BooleanField(default=False, verbose_name='فعال/غیرفعال مدیر')
     Is_Active = models.BooleanField(default=False, verbose_name='فعال/غیرفعال')
     Submit_Time = models.DateTimeField()
@@ -48,10 +51,4 @@ class Food(models.Model):
     First = models.IntegerField(verbose_name='ترتیب نمایش')
 
 
-class Gallery(models.Model):
-    Image = models.ImageField(upload_to=upload_image_gallery_path, null=True, blank=True, verbose_name='تصویر')
-    Is_Active = models.BooleanField(default=False, verbose_name='فعال/غیرفعال')
-    Food = models.ForeignKey(Food, on_delete=models.CASCADE, related_name="images")
-    Admin_Is_Active = models.BooleanField(default=False, verbose_name='فعال/غیرفعال مدیر')
-    Submit_Time = models.DateTimeField()
-    Last_Edit_Time = models.DateTimeField()
+

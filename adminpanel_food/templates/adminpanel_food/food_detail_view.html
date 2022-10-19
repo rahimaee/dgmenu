@@ -1,5 +1,8 @@
 {% extends 'shared/panel/_PanelMain.html' %}
 {% load static %}
+{% block header %}
+    <link href="{% static 'panel/css/sweetalert2.min.css' %}" rel="stylesheet">
+{% endblock %}
 {% block main %}
 
     <!-- Body Content Wrapper -->
@@ -115,8 +118,10 @@
                             </tr>
                             </tbody>
                         </table>
-                        <button type="button" class="btn btn-primary">ویرایش</button>
-                        <button type="button" class="btn btn-secondary">حذف</button>
+                        <button type="button" class="btn btn-primary"
+                                onclick="location.href='{% url 'food:food_update' pk=food.id %}';">ویرایش
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="Delete()">حذف</button>
 
                     </div>
                 </div>
@@ -155,4 +160,31 @@
     </div>
 
 
+{% endblock %}
+
+{% block footer %}
+    <script>
+
+        function Delete() {
+            Swal.fire({
+                title: 'مطمئن هستید؟',
+                text: "این عملیات غیرقابل بازگشت ست!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله!'
+            }).then(function (result) {
+                if (result.value) {
+                    $.post("{% url 'food:food_delete' pk=food.pk %}");
+                    window.location.href = '{% url 'food:all' %}';
+                }
+            });
+        }
+
+    </script>
+
+    <script src="{% static 'panel/js/sweetalert2.min.js' %}">
+    </script>
+    <script src="{% static 'panel/js/sweet-alerts.js' %}"></script>
 {% endblock %}

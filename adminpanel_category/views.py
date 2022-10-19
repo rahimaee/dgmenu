@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseServerError, HttpResponse
+from django.http import HttpResponseServerError, HttpResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
@@ -90,20 +90,6 @@ class CategoryUpdate(LoginRequiredMixin, View):
         return redirect(self.success_url)
 
 
-# class MakeDelete(LoginRequiredMixin, View):
-#     success_url = reverse_lazy('category:all')
-#
-#     def get(self, request, pk):
-#
-#         ctx = {'make': make}
-#         return render(request, self.template, ctx)
-#
-#     def post(self, request, pk):
-#         make = get_object_or_404(self.model, pk=pk)
-#         make.delete()
-#         return redirect(self.success_url)
-
-
 @csrf_exempt
 def save_data(request):
     if request.user.is_authenticated:
@@ -112,15 +98,13 @@ def save_data(request):
             data = json_data['data']
             data = list(data)
             for item in data:
-                print(item)
                 cat_id = str(item).split('_')[1]
                 a_user = FoodCategory.objects.filter(Cafe__Manager_id=request.user.id, pk=cat_id).first()
                 if a_user is None:
                     return HttpResponse("error")
-                temp = 1
+            temp = 1
             for item in data:
                 cat_id = str(item).split('_')[1]
-                cat_order = str(item).split('_')[4]
                 cafe = Cafe.objects.filter(Manager_id=request.user.id).first()
                 f_cat_food = FoodCategory.objects.filter(pk=cat_id, Cafe_id=cafe.id, IsActiveAdmin=True).first()
                 f_cat_food.First = temp
@@ -128,3 +112,13 @@ def save_data(request):
                 f_cat_food.save()
 
     return HttpResponse("save")
+
+
+@csrf_exempt
+def CategoryDelete(request, *args, **kwargs):
+    success_url = reverse_lazy('food:all')
+    cat_id = kwargs.get('pk')
+    if cat_id is not None:
+        cat = FoodCategory.objects.filter(pk=cat_id, Cafe__Manager_id=request.user.id).delete()
+        return redirect(success_url)
+    raise Http404()

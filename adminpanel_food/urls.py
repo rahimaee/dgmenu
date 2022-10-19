@@ -6,9 +6,9 @@ from django.views.generic import TemplateView
 app_name = 'food'
 urlpatterns = [
     path('', views.MainView.as_view(), name='all'),
-    path('main/create/', views.FoodCreate.as_view(), name='food_create'),
-    path('main/<int:pk>/update/', views.FoodUpdate.as_view(), name='food_update'),
-    path('main/<int:pk>/detail/', views.FoodDetail.as_view(), name='food_detail'),
-    # # path('main/<int:pk>/delete/', views.AutoDelete.as_view(), name='auto_delete'),
-    # path('url/', save_data, name='ss'),
+    path('create/', views.FoodCreate.as_view(), name='food_create'),
+    path('<int:pk>/update/', views.FoodUpdate.as_view(), name='food_update'),
+    path('<int:pk>/detail/', views.FoodDetail.as_view(), name='food_detail'),
+    path('<int:pk>/delete/', views.FoodDelete, name='food_delete'),
+    path('sort/', views.save_data, name='food_sort'),
 ]

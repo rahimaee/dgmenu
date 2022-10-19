@@ -16,11 +16,13 @@ def header_references_partial_view(request, *args, **kwargs):
 
 
 def header_panel_partial_view(request, *args, **kwargs):
-    userid = request.user
-    user = User.objects.filter(id=userid.id).first()
-    cafe = Cafe.objects.filter(Manager_id=user.id).first()
-    cx = {'user': user,
-          'cafe': cafe}
+    if request.user.is_authenticated:
+        userid = request.user
+        user = User.objects.filter(id=userid.id).first()
+        cafe = Cafe.objects.filter(Manager_id=user.id).first()
+        cx = {'user': user,
+              'cafe': cafe}
+    cx = {}
     return render(request, 'shared/panel/_Header.html', cx)
 
 
@@ -30,9 +32,11 @@ def quick_bar_panel_partial_view(request, *args, **kwargs):
 
 
 def navbar_panel_partial_view(request, *args, **kwargs):
-    userid = request.user
-    user = User.objects.filter(id=userid.id).first()
-    cafe = Cafe.objects.filter(Manager_id=user.id).first()
-    cx = {'user': user,
-          'cafe': cafe}
+    if request.user.is_authenticated:
+        userid = request.user
+        user = User.objects.filter(id=userid.id).first()
+        cafe = Cafe.objects.filter(Manager_id=user.id).first()
+        cx = {'user': user,
+              'cafe': cafe}
+    cx = {}
     return render(request, 'shared/panel/_Navbar.html', cx)

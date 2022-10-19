@@ -58,6 +58,9 @@ INSTALLED_APPS = [
     'adminpanel',
     'adminpanel_category',
     'adminpanel_food',
+    'adminpanel_gallery',
+    'adminpanel_team',
+    'adminpanel_about',
     'django.forms',
 ]
 FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'

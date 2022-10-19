@@ -85,7 +85,7 @@
     </div>
 
     <script>
-        function Delete() {
+         function Delete() {
             Swal.fire({
                 title: 'مطمئن هستید؟',
                 text: "این عملیات غیرقابل بازگشت ست!",
@@ -96,7 +96,8 @@
                 confirmButtonText: 'بله!'
             }).then(function (result) {
                 if (result.value) {
-                    Swal.fire('پاک شد!', 'فایل شما با موفقیت حذف شد.', 'موفقیت');
+                    $.post("{% url 'category:Category_delete' pk=cat.pk %}");
+                    window.location.href = '{% url 'category:all' %}';
                 }
             });
         }

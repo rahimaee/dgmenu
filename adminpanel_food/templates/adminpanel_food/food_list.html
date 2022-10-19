@@ -21,12 +21,12 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h6 class="section-title">در حال انجام</h6>
-                                <ul class="ms-list ms-sortable-list" id="category_id">
+                                <ul class="ms-list ms-sortable-list" id="food_id">
 
                                     {% for food in Food %}
 
                                         <li class="ms-list-item bordered media"
-                                            id="id_{{ food.id }}_cat_order_{{ food.First }}">
+                                            id="id_{{ food.id }}_food_order_{{ food.First }}">
                                             {% if food.Image %}
                                                 <img class="ms-img-round" src="{{ food.Image.url }}" alt="icon">
                                             {% endif %}
@@ -35,10 +35,10 @@
                                                     <div class="align-self-center align-left">
                                                         <h5> {{ food.Title }} </h5>
                                                     </div>
-{#                                                    <button type="button"#}
-{#                                                            onclick="location.href='{% url 'category:category_detail' pk=cat.id %}';"#}
-{#                                                            class="btn btn-primary">جزئیات#}
-{#                                                    </button>#}
+                                                    <button type="button"
+                                                            onclick="location.href='{% url 'food:food_detail' pk=food.id %}';"
+                                                            class="btn btn-primary">جزئیات
+                                                    </button>
                                                 </div>
                                             </div>
                                         </li>
@@ -55,7 +55,7 @@
     <script>
         function UpdateData() {
             let list = [];
-            let my = document.getElementById('category_id').getElementsByTagName('li')
+            let my = document.getElementById('food_id').getElementsByTagName('li')
             for (let i = 0; i < my.length; i++) {
                 var t = my[i];
                 console.log(t.id);
@@ -63,7 +63,7 @@
             }
             var response = {data: list}
             json_response = JSON.stringify(response);
-            $.post('http://127.0.0.1:8000/adminpanel/category/url/', json_response);
+            $.post('{% url 'food:food_sort' %}', json_response);
         }
 
     </script>
