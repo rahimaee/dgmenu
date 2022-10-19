@@ -1,0 +1,124 @@
+{% extends 'shared/panel/_PanelMain.html' %}
+{% block main %}
+    <!-- Body Content Wrapper -->
+    <div class="ms-content-wrapper">
+        <div class="row">
+
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb pl-0">
+                        <li class="breadcrumb-item"><a href="#"><i class="material-icons">home</i> خانه</a></li>
+                        <li class="breadcrumb-item"><a href="#">منو</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">افزودن محصول</li>
+                    </ol>
+                </nav>
+
+                <div class="alert alert-success" role="alert">
+                    <strong>کاملا صحیح!</strong>شما این پیام موفقیت را خواندید.
+                </div>
+            </div>
+
+            <form method="post" class="row" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="col-xl-6 col-md-12">
+                    <div class="ms-panel ms-panel-fh">
+                        <div class="ms-panel-header">
+                            <h6>فرم افزودن محصول</h6>
+                            {{ form.errors }}
+                        </div>
+                        <div class="ms-panel-body">
+                            <div class="needs-validation clearfix">
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationCustom18">{{ form.Name.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Name }}
+                                            <div class="valid-feedback">
+                                                همه چیز درسته!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationCustom25">{{ form.Family.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Family }}
+                                            <div class="invalid-feedback">
+                                                قیمت
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom25">{{ form.JobType.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.JobType }}
+                                            <div class="invalid-feedback">
+                                                قیمت
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom12">{{ form.facebook.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.facebook }}
+                                            <div class="invalid-feedback">
+                                                پیام خود را وارد نمایید
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom12">{{ form.instagram.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.instagram }}
+                                            <div class="invalid-feedback">
+                                                پیام خود را وارد نمایید
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom20">{{ form.linkedin.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.linkedin }}
+                                            <div class="invalid-feedback">
+                                                food, itely, cream.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        {{ form.Profile }}
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary d-block" type="submit">ذخیره و ادامه</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xl-6 col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="ms-panel ms-btn-display">
+                                <div class="ms-panel-header new">
+                                    <h6>{{ form.IsActive.label }}</h6>
+                                    <div>
+                                        <label class="ms-switch">
+                                            {{ form.IsActive }}
+                                            <span class="ms-switch-slider round"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
