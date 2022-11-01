@@ -1,8 +1,12 @@
+import datetime
+
 from django.shortcuts import render, Http404, HttpResponse
 from dgmenu_cafe.models import Cafe
 from dgmenu_cafe_gallery.models import CafeGallery
 from dgmenu_food_category.models import FoodCategory
 from dgmenu_food.models import Food
+from dgmenu_cafe_viewers.models import ViewOfPage
+import uuid
 
 
 # Create your views here.
@@ -23,7 +27,23 @@ def cafe_home_page(request, *args, **kwargs):
           'CafeUserId': cafe.id,
           'category': category,
           'food': food}
-    return render(request=request, template_name='dgmenu_cafe/cafe_home_page.html', context=cx)
+    res = render(request=request, template_name='dgmenu_cafe/cafe_home_page.html', context=cx)
+    if request.COOKIES.get('uid'):
+        uid = request.COOKIES.get('uid')
+        view_of_page = ViewOfPage()
+        view_of_page.Page = request.path
+        view_of_page.Time = datetime.datetime.now()
+        view_of_page.User = uid
+        view_of_page.save()
+    else:
+        view_of_page = ViewOfPage()
+        uid = uuid.uuid4().hex[:30]
+        res.cookies.__setitem__('uid', uid)
+        view_of_page.Page = request.path
+        view_of_page.Time = datetime.datetime.now()
+        view_of_page.User = uid
+        view_of_page.save()
+    return res
 
 
 def cafe_food_detail(request, *args, **kwargs):
@@ -46,19 +66,49 @@ def cafe_food_detail(request, *args, **kwargs):
     if food_suggestion is not None:
         food_suggestion = food_suggestion.order_by(
             'pk')[:4]
-
+    gallery = []
+    if food.Gallery_Image_1 is not None:
+        gallery.append(food.Gallery_Image_1)
+    if food.Gallery_Image_2 is not None:
+        gallery.append(food.Gallery_Image_2)
+    if food.Gallery_Image_3 is not None:
+        gallery.append(food.Gallery_Image_3)
     cx = {'cafe': cafe,
           'CafeUserId': cafe.id,
           'category': category,
           'food': food,
-          'food_suggestion': food_suggestion}
-    return render(request=request, template_name='dgmenu_cafe/cafe_food_detail_page.html', context=cx)
+          'food_suggestion': food_suggestion,
+          'gallery': gallery}
+    res = render(request=request, template_name='dgmenu_cafe/cafe_food_detail_page.html', context=cx)
+    if request.COOKIES.get('uid'):
+        uid = request.COOKIES.get('uid')
+        view_of_page = ViewOfPage()
+        view_of_page.Page = request.path
+        view_of_page.Time = datetime.datetime.now()
+        view_of_page.User = uid
+        view_of_page.save()
+    else:
+        view_of_page = ViewOfPage()
+        uid = uuid.uuid4().hex[:30]
+        res.cookies.__setitem__('uid', uid)
+        view_of_page.Page = request.path
+        view_of_page.Time = datetime.datetime.now()
+        view_of_page.User = uid
+        view_of_page.save()
+    return res
 
 
 def partial_view(request, *args, **kwargs):
-    result = kwargs['CafeUserId']
-    kwargs['result'] = result
-    return render(request, 'shared/cafe/_HeaderReferences.html', kwargs)
+    CafeUserId = kwargs['CafeUserId']
+    cafe = Cafe.objects.filter(id=CafeUserId).first()
+    url1 = request.build_absolute_uri().split('/')[0]
+    url2 = request.build_absolute_uri().split('/')[2]
+    if cafe is None:
+        raise Http404("کافه پیدا نشد")
+    if cafe.Is_Active is True:
+        raise Http404("کافه غیرفعال می باشد")
+    cx = {'cafe': cafe}
+    return render(request, 'shared/cafe/_HeaderReferences.html', cx)
 
 
 def header_partial_view(request, *args, **kwargs):
@@ -71,7 +121,6 @@ def header_partial_view(request, *args, **kwargs):
     if cafe.Is_Active is True:
         raise Http404("کافه غیرفعال می باشد")
     url = url1 + '//' + url2 + "/" + cafe.Cafe_UserName
-    print("my url :" + url)
     cx = {'cafe': cafe,
           'CafeUserId': cafe.id,
           'url': url}

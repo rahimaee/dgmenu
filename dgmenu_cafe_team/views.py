@@ -1,7 +1,11 @@
+import uuid
+
 from django.shortcuts import render
 from django.shortcuts import render, Http404
 from dgmenu_cafe.models import Cafe
+from dgmenu_cafe_viewers.models import ViewOfPage
 from .models import CafeTeam
+import datetime
 
 
 # Create your views here.
@@ -18,5 +22,20 @@ def cafe_team(request, *args, **kwargs):
 
     cx = {'cafe': cafe,
           'CafeUserId': cafe.id, 'Cafe_Team': Cafe_Team}
-
-    return render(request, 'dgmenu_cafe_team/cafe_team_page.html', cx)
+    res = render(request, 'dgmenu_cafe_team/cafe_team_page.html', cx)
+    if request.COOKIES.get('uid'):
+        uid = request.COOKIES.get('uid')
+        view_of_page = ViewOfPage()
+        view_of_page.Page = request.path
+        view_of_page.Time = datetime.datetime.now()
+        view_of_page.User = uid
+        view_of_page.save()
+    else:
+        view_of_page = ViewOfPage()
+        uid = uuid.uuid4().hex[:30]
+        res.cookies.__setitem__('uid', uid)
+        view_of_page.Page = request.path
+        view_of_page.Time = datetime.datetime.now()
+        view_of_page.User = uid
+        view_of_page.save()
+    return res

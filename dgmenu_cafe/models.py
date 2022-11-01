@@ -32,20 +32,42 @@ class Cafe(models.Model):
     Cafe_Tel3 = models.CharField(max_length=100, verbose_name='شماره تماس 3', null=True, blank=True)
     Cafe_Email = models.CharField(max_length=200, verbose_name='ادرس ایمیل', null=True, blank=True)
     Cafe_Instagram = models.CharField(max_length=200, verbose_name='اینستاگرام', null=True, blank=True)
-    Cafe_Facebook = models.CharField(max_length=200, verbose_name='اینستاگرام', null=True, blank=True)
-    Cafe_YouTube = models.CharField(max_length=200, verbose_name='اینستاگرام', null=True, blank=True)
+    Cafe_Facebook = models.CharField(max_length=200, verbose_name='فیس بوک', null=True, blank=True)
+    Cafe_YouTube = models.CharField(max_length=200, verbose_name='یوتیوب', null=True, blank=True)
     Cafe_Twitter = models.CharField(max_length=200, verbose_name='اینستاگرام', null=True, blank=True)
     Cafe_Opening_Hours = models.CharField(max_length=250, verbose_name='ساعت کاری', null=True, blank=True)
     Cafe_Header_Logo = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
                                          verbose_name='Header_Logo')
     Cafe_favicon = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
                                      verbose_name='favicon')
-    Cafe_Apple_Touch_Icon152 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
-                                                 verbose_name='Icon152')
-    Cafe_Apple_Touch_Icon120 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
-                                                 verbose_name='Icon120')
+    Cafe_Apple_Touch_Icon57 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
+                                                verbose_name='Icon57')
+    Cafe_Apple_Touch_Icon60 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
+                                                verbose_name='Icon60')
+    Cafe_Apple_Touch_Icon72 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
+                                                verbose_name='Icon72')
     Cafe_Apple_Touch_Icon76 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
                                                 verbose_name='Icon76')
+    Cafe_Apple_Touch_Icon114 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
+                                                 verbose_name='Icon114')
+    Cafe_Apple_Touch_Icon120 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
+                                                 verbose_name='Icon120')
+    Cafe_Apple_Touch_Icon144 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
+                                                 verbose_name='Icon144')
+    Cafe_Apple_Touch_Icon152 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
+                                                 verbose_name='Icon152')
+    Cafe_Apple_Touch_Icon180 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
+                                                 verbose_name='Icon180')
+    Cafe_Apple_Touch_Icon192 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
+                                                 verbose_name='Icon192')
+    Cafe_Apple_Touch_Icon32 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
+                                                verbose_name='Icon32')
+    Cafe_Apple_Touch_Icon196 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
+                                                 verbose_name='Icon196')
+    Cafe_Apple_Touch_Icon16 = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
+                                                verbose_name='Icon16')
+    Cafe_Msapplication = models.ImageField(upload_to=upload_image_path, null=True, blank=True,
+                                           verbose_name='Cafe_Msapplication')
     Cafe_Header_Home_Background = models.ImageField(default="default/menu-page.jpg", upload_to=upload_image_path,
                                                     null=True, blank=True,
                                                     verbose_name='عکس بنر سقحه اصلی')

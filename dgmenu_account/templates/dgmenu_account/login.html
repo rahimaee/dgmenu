@@ -1,66 +1,43 @@
 {% extends 'shared/panel/_PanelMain.html' %}
 {% load static %}
 {% block main %}
-    <div class="ms-content-wrapper ms-auth">
-        <div class="ms-auth-container">
-            <div class="ms-auth-col">
-                <div class="ms-auth-bg"></div>
-            </div>
-            <div class="ms-auth-col">
-                <div class="ms-auth-form">
-                    <form class="needs-validation" novalidate="" method="post">
-                        {% csrf_token %}
-                        <h3>ورود به حساب کاربری</h3>
-                        <p>برای ورود ایمیل و رمز عبور خود را وارد نمایید</p>
-                        <div class="mb-3">
-                            <label for="validationCustom08">ایمیل</label>
-                            <div class="input-group">
-                                {{ login_form.email }}
-                                <div class="invalid-feedback">لطفا یک ایمیل معتبر انتخاب کنید</div>
-                            </div>
-                        </div>
-                        <div class="mb-2">
-                            <label for="validationCustom09">رمز عبور</label>
-                            <div class="input-group">
-                                {{ login_form.password }}
-                                <div class="invalid-feedback">لطفا پسورد را به درستی وارد نمایید.</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="ms-checkbox-wrap">
-                                <input class="form-check-input" type="checkbox" value=""> <i
-                                    class="ms-checkbox-check"></i>
-                            </label> <span> رمز عبور را به خاطر بسپار </span>
-                            <label class="d-block mt-3"><a href="#" class="btn-link" data-toggle="modal"
-                                                           data-target="#modal-12">فراموشی رمز عبور؟</a>
-                            </label>
-                        </div>
-                        <button class="btn btn-primary mt-4 d-block w-100" type="submit">ورود</button>
-                    </form>
+
+    <div class="container">
+        <div class="ms-auth-form">
+            <form class="needs-validation" method="post">
+                {% csrf_token %}
+                <h3>ورود به حساب کاربری</h3>
+                <p>برای ورود ایمیل و رمز عبور خود را وارد نمایید</p>
+                {% if ms %}
+                    <p style="color: red">کاربری با این مشخصات یافت نشد</p>
+                {% endif %}
+                <div class="mb-3">
+                    <label for="email">ایمیل</label>
+                    <div class="input-group">
+                        {{ login_form.email }}
+                        <div class="invalid-feedback">لطفا ایمیل را به درستی وارد نمایید!</div>
+                    </div>
+
                 </div>
-            </div>
+                <div class="mb-2">
+                    <label for="password">رمز عبور</label>
+                    <div class="input-group">
+                        {{ login_form.password }}
+                        <div class="invalid-feedback">لطفا پسورد را به درستی وارد نمایید.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="ms-checkbox-wrap">
+                        <input class="form-check-input" type="checkbox" value=""> <i
+                            class="ms-checkbox-check"></i>
+                    </label> <span> رمز عبور را به خاطر بسپار </span>
+                    <label class="d-block mt-3"><a href="{% url 'account:password_reset' %}" class="btn-link">فراموشی
+                        رمز عبور؟</a>
+                    </label>
+                </div>
+                <button class="btn btn-primary mt-4 d-block w-100" type="submit">ورود</button>
+            </form>
         </div>
     </div>
-    <!-- فراموشی رمزعبور Modal -->
-    <div class="modal fade" id="modal-12" tabindex="-1" role="dialog" aria-labelledby="modal-12">
-        <div class="modal-dialog modal-dialog-centered modal-min" role="document">
-            <div class="modal-content">
-                <div class="modal-body text-center">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span>
-                    </button>
-                    <i class="flaticon-secure-shield d-block"></i>
-                    <h1>فراموشی رمز عبور؟</h1>
-                    <p>ایمیل خود را برای ریکاوری رمزعبورتان وارد نمایید</p>
-                    <form method="post">
-                        <div class="ms-form-group has-icon">
-                            <input type="text" placeholder="آدرس ایمیل" class="form-control" name="forgot-password"
-                                   value=""> <i class="material-icons">email</i>
-                        </div>
-                        <button type="submit"  class="btn btn-primary shadow-none">بازگردانی رمزعبور</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+
 {% endblock %}

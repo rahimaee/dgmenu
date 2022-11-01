@@ -25,14 +25,14 @@ class TeamCreate(LoginRequiredMixin, View):
     success_url = reverse_lazy('team:all')
 
     def get(self, request):
-        form = TeamForm(initial={'IsActive':True})
-        ctx = {'form': form}
+        form = TeamForm(initial={'IsActive': True})
+        ctx = {'form': form, 'cf': 'TeamCreate'}
         return render(request, self.template, ctx)
 
     def post(self, request):
         form = TeamForm(request.POST, request.FILES or None)
         if not form.is_valid():
-            ctx = {'form': form}
+            ctx = {'form': form, 'cf': 'TeamCreate'}
             return render(request, self.template, ctx)
 
         user = request.user
@@ -68,14 +68,14 @@ class TeamUpdate(LoginRequiredMixin, View):
         form.initial["instagram"] = cafe_team.instagram
         form.initial["linkedin"] = cafe_team.linkedin
         form.initial["IsActive"] = cafe_team.IsActive
-        ctx = {'form': form}
+        ctx = {'form': form, 'cf': 'TeamUpdate'}
         return render(request, self.template, ctx)
 
     def post(self, request, pk):
         cafe_team = CafeTeam.objects.filter(pk=pk, Cafe__Manager_id=request.user.id).first()
-        form = TeamForm(request.POST, request.FILES or None, initial={'Profile':  cafe_team.Profile})
+        form = TeamForm(request.POST, request.FILES or None, initial={'Profile': cafe_team.Profile})
         if not form.is_valid():
-            ctx = {'form': form}
+            ctx = {'form': form, 'cf': 'TeamUpdate'}
             return render(request, self.template, ctx)
         cafe_team.Profile = form.cleaned_data['Profile']
         cafe_team.Name = form.cleaned_data['Name']

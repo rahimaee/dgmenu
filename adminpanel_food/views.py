@@ -14,6 +14,7 @@ from dgmenu_cafe.models import Cafe
 from dgmenu_food.models import Food
 from dgmenu_food_category.models import FoodCategory
 import datetime
+from dgmenu_cafe_viewers.models import ViewOfPage
 
 
 class MainView(LoginRequiredMixin, View):
@@ -38,7 +39,7 @@ class FoodCreate(LoginRequiredMixin, View):
             get_cat_food_list.append((item.id, item.NameFa))
         form.fields['FoodCategory'].choices = get_cat_food_list
         form.fields['Image'].attrs = {'class': "custom-file-input"}
-        ctx = {'form': form}
+        ctx = {'form': form, 'cf': 'FoodCreate'}
         return render(request, self.template, ctx)
 
     def post(self, request):
@@ -50,7 +51,7 @@ class FoodCreate(LoginRequiredMixin, View):
         form.fields['FoodCategory'].choices = get_cat_food_list
         form.fields['Image'].attrs = {'class': "custom-file-input"}
         if not form.is_valid():
-            ctx = {'form': form}
+            ctx = {'form': form, 'cf': 'FoodCreate'}
             return render(request, self.template, ctx)
         fd = Food()
         user = request.user
@@ -84,7 +85,12 @@ class FoodDetail(LoginRequiredMixin, View):
 
     def get(self, request, pk):
         food = Food.objects.filter(id=pk, Admin_Is_Active=True).first()
-        ctx = {'food': food}
+        vpfd = '/' + food.Cafe.Cafe_UserName + "/" + "p" + "/" + str(food.id)
+        vp = ViewOfPage.objects.filter(Page=vpfd).all().count()
+        vpd = ViewOfPage.objects.filter(Page=vpfd, Time__day=datetime.datetime.now().day).all().count()
+        vpy = ViewOfPage.objects.filter(Page=vpfd, Time__year=datetime.datetime.now().year).all().count()
+        vpm = ViewOfPage.objects.filter(Page=vpfd, Time__month=datetime.datetime.now().month).all().count()
+        ctx = {'food': food, 'vp': vp, 'vpd': vpd, 'vpy': vpy, 'vpm': vpm}
         return render(request, self.template, ctx)
 
 
@@ -116,7 +122,7 @@ class FoodUpdate(LoginRequiredMixin, View):
         form.initial['Allergy'] = fd.Allergy
         form.initial['Price'] = fd.Price
         form.initial['Discount'] = fd.Discount
-        ctx = {'form': form, 'food': fd}
+        ctx = {'form': form, 'food': fd, 'cf': 'FoodUpdate'}
         return render(request, self.template, ctx)
 
     def post(self, request, pk):
@@ -143,7 +149,7 @@ class FoodUpdate(LoginRequiredMixin, View):
             form.fields['FoodCategory'].choices = get_cat_food_list
             form.fields['FoodCategory'].initial = fd.FoodCategory_id
             form.fields['Is_Active'].initial = fd.Is_Active
-            ctx = {'form': form, }
+            ctx = {'form': form, 'cf': 'FoodUpdate'}
             return render(request, self.template, ctx)
 
         fd.Title = form.cleaned_data['Title']

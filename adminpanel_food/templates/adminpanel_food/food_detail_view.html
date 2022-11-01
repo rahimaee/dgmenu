@@ -11,8 +11,9 @@
             <div class="col-md-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb pl-0">
-                        <li class="breadcrumb-item"><a href="#"><i class="material-icons">home</i> خانه</a></li>
-                        <li class="breadcrumb-item"><a href="#">منو</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel:starting_page' %}"><i
+                                class="material-icons">home</i> خانه</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel_food:all' %}">محصول</a></li>
                         <li class="breadcrumb-item active" aria-current="page">جزییات محصول</li>
                     </ol>
                 </nav>
@@ -30,24 +31,27 @@
                                 <div class="carousel-item active">
                                     <img class="d-block w-100" src="{{ food.Image.url }}"
                                          alt="First slide">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h3 class="text-white">sss</h3>
-                                    </div>
                                 </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="{{ food.Image.url }}"
-                                         alt="Second slide">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h3 class="text-white">پیتزا 2</h3>
+
+                                {% if food.Gallery_Image_1 %}
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="{{ food.Gallery_Image_1.url }}"
+                                             alt="Third slide">
                                     </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="{{ food.Image.url }}"
-                                         alt="Third slide">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h3 class="text-white">پیتزا 3</h3>
+                                {% endif %}
+                                {% if food.Gallery_Image_2 %}
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="{{ food.Gallery_Image_2.url }}"
+                                             alt="Third slide">
                                     </div>
-                                </div>
+                                {% endif %}
+                                {% if food.Gallery_Image_3 %}
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="{{ food.Gallery_Image_3.url }}"
+                                             alt="fourth slide">
+                                    </div>
+                                {% endif %}
+
                             </div>
                             <a class="carousel-control-prev" href="#arrowSlider" role="button" data-slide="prev">
                                 <span class="material-icons" aria-hidden="true">keyboard_arrow_left</span>
@@ -142,14 +146,26 @@
                     </div>
                     <div class="ms-quick-stats">
                         <div class="ms-stats-grid">
-                            <i class="fa fa-bullhorn"></i>
-                            <p class="ms-text-dark">1,033</p>
-                            <span>سفارش امروز</span>
+                            <i class="fa fa-eye"></i>
+                            <p class="ms-text-dark">{{ vp }}</p>
+                            <span>بازدید کل</span>
                         </div>
                         <div class="ms-stats-grid">
-                            <i class="fa fa-heart"></i>
-                            <p class="ms-text-dark">3,039</p>
-                            <span>محبوبیت</span>
+                            <i class="fa fa-eye"></i>
+                            <p class="ms-text-dark">{{ vpd }}</p>
+                            <span>بازدید روز</span>
+                        </div>
+                    </div>
+                    <div class="ms-quick-stats">
+                        <div class="ms-stats-grid">
+                            <i class="fa fa-eye"></i>
+                            <p class="ms-text-dark">{{ vpy }}</p>
+                            <span>بازدید سال</span>
+                        </div>
+                        <div class="ms-stats-grid">
+                            <i class="fa fa-eye"></i>
+                            <p class="ms-text-dark">{{ vpm }}</p>
+                            <span>بازدید ماه</span>
                         </div>
                     </div>
                 </div>

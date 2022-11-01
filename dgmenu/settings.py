@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-ij1n60o7xzw@2b^o6un!vr3+7xs=92r@9ha0p2rogak6moip^x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'dgmenu_cafe_gallery',
     # Food
     'dgmenu_food',
+    # site view
+    'dgmenu_cafe_viewers',
     # food category
     'dgmenu_food_category',
     # send data to partial view
@@ -61,7 +63,9 @@ INSTALLED_APPS = [
     'adminpanel_gallery',
     'adminpanel_team',
     'adminpanel_about',
+    'adminpanel_cafe_settings',
     'django.forms',
+    'django.contrib.sitemaps',
 ]
 FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 MIDDLEWARE = [
@@ -158,15 +162,12 @@ AUTH_USER_MODEL = 'dgmenu_account.CustomUser'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.hamyarmenu.ir'
+EMAIL_USE_TLS = True
+HOSTNAME = 'localhost'
+DEFAULT_FROM_EMAIL = 'no_reply@dgtag.ir'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'no-reply@hamyarmenu.ir'
+EMAIL_HOST_PASSWORD = 'rahimfarhankeyvan'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'mail.dgtag.ir'
-# EMAIL_USE_TLS = True
-# HOSTNAME = 'localhost'
-# DEFAULT_FROM_EMAIL = 'no_reply@dgtag.ir'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'no_reply@dgtag.ir'
-# EMAIL_HOST_PASSWORD = 'mohammad13271326'
-
-
-DEFAULT_FROM_EMAIL = 'mohammad.rahimaee@gmail.com'

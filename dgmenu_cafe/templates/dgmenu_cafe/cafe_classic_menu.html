@@ -2,4 +2,113 @@
 {% load static %}
 {% block page %}
 
+
+    <!-- PAGE HERO
+    ============================================= -->
+    <div id="menu-page" style="background-image: url({{ cafe.Cafe_Header_Home_Background.url }});"
+         class="page-hero-section division">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hero-txt text-center white-color">
+
+                        <!-- Title -->
+                        <h2 class="h2-xl">{{ cafe.Cafe_Name }}</h2>
+
+                    </div>
+                </div>
+            </div>      <!-- End row -->
+        </div>       <!-- End container -->
+    </div>    <!-- END PAGE HERO -->
+
+
+    <!-- MENU-3
+    ============================================= -->
+    <section id="menu-3" class="wide-100 menu-section division">
+        <div class="container">
+            {% for cat in category %}
+                <div class="menu-3-wrapper">
+                    <!-- Title -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="menu-3-title"><h3 class="h3-md red-color">{{ cat.NameFa }}</h3></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="menu-3-txt">
+                                <ul class="menu-3-list">
+                                    {% for foo in food %}
+                                        {% if cat.id == foo.FoodCategory.id %}
+                                            {% if foo.id|divisibleby:2 %}
+                                                <li class="menu-3-item">
+                                                    <a href="{% url 'dgmenu_cafe:cafe_food_detail' cafename=cafe.Cafe_UserName id=foo.id %}">
+
+                                                        <!-- Title & Price -->
+                                                        <div class="menu-title-wrapper rel">
+                                                            <div class="menu-item-title"><h5
+                                                                    class="h5-sm">{{ foo.Title }}</h5></div>
+                                                            <div class="menu-item-dots"></div>
+                                                            <div class="menu-item-price"><h5
+                                                                    class="h5-sm">{{ foo.Price }} ت</h5>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Ingredients -->
+                                                        <div class="menu-item-desc">
+                                                            <p>
+                                                                {{ foo.Ingredients }}
+                                                            </p>
+                                                        </div>
+
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="menu-3-txt">
+                                <ul class="menu-3-list">
+                                    {% for foo in food %}
+                                        {% if cat.id == foo.FoodCategory.id %}
+                                            {% if foo.id|divisibleby:2 %}
+                                            {% else %}
+                                                <li class="menu-3-item">
+                                                    <a href="{% url 'dgmenu_cafe:cafe_food_detail' cafename=cafe.Cafe_UserName id=foo.id %}">
+                                                        <!-- Title & Price -->
+                                                        <div class="menu-title-wrapper rel">
+                                                            <div class="menu-item-title"><h5
+                                                                    class="h5-sm">{{ foo.Title }}</h5></div>
+                                                            <div class="menu-item-dots"></div>
+                                                            <div class="menu-item-price"><h5
+                                                                    class="h5-sm">{{ foo.Price }}
+                                                                ت</h5></div>
+
+                                                        </div>
+
+                                                        <!-- Ingredients -->
+                                                        <div class="menu-item-desc">
+                                                            <p>{{ foo.Ingredients }}
+                                                            </p>
+                                                        </div>
+
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>       <!-- End container -->
+    </section>    <!-- END MENU -->
+
 {% endblock %}

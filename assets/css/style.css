@@ -4007,13 +4007,13 @@ span.ico-holder {
   ========================================================================== */ 
 
 #banner-1 {
-  background-image: url(../images/banner-1.jpg);
+  background-image: url(../../static_cdn/media_root/default/banner.jpg);
   padding-top: 80px;
   padding-bottom: 70px;
 }
 
 #banner-2 {
-  background-image: url(../images/banner-2.jpg);
+  background-image: url(../../static_cdn/media_root/default/banner.jpg);
   padding-top: 80px;
   padding-bottom: 80px;
 }
@@ -4023,7 +4023,6 @@ span.ico-holder {
 }
 
 #banner-4 {
-  background-image: url(../../static_cdn/media_root/default/banner.jpg);
   background-position: top center;
 }
 

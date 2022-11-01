@@ -17,12 +17,12 @@ class FoodForm(forms.Form):
     )
     Description_Short = forms.CharField(
         widget=forms.Textarea(
-            attrs={'rows': 3, 'class': "form-control", 'id': "Description_Short"}),
+            attrs={'rows': 3, 'class': "form-control", 'id': "Description_Short", 'placeholder': "خلاصه توضیح محصول "}),
         label='توضیح کوتاه'
     )
     Description_Long = forms.CharField(
         widget=forms.Textarea(
-            attrs={'rows': 5, 'class': "form-control", 'id': "Description_Long"}),
+            attrs={'rows': 5, 'class': "form-control", 'id': "Description_Long", 'placeholder': "توضیح کامل محصول "}),
         label='توضیح کامل'
     )
     FoodCategory = forms.ChoiceField(
@@ -38,7 +38,7 @@ class FoodForm(forms.Form):
     )
     Calories = forms.CharField(
         widget=forms.TextInput(
-            attrs={'class': "form-control", 'id': "Calories"}),
+            attrs={'class': "form-control", 'id': "Calories", 'placeholder': "کالری(انرژی) محصول "}),
         label='کالری'
     )
     Tag = forms.CharField(
@@ -53,12 +53,12 @@ class FoodForm(forms.Form):
     )
     Price = forms.CharField(
         widget=forms.TextInput(
-            attrs={'class': "form-control", 'id': "Price"}),
+            attrs={'class': "form-control", 'id': "Price", 'placeholder': "قیمت محصول به تومان "}),
         label='قیمت'
     )
     Discount = forms.CharField(
         widget=forms.TextInput(
-            attrs={'class': "form-control", 'id': "Discount"}),
+            attrs={'class': "form-control", 'id': "Discount", 'placeholder': "قیمت تخفیف خورده محصول به تومان "}),
         label='قیمت با تخفیف'
     )
     Is_Active = forms.BooleanField(
@@ -71,15 +71,15 @@ class FoodForm(forms.Form):
     Gallery_Img_1 = forms.ImageField(
         widget=ImageWidget,
         required=False,
-        label='گالری محصول'
+        label='گالری محصول 1'
     )
     Gallery_Img_2 = forms.ImageField(
         widget=ImageWidget,
         required=False,
-        label='گالری محصول'
+        label='گالری محصول 2'
     )
     Gallery_Img_3 = forms.ImageField(
         widget=ImageWidget,
         required=False,
-        label='گالری محصول'
+        label='گالری محصول 3'
     )

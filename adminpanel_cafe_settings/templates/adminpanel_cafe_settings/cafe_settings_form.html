@@ -1,0 +1,290 @@
+{% extends 'shared/panel/_PanelMain.html' %}
+{% load static %}
+{% block main %}
+    <!-- Body Content Wrapper -->
+    <div class="ms-content-wrapper">
+        <div class="row">
+
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb pl-0">
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel:starting_page' %}"><i class="material-icons">home</i> خانه</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel_settings:settings_update' %}">تنظیمات</a></li>
+                    </ol>
+                </nav>
+            </div>
+
+            <form method="post" class="row" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="col-xl-6 col-md-12">
+                    <div class="ms-panel ms-panel-fh">
+                        <div class="ms-panel-header">
+                            <h6>تنظیمات </h6>
+                        </div>
+                        <div class="ms-panel-body">
+                            <div class="needs-validation clearfix">
+                                <div class="form-row">
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom18">{{ form.Cafe_Name.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Cafe_Name }}
+                                            <div class="invalid-feedback">
+                                                لطفا نام کافه وارد کنید!
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationCustom25">{{ form.Cafe_Description.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Cafe_Description }}
+                                            <div class="invalid-feedback">
+                                                لطفا توضیح کوتاه وارد کنید!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationCustom25">{{ form.Cafe_keywords.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Cafe_keywords }}
+                                            <div class="invalid-feedback">
+                                                لطفا برچسب های کافه وارد کنید!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom12">{{ form.Cafe_Address.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Cafe_Address }}
+                                            <div class="invalid-feedback">
+                                                لطفا آدرس وارد کنید!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom12">{{ form.Cafe_Tel1.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Cafe_Tel1 }}
+                                            <div class="invalid-feedback">
+                                                لطفا تلفن اصلی وارد کنید!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom20">{{ form.Cafe_Tel2.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Cafe_Tel2 }}
+                                            <div class="invalid-feedback">
+                                                لطفا تلفن دوم وارد کنید!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom20">{{ form.Cafe_Tel3.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Cafe_Tel3 }}
+                                            <div class="invalid-feedback">
+                                                لطفا تلفن سوم وارد کنید!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom20">{{ form.Cafe_Email.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Cafe_Email }}
+                                            <div class="invalid-feedback">
+                                                لطفا آدرس ایمیل وارد کنید!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom20">{{ form.Cafe_Instagram.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Cafe_Instagram }}
+                                            <div class="invalid-feedback">
+                                                لطفا آدرس اینستاگرام وارد کنید!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom20">{{ form.Cafe_Facebook.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Cafe_Facebook }}
+                                            <div class="invalid-feedback">
+                                                لطفا آدرس فیسبوک وارد کنید!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom20">{{ form.Cafe_YouTube.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Cafe_YouTube }}
+                                            <div class="invalid-feedback">
+                                                لطفا آدرس یوتیوب وارد کنید!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom20">{{ form.Cafe_Twitter.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Cafe_Twitter }}
+                                            <div class="invalid-feedback">
+                                                لطفا آدرس تویتیر وارد کنید!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom20">{{ form.Cafe_Opening_Hours.label }}</label>
+                                        <div class="input-group">
+                                            {{ form.Cafe_Opening_Hours }}
+                                            <div class="invalid-feedback">
+                                                لطفا ساعت کار کافه وارد کنید!
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationCustom20">{{ form.Cafe_Header_Logo.label }}</label>
+                                        {{ form.Cafe_Header_Logo }}
+
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary d-block" type="submit">ثبت</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xl-6 col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="ms-panel">
+                                <div class="ms-panel-header">
+                                    <h6>آیکون </h6>
+                                </div>
+                                <br>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_favicon.label }}</label>
+                                    {{ form.Cafe_favicon }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Apple_Touch_Icon57.label }}</label>
+                                    {{ Cafe_Apple_Touch_Icon57 }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Apple_Touch_Icon60.label }}</label>
+                                    {{ form.Cafe_Apple_Touch_Icon60 }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Apple_Touch_Icon72.label }}</label>
+                                    {{ form.Cafe_Apple_Touch_Icon72 }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Apple_Touch_Icon76.label }}</label>
+                                    {{ form.Cafe_Apple_Touch_Icon76 }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Apple_Touch_Icon114.label }}</label>
+                                    {{ form.Cafe_Apple_Touch_Icon114 }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Apple_Touch_Icon120.label }}</label>
+                                    {{ form.Cafe_Apple_Touch_Icon120 }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Apple_Touch_Icon144.label }}</label>
+                                    {{ form.Cafe_Apple_Touch_Icon144 }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Apple_Touch_Icon152.label }}</label>
+                                    {{ form.Cafe_Apple_Touch_Icon152 }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Apple_Touch_Icon180.label }}</label>
+                                    {{ form.Cafe_Apple_Touch_Icon180 }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Apple_Touch_Icon192.label }}</label>
+                                    {{ form.Cafe_Apple_Touch_Icon192 }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Apple_Touch_Icon32.label }}</label>
+                                    {{ form.Cafe_Apple_Touch_Icon32 }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Apple_Touch_Icon196.label }}</label>
+                                    {{ form.Cafe_Apple_Touch_Icon196 }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Apple_Touch_Icon16.label }}</label>
+                                    {{ form.Cafe_Apple_Touch_Icon16 }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Msapplication.label }}</label>
+                                    {{ form.Cafe_Msapplication }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Apple_Touch_Icon32.label }}</label>
+                                    {{ form.Cafe_Apple_Touch_Icon32 }}
+
+                                </div>
+                                <br>
+                                <div class="ms-panel-header">
+
+                                </div>
+                                <div class="ms-panel-header">
+                                    <h6>بگراند صفحه ها </h6>
+                                </div>
+                                <br>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Header_Home_Background.label }}</label>
+                                    {{ form.Cafe_Header_Home_Background }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Header_Detail_Background.label }}</label>
+                                    {{ form.Cafe_Header_Detail_Background }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Header_About_Background.label }}</label>
+                                    {{ form.Cafe_Header_About_Background }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Header_Team_Background.label }}</label>
+                                    {{ form.Cafe_Header_Team_Background }}
+
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom20">{{ form.Cafe_Banner_Home.label }}</label>
+                                    {{ form.Cafe_Banner_Home }}
+
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

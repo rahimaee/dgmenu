@@ -6,24 +6,22 @@
             <div class="col-md-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb pl-0">
-                        <li class="breadcrumb-item"><a href="#"><i class="material-icons">home</i> خانه</a>
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel:starting_page' %}"><i
+                                class="material-icons">home</i> خانه</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">فرمها</a>
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel_about:update' %}">درباره ما</a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">عناصر فرم</li>
-                        {{ form.errors }}
                     </ol>
                 </nav>
             </div>
             <div class="col-xl-12">
                 <div class="ms-panel">
                     <div class="ms-panel-header">
-                        <h6>اضافه کردن</h6>
+                        <h6>درباره ما</h6>
                     </div>
                     <div class="ms-panel-body">
                         <form action="" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
-
                             <div class="form-group">
                                 {{ form.Title.label }}
                                 <br>
@@ -35,9 +33,9 @@
                                 {{ form.Description }}
                             </div>
                             <div class="form-group">
-                                {{  form.Image }}
+                                {{ form.Image }}
                             </div>
-                            <button type="submit" class="btn btn-block btn-success">ثبت</button>
+                            <button class="btn btn-primary d-block" type="submit">ثبت</button>
                         </form>
                     </div>
                 </div>

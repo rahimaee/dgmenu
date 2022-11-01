@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseServerError, HttpResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
@@ -6,10 +8,13 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import render
+
+from dgmenu_cafe_viewers.models import ViewOfPage
 from dgmenu_food_category.models import FoodCategory
 from dgmenu_cafe.models import Cafe
 from .forms import CategoryForm
 import json
+from dgmenu_food.models import Food
 
 
 # Create your views here.
@@ -30,13 +35,13 @@ class CategoryCreate(LoginRequiredMixin, View):
     def get(self, request):
         form = CategoryForm(initial={'IsActive': True})
 
-        ctx = {'form': form}
+        ctx = {'form': form, 'cf': 'CategoryCreate'}
         return render(request, self.template, ctx)
 
     def post(self, request):
         form = CategoryForm(request.POST, request.FILES or None)
         if not form.is_valid():
-            ctx = {'form': form}
+            ctx = {'form': form, 'cf': 'CategoryCreate'}
             return render(request, self.template, ctx)
         fc = FoodCategory()
         user = request.user
@@ -58,7 +63,32 @@ class CategoryDetail(LoginRequiredMixin, View):
 
     def get(self, request, pk):
         cat = FoodCategory.objects.filter(pk=pk, IsActiveAdmin=True).first()
-        ctx = {'cat': cat}
+        vpf = []
+        vpft = 0
+        vpfd = 0
+        vpfm = 0
+        vpfy = 0
+        food = Food.objects.filter(FoodCategory_id=cat.id, Admin_Is_Active=True).all()
+        for fd in food:
+            t = '/' + fd.Cafe.Cafe_UserName + "/" + "p" + "/" + str(fd.id)
+            vpf.append(t)
+        for f in vpf:
+            temp = ViewOfPage.objects.filter(Page=f).all().count()
+            if temp is not None:
+                vpft = vpft + temp
+        for f in vpf:
+            temp = ViewOfPage.objects.filter(Page=f, Time__day=datetime.datetime.now().day).all().count()
+            if temp is not None:
+                vpfd = vpfd + temp
+        for f in vpf:
+            temp = ViewOfPage.objects.filter(Page=f, Time__month=datetime.datetime.now().month).all().count()
+            if temp is not None:
+                vpfm = vpfm + temp
+        for f in vpf:
+            temp = ViewOfPage.objects.filter(Page=f, Time__year=datetime.datetime.now().year).all().count()
+            if temp is not None:
+                vpfy = vpfy + temp
+        ctx = {'cat': cat, 'vpft': vpft, 'vpfd': vpfd, 'vpfm': vpfm, 'vpfy': vpfy}
         return render(request, self.template, ctx)
 
 
@@ -72,15 +102,14 @@ class CategoryUpdate(LoginRequiredMixin, View):
         form.initial["NameFa"] = cat.NameFa
         form.initial['NameEn'] = cat.NameEn
         form.initial['IsActive'] = cat.IsActive
-        ctx = {'form': form}
+        ctx = {'form': form, 'cf': 'CategoryUpdate', 'cat': cat}
         return render(request, self.template, ctx)
 
     def post(self, request, pk):
         cat = FoodCategory.objects.filter(pk=pk).first()
         form = CategoryForm(request.POST, request.FILES or None, initial={'Img': cat.Img})
-        print(form)
         if not form.is_valid():
-            ctx = {'form': form}
+            ctx = {'form': form, 'cf': 'CategoryUpdate', 'cat': cat}
             return render(request, self.template, ctx)
         cat.NameEn = form.cleaned_data['NameEn']
         cat.NameFa = form.cleaned_data['NameFa']

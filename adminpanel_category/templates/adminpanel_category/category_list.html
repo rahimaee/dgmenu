@@ -1,6 +1,8 @@
 {% extends 'shared/panel/_PanelMain.html' %}
 {% load static %}
-
+{% block header %}
+    <link href="{% static 'panel/css/sweetalert2.min.css' %}" rel="stylesheet">
+{% endblock %}
 {% block main %}
 
     <div class="ms-content-wrapper">
@@ -9,20 +11,19 @@
             <div class="col-md-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb pl-0">
-                        <li class="breadcrumb-item"><a href="#"><i class="material-icons">home</i> خانه</a></li>
-                        <li class="breadcrumb-item"><a href="#">عناصر پیشرفته رابط کاربری </a></li>
-                        <li class="breadcrumb-item active" aria-current="page">عناصر قابل جابجایی</li>
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel:starting_page' %}"><i
+                                class="material-icons">home</i> خانه</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel_category:all' %}">دسته بندی </a></li>
                     </ol>
                 </nav>
                 <div class="ms-panel">
                     <div class="ms-panel-header">
-                        <h6>عناصر قابل جابجایی لیستی</h6>
-                        <p>عناصر را جا به جا نمایید</p>
+                        <h6>دسته بندی</h6>
                     </div>
                     <div class="ms-panel-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <h6 class="section-title">در حال انجام</h6>
+                                <h6 class="section-title">تمامی دسته های موجود</h6>
                                 <ul class="ms-list ms-sortable-list" id="category_id">
 
                                     {% for cat in category %}
@@ -60,15 +61,29 @@
             let my = document.getElementById('category_id').getElementsByTagName('li')
             for (let i = 0; i < my.length; i++) {
                 var t = my[i];
-                console.log(t.id);
                 list.push(t.id);
             }
             var response = {data: list}
             json_response = JSON.stringify(response);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تغییرات با موفقیت کامل شد',
+                showConfirmButton: false,
+                timer: 1500
+            });
             $.post('{% url 'category:category_sort' %}', json_response);
         }
 
 
     </script>
 
+{% endblock %}
+
+
+{% block footer %}
+
+    <script src="{% static 'panel/js/sweetalert2.min.js' %}">
+    </script>
+    <script src="{% static 'panel/js/sweet-alerts.js' %}"></script>
 {% endblock %}

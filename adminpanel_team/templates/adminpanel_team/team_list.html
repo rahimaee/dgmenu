@@ -1,5 +1,44 @@
 {% extends 'shared/panel/_PanelMain.html' %}
 {% load static %}
 {% block main %}
+    <div class="ms-content-wrapper box">
 
+        <div class="row">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb pl-0">
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel:starting_page' %}"><i
+                                class="material-icons">home</i> خانه</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel_gallery:all' %}">همکار</a></li>
+                    </ol>
+                </nav>
+            </div>
+
+            {% if cafe_team %}
+                {% for t in cafe_team %}
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="ms-card">
+                            <div class="ms-card-img">
+                                <img src="{{ t.Profile.url }}" alt="gallery_img_g{{ t.id }}">
+                            </div>
+                            <div class="ms-card-body ">
+                                <div class="wrapper-new2 ">
+                                    <h6>{{ t.Name }} {{ t.Family }}</h6>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button type="button"
+                                            onclick="location.href='{% url 'team:team_update' pk=t.id %}';"
+                                            class="btn btn-primary">ویرایش
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            {% endif %}
+
+        </div>
+
+    </div>
 {% endblock %}

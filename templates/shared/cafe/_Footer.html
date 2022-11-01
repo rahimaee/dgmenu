@@ -2,12 +2,8 @@
   ============================================= -->
 <footer id="footer-4" class="footer division">
     <div class="container grey-color">
-
-
         <!-- FOOTER CONTENT -->
         <div class="row">
-
-
             <!-- FOOTER INFO -->
             <div class="col-xl-3">
                 <div class="footer-info mb-40">
@@ -16,7 +12,7 @@
                     {% if cafe.Cafe_Header_Logo %}
                         <div class="footer-logo"><img src="{{ cafe.Cafe_Header_Logo.url }}" alt="footer-logo"/></div>
                     {% else %}
-                        <div class="footer-logo"><img src="assets/images/logo-01.png" alt="footer-logo"/></div>
+                        <div class="footer-logo"><img src="" alt="footer-logo"/></div>
                     {% endif %}
 
                     <!-- Text -->
@@ -114,13 +110,14 @@
                 <!-- FOOTER COPYRIGHT -->
                 <div class="col-md-5 col-lg-6">
                     <div class="footer-copyright">
-                        <p>&copy; برگی 1401. تمامی حقوق محفوظ است</p>
+                        <p>تمامی حقوق {{ cafe.Cafe_Name }} محفوظ می باشد</p>
+                        <br>
+                        <p>طراحی و توسعه <a style="color: #0ab1e8" href="{% url 'dgmenu_site_home:site_home_page' %}">همیارمنو</a></p>
                     </div>
                 </div>
 
-
                 <!--  BOTTOM FOOTER LINKS -->
-                <div class="col-md-7 col-lg-6" style="margin-right: 64%;">
+                <div class="col-md-7 col-lg-6">
                     <ul class="bottom-footer-list text-right clearfix">
                         {% if cafe.Cafe_Facebook %}
                             <li><p class="first-list-link"><a href="{{ cafe.Cafe_Facebook }}"><i

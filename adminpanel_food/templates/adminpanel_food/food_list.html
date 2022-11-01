@@ -7,24 +7,20 @@
             <div class="col-md-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb pl-0">
-                        <li class="breadcrumb-item"><a href="#"><i class="material-icons">home</i> خانه</a></li>
-                        <li class="breadcrumb-item"><a href="#">عناصر پیشرفته رابط کاربری </a></li>
-                        <li class="breadcrumb-item active" aria-current="page">عناصر قابل جابجایی</li>
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel:starting_page' %}"><i class="material-icons">home</i> خانه</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel_food:all' %}">محصول </a></li>
+                        <li class="breadcrumb-item active" aria-current="page">لیست محصول</li>
                     </ol>
                 </nav>
                 <div class="ms-panel">
                     <div class="ms-panel-header">
-                        <h6>عناصر قابل جابجایی لیستی</h6>
-                        <p>عناصر را جا به جا نمایید</p>
+                        <h6>تمامی محصولات</h6>
                     </div>
                     <div class="ms-panel-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <h6 class="section-title">در حال انجام</h6>
                                 <ul class="ms-list ms-sortable-list" id="food_id">
-
                                     {% for food in Food %}
-
                                         <li class="ms-list-item bordered media"
                                             id="id_{{ food.id }}_food_order_{{ food.First }}">
                                             {% if food.Image %}

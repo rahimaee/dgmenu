@@ -1,23 +1,35 @@
 {% load static %}
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta name="author" content="mohammad rahimaee"/>
-<meta name="description" content="Testo - Pizza and Fast Food Landing Page Template"/>
+<meta name="author" content="{{ cafe.Cafe_Name }}"/>
+<meta name="description" content="{{ cafe.Cafe_Description }}"/>
 <meta name="keywords"
-      content="Jthemes, Food, Fast Food, Restaurant, Pizzeria, Restaurant Menu, Pizza, Burger, Sushi, Steak, Grill, Snack">
+      content="{{ cafe.Cafe_keywords }}">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <!-- SITE TITLE -->
-<title>برگی - قالب پیتزا و{{ result }} فسssت فود</title>
+<title>{{ cafe.Cafe_Name }}</title>
 
 <!-- FAVICON AND TOUCH ICONS -->
-<link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
-<link rel="icon" href="assets/images/favicon.ico'" type="image/x-icon">
-<link rel="apple-touch-icon" sizes="152x152" href="assets/images/apple-touch-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="120x120" href="assets/images/apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="76x76" href="assets/images/apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
-<link rel="icon" href="assets/images/apple-touch-icon.png" type="image/x-icon">
+<link rel="shortcut icon" href="{{ cafe.Cafe_favicon.url }}" type="image/x-icon">
+<link rel="icon" href="{{ cafe.Cafe_favicon.url }}" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="57x57" href="{{ cafe.Cafe_Apple_Touch_Icon57.url }}">
+<link rel="apple-touch-icon" sizes="60x60" href="{{ cafe.Cafe_Apple_Touch_Icon60.url}}">
+<link rel="apple-touch-icon" sizes="72x72" href="{{ cafe.Cafe_Apple_Touch_Icon72.url }}">
+<link rel="apple-touch-icon" sizes="76x76" href="{{ cafe.Cafe_Apple_Touch_Icon76.url }}">
+<link rel="apple-touch-icon" sizes="114x114" href="{{ cafe.Cafe_Apple_Touch_Icon114.url }}">
+<link rel="apple-touch-icon" sizes="120x120" href="{{ cafe.Cafe_Apple_Touch_Icon120.url }}">
+<link rel="apple-touch-icon" sizes="144x144" href="{{ cafe.Cafe_Apple_Touch_Icon144.url }}">
+<link rel="apple-touch-icon" sizes="152x152" href="{{ cafe.Cafe_Apple_Touch_Icon152.url }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ cafe.Cafe_Apple_Touch_Icon180.url }}">
+<link rel="icon" type="image/png" sizes="192x192"  href="{{ cafe.Cafe_Apple_Touch_Icon192.url }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ cafe.Cafe_Apple_Touch_Icon32.url }}">
+<link rel="icon" type="image/png" sizes="96x96" href="{{ cafe.Cafe_Apple_Touch_Icon96.url }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ cafe.Cafe_Apple_Touch_Icon16.url }}">
+<link rel="manifest" href="{% static 'manifest.json' %}">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="{{ cafe.Cafe_Msapplication }}">
+<meta name="theme-color" content="#ffffff">
 
 <!-- FONTS -->
 <link href="{% static 'css/fonts.css' %}" rel="stylesheet">

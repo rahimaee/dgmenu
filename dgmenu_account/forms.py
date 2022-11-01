@@ -4,15 +4,16 @@ from .models import CustomUser as User
 
 class LoginForm(forms.Form):
     email = forms.CharField(
-        widget=forms.TextInput(attrs={'type': 'email', 'class': 'form-control', 'id': 'validationCustom08',
-                                      'placeholder': 'ایمیل خود را وارد کنید'}),
-        label='ایمیل'
+        widget=forms.TextInput(
+            attrs={'type': 'email', 'class': 'form-control', 'id': 'email',
+                   'placeholder': 'ایمیل خود را وارد کنید'}),
+        label='ایمیل',
 
     )
     password = forms.CharField(
         widget=forms.PasswordInput(
-            attrs={'type': 'password', 'id': 'validationCustom09', 'class': 'form-control', 'name': 'password',
-                   'placeholder': 'رمز عبور را وارد کنید'}),
+            attrs={'type': 'password', 'id': 'password', 'class': 'form-control', 'name': 'password',
+                   'placeholder': 'رمز عبور را وارد کنید', 'required': "ایمیل خود را وارد کنید"}),
         label='رمز عبور'
     )
 

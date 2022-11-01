@@ -1,58 +1,91 @@
 {% extends 'shared/panel/_PanelMain.html' %}
-{% load static %}
 {% block main %}
+    <!-- Body Content Wrapper -->
     <div class="ms-content-wrapper">
         <div class="row">
+
             <div class="col-md-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb pl-0">
-                        <li class="breadcrumb-item"><a href="#"><i class="material-icons">home</i> خانه</a>
-                        </li>
-                        <li class="breadcrumb-item"><a href="#">فرمها</a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">عناصر فرم</li>
-                        {{ form.errors }}
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel:starting_page' %}"><i
+                                class="material-icons">home</i> خانه</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel_category:all' %}">دسته بندی</a></li>
+                        {% if cf == 'CategoryCreate' %}
+                            <li class="breadcrumb-item active" aria-current="page">افزودن دسته بندی</li>
+                        {% endif %}
+                        {% if cf == 'CategoryUpdate' %}
+                            <li class="breadcrumb-item active" aria-current="page">ویرایش دسته بندی</li>
+                        {% endif %}
                     </ol>
                 </nav>
             </div>
-            <div class="col-xl-12">
-                <div class="ms-panel">
+        </div>
+        <form method="post" class="row" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="col-xl-6 col-md-12">
+                <div class="ms-panel ms-panel-fh">
                     <div class="ms-panel-header">
-                        <h6>اضافه کردن دسته بندی</h6>
+                        <h6>فرم افزودن محصول</h6>
                     </div>
                     <div class="ms-panel-body">
-                        <form action="" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {% for field in form %}
-                                {% if field is not form.Img and field is not form.IsActive %}
-                                    <div class="form-group">
-                                        <label for="{{ field.label }}">{{ field.label }}</label>
-                                        {{ field }}
+                        <div class="needs-validation clearfix">
+                            <div class="form-row">
+
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom25">{{ form.NameFa.label }}</label>
+                                    <div class="input-group">
+                                        {{ form.NameFa }}
+                                        <div class="invalid-feedback">
+                                            لطفا نام فارسی دسته بندی وارد کنید!
+                                        </div>
                                     </div>
-                                {% endif %}
-                            {% endfor %}
-                            <div class="form-group">
-                                {{ form.Img.label }}
-                                <br>
-                                <br>
-                                {{ form.Img }}
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom12">{{ form.NameEn.label }}</label>
+                                    <div class="input-group">
+                                        {{ form.NameEn }}
+                                        <div class="invalid-feedback">
+                                            لطفا نام انگلیسی دسته بندی وارد کنید!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label>{{ form.Img.label }}</label>
+                                    {{ form.Img }}
+                                </div>
                             </div>
-                            <div class="form-group">
-                                {{ form.IsActive.label }}
-                                <br>
-                                <label class="ms-switch">
-                                    {{ form.IsActive }} <span
-                                        class="ms-switch-slider ms-switch-success round"></span>
-
-                                </label>
-                            </div>
-                            <button type="submit" class="btn btn-block btn-success">ثبت</button>
-                        </form>
-
+                            <button class="btn btn-primary d-block" type="submit">ذخیره و ادامه</button>
+                        </div>
 
                     </div>
                 </div>
+
             </div>
-        </div>
+
+            <div class="col-xl-6 col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="ms-panel ms-btn-display">
+                            <div class="ms-panel-header new">
+                                <h6>{{ form.IsActive.label }}</h6>
+                                <div>
+                                    <label class="ms-switch">
+                                        {{ form.IsActive }}
+                                        <span class="ms-switch-slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </form>
+    </div>
     </div>
 {% endblock %}

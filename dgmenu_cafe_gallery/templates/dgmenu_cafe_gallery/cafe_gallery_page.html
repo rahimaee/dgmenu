@@ -3,31 +3,14 @@
 {% block page %}
     <!-- PAGE HERO
       ============================================= -->
-    <div id="gallery-page" style="background-image: url({{ cafe.Cafe_Header_Gallery_Background.url }});" class="page-hero-section division">
+    <div id="gallery-page" style="background-image: url({{ cafe.Cafe_Header_Gallery_Background.url }});"
+         class="page-hero-section division">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="hero-txt text-center white-color">
-
-                        <!-- Breadcrumb -->
-                        <div id="breadcrumb">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="breadcrumb-nav">
-                                        <nav aria-label="breadcrumb">
-                                            <ol class="breadcrumb">
-                                                <li class="breadcrumb-item"><a href="demo-1.html">خانه</a></li>
-                                                <li class="breadcrumb-item active" aria-current="page">گالری</li>
-                                            </ol>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Title -->
                         <h2 class="h2-xl">گالری عکس</h2>
-
                     </div>
                 </div>
             </div>      <!-- End row -->
@@ -67,48 +50,5 @@
         </div>       <!-- End container -->
     </section>    <!-- END GALLERY-2 -->
 
-
-    <!-- NEWSLETTER-1
-    ============================================= -->
-    <section id="newsletter-1" class="mb-20 newsletter-section division">
-        <div class="container">
-            <div class="inner-bg bg-lightgrey">
-                <div class="row" style="direction: ltr;">
-
-
-                    <!-- NEWSLETTER FORM -->
-                    <div class="col-md-10 col-xl-8 offset-md-1 offset-xl-2">
-                        <div class="newsletter-txt text-center">
-
-                            <!-- Title -->
-                            <h3 class="h3-sm">در خبرنامه ما عضو شوید</h3>
-
-                            <!-- Text -->
-                            <p class="p-md grey-color">برای اطلاع از آخرین به روز رسانی ها در خبرنامه هفتگی مشترک
-                                شوید</p>
-
-                            <!-- Form -->
-                            <form class="newsletter-form">
-
-                                <div class="input-group">
-                                    <input type="email" class="form-control" placeholder="ایمیل" required id="s-email">
-                                    <span class="input-group-btn">
-												<button type="submit" class="btn btn-red tra-red-hover">عضویت</button>
-											</span>
-                                </div>
-
-                                <!-- Newsletter Form Notification -->
-                                <label for="s-email" class="form-notification"></label>
-
-                            </form>
-
-                        </div>
-                    </div>      <!-- END NEWSLETTER FORM -->
-
-
-                </div>     <!-- End row -->
-            </div>    <!-- End Inner Bg -->
-        </div>       <!-- End container -->
-    </section>    <!-- END NEWSLETTER-1 -->
 
 {% endblock %}

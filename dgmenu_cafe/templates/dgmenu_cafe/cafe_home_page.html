@@ -3,7 +3,8 @@
 {% block page %}
     <!-- PAGE HERO
        ============================================= -->
-    <div id="menu-page" style="background-image: url({{ cafe.Cafe_Header_Home_Background.url }});" class="page-hero-section division">
+    <div id="menu-page" style="background-image: url({{ cafe.Cafe_Header_Home_Background.url }});"
+         class="page-hero-section division">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -29,7 +30,8 @@
                             {% if category %}
                                 {% for cat in category %}
                                     <li class="tab-link current" data-tab="tab-{{ cat.First }}">
-                                        <span><img src="{{ cat.Img.url }}" alt="{{ cat.First }}"></span>
+                                        <span><img style="width: 45px;height: 45px;" src="{{ cat.Img.url }}"
+                                                   alt="{{ cat.First }}"></span>
                                         <h5 class="h5-sm">{{ cat.NameFa }}</h5>
                                     </li>
                                 {% endfor %}
@@ -41,67 +43,104 @@
                 </div>
             </div> <!-- END TABS NAVIGATION -->
 
-
             <!-- TABS CONTENT -->
             <div id="tabs-content">
+                <div id="tab-{{ category.first.First }}" class="tab-content current">
+                    <div class="row">
+                        {% for Foo in food %}
+                            {% if Foo.FoodCategory_id == category.first.pk %}
+                                <!-- MENU ITEM #1 -->
+                                <div class="col-sm-6 col-lg-3">
+                                    <div class="menu-7-item">
 
-                {% for cat in category %}
-                    <div id="tab-{{ cat.First }}" class="tab-content current">
-                        <div class="row">
-                            {% for Foo in food %}
-                                {% if Foo.FoodCategory_id == cat.id %}
+                                        <!-- IMAGE -->
+                                        <div class="menu-7-img rel">
 
+                                            <!-- Image -->
+                                            <img class="img-fluid" src="{{ Foo.Image.url }}"
+                                                 alt="menu-image"/>
 
-                                    <!-- MENU ITEM #1 -->
-                                    <div class="col-sm-6 col-lg-3">
-                                        <div class="menu-7-item">
-
-                                            <!-- IMAGE -->
-                                            <div class="menu-7-img rel">
-
-                                                <!-- Image -->
-                                                <img class="img-fluid" src="{{ Foo.Image.url }}"
-                                                     alt="menu-image"/>
-
-                                                <!-- Price -->
-                                                <div class="menu-7-price bg-coffee">
-                                                    <h5 class="h5-xs yellow-color">{{ Foo.Price }} ت</h5>
-                                                </div>
-
-                                            </div>
-
-                                            <!-- TEXT -->
-                                            <div class="menu-7-txt rel">
-
-                                                <!-- Title -->
-                                                <h5 class="h5-sm">{{ Foo.Title }}</h5>
-
-                                                <!-- Description -->
-                                                <p class="grey-color">{{ Foo.Ingredients }}</p>
-
-                                                <!-- Button -->
-                                                <a href="p/{{ Foo.id }}"
-                                                   class="btn btn-sm btn-tra-grey yellow-hover">
-                                                    <span class="flaticon-shopping-bag"></span>جزئیات بیشتر
-                                                </a>
-
+                                            <!-- Price -->
+                                            <div class="menu-7-price bg-coffee">
+                                                <h5 class="h5-xs yellow-color">{{ Foo.Price }} ت</h5>
                                             </div>
 
                                         </div>
+
+                                        <!-- TEXT -->
+                                        <div class="menu-7-txt rel">
+
+                                            <!-- Title -->
+                                            <h5 class="h5-sm">{{ Foo.Title }}</h5>
+
+                                            <!-- Description -->
+                                            <p class="grey-color">{{ Foo.Ingredients }}</p>
+
+                                            <!-- Button -->
+                                            <a href="p/{{ Foo.id }}"
+                                               class="btn btn-sm btn-tra-grey yellow-hover">
+                                                <span class="flaticon"></span>جزئیات بیشتر
+                                            </a>
+
+                                        </div>
+
                                     </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>  <!-- End row -->
-
-                    </div>    <!-- END TAB-1 CONTENT -->
-                {% endfor %}
-
-                <!-- TAB-1 CONTENT -->
-                <div id="tab-" class="tab-content current">
-                    توجه کن
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>  <!-- End row -->
                 </div>    <!-- END TAB-1 CONTENT -->
 
+                {% for cat in category %}
+                    {% if category.first.id != cat.id %}
+                        <div id="tab-{{ cat.First }}" class="tab-content">
+                            <div class="row">
+                                {% for Foo in food %}
+                                    {% if Foo.FoodCategory.id == cat.id %}
+                                        <div class="col-sm-6 col-lg-3">
+                                            <div class="menu-7-item">
 
+                                                <!-- IMAGE -->
+                                                <div class="menu-7-img rel">
+
+                                                    <!-- Image -->
+                                                    <img class="img-fluid" src="{{ Foo.Image.url }}"
+                                                         alt="menu-image"/>
+
+                                                    <!-- Price -->
+                                                    <div class="menu-7-price bg-coffee">
+                                                        <h5 class="h5-xs yellow-color">{{ Foo.Price }} ت</h5>
+                                                    </div>
+
+                                                </div>
+
+                                                <!-- TEXT -->
+                                                <div class="menu-7-txt rel">
+
+                                                    <!-- Title -->
+                                                    <h5 class="h5-sm">{{ Foo.Title }}</h5>
+
+                                                    <!-- Description -->
+                                                    <p class="grey-color">{{ Foo.Ingredients }}</p>
+
+                                                    <!-- Button -->
+                                                    <a href="p/{{ Foo.id }}"
+                                                       class="btn btn-sm btn-tra-grey yellow-hover">
+                                                        <span class="flaticon"></span>جزئیات بیشتر
+                                                    </a>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+
+
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
 
             </div>    <!-- END TABS CONTENT -->
 
@@ -110,7 +149,8 @@
     </section>    <!-- END MENU-8 -->
     <!-- BANNER-4
        ============================================= -->
-    <section id="banner-4" class="bg-fixed wide-100 banner-section division">
+    <section id="banner-4" style="background-image: url({{ cafe.Cafe_Banner_Home.url }})"
+             class="bg-fixed wide-100 banner-section division">
         <div class="container">
             <div class="row">
 

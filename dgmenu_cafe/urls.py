@@ -4,7 +4,7 @@ from .views import cafe_home_page, cafe_food_detail
 
 app_name = 'dgmenu_cafe'
 urlpatterns = [
-    path('<cafename>/', cafe_home_page),
-    path('<cafename>/p/<id>', cafe_food_detail),
+    path('<cafename>/', cafe_home_page, name='cafe_home'),
+    path('<cafename>/p/<id>', cafe_food_detail, name="cafe_food_detail"),
 
 ]

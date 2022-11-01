@@ -2,11 +2,8 @@
 ============================================= -->
 <header id="header-3" class="header navik-header header-transparent header-shadow">
     <div class="container">
-
-
         <!-- NAVIGATION MENU -->
         <div class="navik-header-container">
-
 
             <!-- CALL BUTTON -->
             {% if cafe.Cafe_Tel1 %}
@@ -18,8 +15,9 @@
             {% if cafe.Cafe_Header_Logo %}
                 <div class="logo" data-mobile-logo="{{ cafe.Cafe_Header_Logo.url }}"
                      data-sticky-logo="{{ cafe.Cafe_Header_Logo.url }}">
-                    <a href="index.html"><img src="{{ cafe.Cafe_Header_Logo.url }}"
-                                              alt="{{ cafe.Cafe_UserName }}-header-logo"/></a>
+                    <a href="{% url 'dgmenu_cafe:cafe_home' cafename=cafe.Cafe_UserName %}"><img
+                            src="{{ cafe.Cafe_Header_Logo.url }}"
+                            alt="{{ cafe.Cafe_UserName }}-header-logo"/></a>
                 </div>
             {% endif %}
 

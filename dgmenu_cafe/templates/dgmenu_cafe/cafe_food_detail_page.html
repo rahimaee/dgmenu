@@ -10,22 +10,6 @@
                 <div class="col-lg-12">
                     <div class="hero-txt text-center white-color">
 
-                        <!-- Breadcrumb -->
-                        <div id="breadcrumb">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="breadcrumb-nav">
-                                        <nav aria-label="breadcrumb">
-                                            <ol class="breadcrumb">
-                                                <li class="breadcrumb-item"><a href="demo-1.html">خانه</a></li>
-                                                <li class="breadcrumb-item"><a href="menu-2.html">منو</a></li>
-                                                <li class="breadcrumb-item active" aria-current="page"> ساندویچ بوف</li>
-                                            </ol>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                         <!-- Title -->
                         <h2 class="h2-xl"> {{ food.Title }}</h2>
@@ -51,22 +35,32 @@
 
                         <!-- TABS CONTENT -->
                         <div class="tabs-content">
-
-                            <!-- TAB-1 CONTENT -->
-                            <div id="tab-1-img" class="tab-content text-center displayed">
-                                <img class="img-fluid" src="{{ food.Image.url }}"
-                                     alt="menu-image"/>
-                            </div>
-
-                            {% if food_gallery %}
-                                {% for fg in food_gallery %}
-                                    <div id="tab-{{ fg.id }}-img" class="tab-content text-center">
-                                        <img class="img-fluid" src="{{ fg.Image.url }}"
-                                             alt="menu-image"/>
-                                    </div>
-                                {% endfor %}
-
+                            {% if food.Image %}
+                                <div id="tab-1-img" class="tab-content text-center displayed">
+                                    <img class="img-fluid" src="{{ food.Image.url }}"
+                                         alt="menu-image"/>
+                                </div>
                             {% endif %}
+                            {% if food.Gallery_Image_1 %}
+                                <div id="tab-2-img" class="tab-content text-center">
+                                    <img class="img-fluid" src="{{ food.Gallery_Image_1.url }}"
+                                         alt="menu-image"/>
+                                </div>
+                            {% endif %}
+                            {% if food.Gallery_Image_2 %}
+                                <div id="tab-3-img" class="tab-content text-center">
+                                    <img class="img-fluid" src="{{ food.Gallery_Image_2.url }}"
+                                         alt="menu-image"/>
+                                </div>
+                            {% endif %}
+                            {% if food.Gallery_Image_3 %}
+                                <div id="tab-4-img" class="tab-content text-center">
+                                    <img class="img-fluid" src="{{ food.Gallery_Image_3.url }}"
+                                         alt="menu-image"/>
+                                </div>
+                            {% endif %}
+
+
                         </div>    <!-- END TABS CONTENT -->
 
 
@@ -75,19 +69,25 @@
                             <div class="row">
                                 <div class="col-lg-12 text-center">
                                     <ul class="tabs-2 clearfix">
-
-                                        <!-- TAB-1 LINK -->
-                                        <li class="tab-link displayed" data-tab="tab-1-img">
-                                            <img src="{{ food.Image.url }}" alt="menu-image"/>
-                                        </li>
-
-                                        {% if food_gallery %}
-                                            {% for fg in food_gallery %}
-                                                <li class="tab-link" data-tab="tab-{{ fg.id }}-img">
-                                                    <img src="{{ fg.Image.url }}" alt="menu-image"/>
-                                                </li>
-                                            {% endfor %}
-
+                                        {% if food.Image %}
+                                            <li class="tab-link" data-tab="tab-1-img">
+                                                <img src="{{ food.Image.url }}" alt="menu-image"/>
+                                            </li>
+                                        {% endif %}
+                                        {% if food.Gallery_Image_1 %}
+                                            <li class="tab-link" data-tab="tab-2-img">
+                                                <img src="{{ food.Gallery_Image_1.url }}" alt="menu-image"/>
+                                            </li>
+                                        {% endif %}
+                                        {% if food.Gallery_Image_2 %}
+                                            <li class="tab-link" data-tab="tab-3-img">
+                                                <img src="{{ food.Gallery_Image_2.url }}" alt="menu-image"/>
+                                            </li>
+                                        {% endif %}
+                                        {% if food.Gallery_Image_3 %}
+                                            <li class="tab-link" data-tab="tab-4-img">
+                                                <img src="{{ food.Gallery_Image_3.url }}" alt="menu-image"/>
+                                            </li>
                                         {% endif %}
                                     </ul>
                                 </div>
@@ -143,21 +143,6 @@
                                 {% endif %}
                             </div>
 
-                            <input class="qty" type="number" min="1" max="20" value="1">
-
-                            <!-- Add To Cart -->
-                            <div class="add-to-cart-btn bg-yellow ico-20 text-center">
-                                <a href="cart.html"><span class="flaticon-shopping-bag"></span> سبد خرید</a>
-                            </div>
-
-                            <!-- List -->
-                            <ul class="txt-list">
-                                <li class="list-item"><p class="p-sm">ما کارت اعتباری یا پول نقد را به یک پیک می
-                                    پذیریم</p></li>
-                                <li class="list-item"><p class="p-sm">هزینه ارسال 2,000 ت است (رایگان از 5,000 ت)</p>
-                                </li>
-                                <li class="list-item"><p class="p-sm">برای ارسال همان روز قبل از ظهر سفارش دهید</p></li>
-                            </ul>
 
                         </div>    <!-- END TEXT-->
 
@@ -177,8 +162,6 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="">
-
-
                         <!-- TABS NAVIGATION -->
                         <div class="tabs-nav">
                             <div class="row">
@@ -188,11 +171,6 @@
                                         <!-- TAB-1 LINK -->
                                         <li class="tab-link current" data-tab="tab-1">
                                             <h5 class="h5-sm">توضیحات</h5>
-                                        </li>
-
-                                        <!-- TAB-2 LINK -->
-                                        <li class="tab-link" data-tab="tab-2">
-                                            <h5 class="h5-sm">نظرات (3)</h5>
                                         </li>
 
                                     </ul>
@@ -208,169 +186,9 @@
                             <!-- TAB-1 CONTENT -->
                             <div id="tab-1" class="tab-content current">
 
-                                <!-- Text -->
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                                    گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                    برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
-                                    می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و
-                                    متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری
-                                </p>
-
-                                <!-- List -->
-                                <ul class="txt-list">
-
-                                    <li class="list-item">
-                                        <p><span class="txt-500">برای طراحان رایانه ای علی الخصوص طراحان</span> خلاقی و
-                                            فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و
-                                            دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز
-                                        </p>
-                                    </li>
-
-                                    <li class="list-item">
-                                        <p><span
-                                                class="txt-500">شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته</span>
-                                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                            طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
-                                            لازم است</p>
-                                    </li>
-
-                                </ul>
-
-                                <!-- Text -->
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                                    گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                    برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
-                                    می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و
-                                    متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی
-                                    الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید
-                                    داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد
-                                </p>
+                                <p>{{ food.Description_Long }}</p>
 
                             </div>    <!-- END TAB-1 CONTENT -->
-
-
-                            <!-- TAB-2 CONTENT -->
-                            <div id="tab-2" class="tab-content">
-
-
-                                <!-- TESTIMONIAL #1 -->
-                                <div class="review-2 b-bottom">
-
-                                    <!-- Testimonial Author Avatar -->
-                                    <div class="review-2-avatar">
-                                        <img src="assets/images/review-author-1.jpg" alt="testimonial-avatar">
-                                    </div>
-
-                                    <!-- Testimonial Text -->
-                                    <div class="review-2-txt">
-
-                                        <!-- Rating -->
-                                        <div class="stars-rating stars-lg">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </div>
-
-                                        <!-- Testimonial Author -->
-                                        <div class="review-info clearfix">
-                                            <h5 class="h5-xs">فقیهه سلطانی</h5>
-                                            <span class="grey-color">آبان 4, 1401</span>
-                                        </div>
-
-                                        <!-- Text -->
-                                        <p> کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و
-                                            متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای
-                                            علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت
-                                            می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ
-                                        </p>
-
-                                    </div>
-
-                                </div>    <!--END  TESTIMONIAL #1 -->
-
-
-                                <!-- TESTIMONIAL #3 -->
-                                <div class="review-2 b-bottom">
-
-                                    <!-- Testimonial Author Avatar -->
-                                    <div class="review-2-avatar">
-                                        <img src="assets/images/review-author-4.jpg" alt="testimonial-avatar">
-                                    </div>
-
-                                    <!-- Testimonial Text -->
-                                    <div class="review-2-txt">
-
-                                        <!-- Rating -->
-                                        <div class="stars-rating stars-lg">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </div>
-
-                                        <!-- Testimonial Author -->
-                                        <div class="review-info clearfix">
-                                            <h5 class="h5-xs">سیروس گرجستانی</h5>
-                                            <span class="grey-color">آبان 28, 1401</span>
-                                        </div>
-
-                                        <!-- Text -->
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                            طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
-                                            لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود
-                                            ابزارهای کاربردی می باشد
-                                        </p>
-
-                                    </div>
-
-                                </div>    <!--END  TESTIMONIAL #2 -->
-
-
-                                <!-- TESTIMONIAL #3 -->
-                                <div class="review-2">
-
-                                    <!-- Testimonial Author Avatar -->
-                                    <div class="review-2-avatar">
-                                        <img src="assets/images/review-author-3.jpg" alt="testimonial-avatar">
-                                    </div>
-
-                                    <!-- Testimonial Text -->
-                                    <div class="review-2-txt">
-
-                                        <!-- Rating -->
-                                        <div class="stars-rating stars-lg">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </div>
-
-                                        <!-- Testimonial Author -->
-                                        <div class="review-info clearfix">
-                                            <h5 class="h5-xs">منوچهر حامدی</h5>
-                                            <span class="grey-color">آذر 11, 1401</span>
-                                        </div>
-
-                                        <!-- Text -->
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                            طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
-                                            لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود
-                                            ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
-                                            شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را
-                                            برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی
-                                            ایجاد کرد
-                                        </p>
-
-                                    </div>
-
-                                </div>    <!--END  TESTIMONIAL #3 -->
-
-
-                            </div>    <!-- END TAB-2 CONTENT -->
 
 
                         </div>    <!-- END TABS CONTENT -->
@@ -393,15 +211,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title mb-60 text-center">
-
                         <!-- Title 	-->
                         <h2 class="h2-xl">محصولات مرتبط</h2>
-
-                        <!-- Text -->
-                        <p class="p-xl">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                            گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
-                        </p>
-
                     </div>
                 </div>
             </div>
@@ -411,69 +222,50 @@
 
                 {% if food_suggestion %}
                     {% for fs in food_suggestion %}
-                         <!-- MENU ITEM #1 -->
-                <div class="col-sm-6 col-lg-3">
-                    <div class="menu-6-item bg-white">
+                        <!-- MENU ITEM #1 -->
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="menu-6-item bg-white">
 
-                        <!-- IMAGE -->
-                        <div class="menu-6-img rel">
-                            <div class="hover-overlay">
+                                <!-- IMAGE -->
+                                <div class="menu-6-img rel">
+                                    <div class="hover-overlay">
 
-                                <!-- Image -->
-                                <img class="img-fluid" src="{{ fs.Image.url }}" alt="{{ fs.Title }}"/>
+                                        <!-- Image -->
+                                        <img class="img-fluid" src="{{ fs.Image.url }}" alt="{{ fs.Title }}"/>
 
-                                <!-- Item Code -->
-                                <span class="item-code bg-tra-dark">کد: 0850</span>
+                                        <!-- Zoom Icon -->
+                                        <div class="menu-img-zoom ico-25">
+                                            <a href="{{ fs.Image.url }}" class="{{ fs.Title }}">
+                                                <span class="flaticon-zoom"></span>
+                                            </a>
+                                        </div>
 
-                                <!-- Zoom Icon -->
-                                <div class="menu-img-zoom ico-25">
-                                    <a href="{{ fs.Image.url }}" class="{{ fs.Title }}">
-                                        <span class="flaticon-zoom"></span>
-                                    </a>
+                                    </div>
+                                </div>
+
+                                <!-- TEXT -->
+                                <div class="menu-6-txt rel">
+                                    <!-- Title -->
+                                    <a href="{% url 'dgmenu_cafe:cafe_food_detail' cafename=cafe.Cafe_UserName id=fs.id %}">
+                                        <h5 class="h5-sm">{{ fs.Title }}</h5></a>
+                                    <!-- Description -->
+                                    <p class="grey-color">{{ fs.Ingredients }}</p>
+
+                                    <!-- Price -->
+                                    <div class="menu-6-price bg-coffee">
+                                        <h5 class="h5-xs yellow-color">{{ fs.Price }} ت</h5>
+                                    </div>
+
+                                    <!-- Add To Cart -->
+                                    <div class="add-to-cart bg-yellow ico-10">
+                                        <a href="{% url 'dgmenu_cafe:cafe_food_detail' cafename=cafe.Cafe_UserName id=fs.id %}"><span
+                                                class="flaticon"></span>جزئیات بیشتر</a>
+                                    </div>
+
                                 </div>
 
                             </div>
-                        </div>
-
-                        <!-- TEXT -->
-                        <div class="menu-6-txt rel">
-
-                            <!-- Rating -->
-                            <div class="item-rating">
-                                <div class="stars-rating stars-lg">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                </div>
-                            </div>
-
-                            <!-- Like Icon -->
-                            <div class="like-ico ico-25">
-                                <a href="#"><span class="flaticon-heart"></span></a>
-                            </div>
-
-                            <!-- Title -->
-                            <h5 class="h5-sm">{{ fs.Title }}</h5>
-
-                            <!-- Description -->
-                            <p class="grey-color">{{ fs.Ingredients }}</p>
-
-                            <!-- Price -->
-                            <div class="menu-6-price bg-coffee">
-                                <h5 class="h5-xs yellow-color">{{ fs.Price }} ت</h5>
-                            </div>
-
-                            <!-- Add To Cart -->
-                            <div class="add-to-cart bg-yellow ico-10">
-                                <a href="#"><span class="flaticon-shopping-bag"></span> سبد خرید</a>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>    <!-- END MENU ITEM #1 -->
+                        </div>    <!-- END MENU ITEM #1 -->
                     {% endfor %}
 
                 {% endif %}

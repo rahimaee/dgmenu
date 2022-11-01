@@ -1,18 +1,35 @@
-"""dgmenu URL Configuration
+from django.contrib import sitemaps
+from django.urls import reverse
+from dgmenu_cafe.models import Cafe
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+all_cafe = Cafe.objects.filter(Admin_Is_Active=True).all()
+cafe = []
+for i in all_cafe:
+    cafe.append(i.Cafe_UserName)
+
+
+class StaticViewSitemap(sitemaps.Sitemap):
+    priority = 1.0
+    changefreq = 'daily'
+
+    def items(self):
+        return ['dgmenu_site_home:site_home_page']
+
+    def location(self, item):
+        return reverse(item)
+
+
+class MenuViewSitemap(sitemaps.Sitemap):
+    priority = 0.5
+    changefreq = 'daily'
+
+    def items(self):
+        return cafe
+
+    def location(self, item):
+        return reverse('dgmenu_cafe:cafe_home', kwargs={'cafename': 'demo'})
+
+
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
@@ -24,7 +41,12 @@ from django.conf.urls.static import static
 from dgmenu_cafe.views import partial_view, header_partial_view, footer_partial_view
 from adminpanel.views import header_references_partial_view, header_panel_partial_view, quick_bar_panel_partial_view, \
     navbar_panel_partial_view
+from django.contrib.sitemaps.views import sitemap
 
+sitemaps = {
+    'static': StaticViewSitemap,
+    'menu': MenuViewSitemap,
+}
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('adminpanel/', include('adminpanel.urls', namespace='adminpanel')),
@@ -33,12 +55,13 @@ urlpatterns = [
     path('adminpanel/gallery/', include('adminpanel_gallery.urls', namespace='adminpanel_gallery')),
     path('adminpanel/team/', include('adminpanel_team.urls', namespace='adminpanel_team')),
     path('adminpanel/about/', include('adminpanel_about.urls', namespace='adminpanel_about')),
+    path('adminpanel/settings/', include('adminpanel_cafe_settings.urls', namespace='adminpanel_settings')),
     path('', include('dgmenu_site_home.urls', namespace='dgmenu_site_home')),
     path('', include('dgmenu_cafe.urls', namespace='dgmenu_cafe')),
     path('', include('dgmenu_cafe_team.urls', namespace='dgmenu_cafe_team')),
     path('', include('dgmenu_cafe_about.urls', namespace='dgmenu_cafe_about')),
     path('', include('dgmenu_cafe_gallery.urls', namespace='dgmenu_cafe_gallery')),
-    path('account/', include('dgmenu_account.urls', namespace='dgmenu_cafe_account')),
+    path('accounts/', include('dgmenu_account.urls', namespace='dgmenu_cafe_account')),
     url(r'^partial-view/(?P<CafeUserId>\w+)$',
         partial_view,
         name='partial_view'),
@@ -61,7 +84,8 @@ urlpatterns = [
     url(r'^navbar_panel_partial_view',
         navbar_panel_partial_view,
         name='navbar_panel_partial_view'),
-
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+         name='django.contrib.sitemaps.views.sitemap')
 ]
 if settings.DEBUG:
     # add root static files

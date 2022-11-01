@@ -10,9 +10,8 @@
             <div class="col-md-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb pl-0">
-                        <li class="breadcrumb-item"><a href="#"><i class="material-icons">home</i> خانه</a></li>
-                        <li class="breadcrumb-item"><a href="#">منو</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">کاتالوگ منو</li>
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel:starting_page' %}"><i class="material-icons">home</i> خانه</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel_gallery:all' %}">گالری</a></li>
                     </ol>
                 </nav>
             </div>
@@ -43,12 +42,7 @@
                 {% endfor %}
 
             {% endif %}
-            <div class="col-xl-12 col-md-12">
-                <div class="load">
-                    <i class="fas fa-redo alt  space text-muted" aria-hidden="true"></i><span
-                        class="more">بیشتر ببینید</span>
-                </div>
-            </div>
+        
         </div>
 
     </div>

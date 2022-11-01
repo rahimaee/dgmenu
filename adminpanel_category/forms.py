@@ -2,8 +2,13 @@ from dgmenu_food_category.models import FoodCategory
 from django import forms
 
 
+class ImageWidget(forms.widgets.ClearableFileInput):
+    template_name = "adminpanel_food/custom_Img_file_input.html"
+
+
 class CategoryForm(forms.Form):
     Img = forms.ImageField(
+        widget=ImageWidget,
         label='ایکون'
     )
     NameFa = forms.CharField(

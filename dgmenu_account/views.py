@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -7,8 +7,8 @@ from django.urls import reverse_lazy
 from dgmenu_account.forms import LoginForm
 from .models import CustomUser as User
 
-from django.utils.encoding import force_text, force_bytes
-from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.utils.encoding import force_text
+from django.utils.http import urlsafe_base64_decode
 from .tokens import account_activation_token
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -17,19 +17,26 @@ from django.contrib.messages.views import SuccessMessageMixin
 def user_login_page(request):
     if request.user.is_authenticated:
         return redirect('adminpanel:starting_page')
-
     login_form = LoginForm(request.POST or None)
+    next = None
     if login_form.is_valid():
         email = login_form.cleaned_data.get('email')
-        print(email)
         password = login_form.cleaned_data.get('password')
-        print(password)
-
         user = User.objects.filter(email=email).first()
         if user is not None:
             if user.check_password(password) is True:
                 login(request, user)
-        return redirect('adminpanel:starting_page')
+            else:
+                login_form = LoginForm(request.POST or None)
+                cx = {'ms': True, 'login_form': login_form}
+                return render(request, 'dgmenu_account/login.html', cx)
+            next = request.get_full_path().split('/?next=')
+            if next.count == 2:
+                next = next[1]
+                domain = request.get_host()
+                return redirect("http://" + domain + next)
+            else:
+                return redirect('adminpanel:starting_page')
 
     context = {
         'login_form': login_form
