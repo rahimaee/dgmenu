@@ -166,8 +166,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'mail.hamyarmenu.ir'
 EMAIL_USE_TLS = True
 HOSTNAME = 'localhost'
-DEFAULT_FROM_EMAIL = 'no_reply@dgtag.ir'
+DEFAULT_FROM_EMAIL = 'no-reply@hamyarmenu.ir'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'no-reply@hamyarmenu.ir'
-EMAIL_HOST_PASSWORD = 'rahimfarhankeyvan'
-
+EMAIL_HOST_PASSWORD = '@Mohammad13271326'
