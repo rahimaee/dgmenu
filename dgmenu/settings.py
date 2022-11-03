@@ -162,17 +162,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/site_statics/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "assets")
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static_cdn", "static_root")
+if DEBUG is True:
+    STATIC_ROOT = os.path.join(BASE_DIR, "static_cdn", "static_root")
+else:
+    STATIC_ROOT = '/home/hamyarme/public_html/static'
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "static_cdn", "media_root")
+if DEBUG is True:
+    MEDIA_ROOT = os.path.join(BASE_DIR, "static_cdn", "media_root")
+else:
+    MEDIA_ROOT = '/home/hamyarme/public_html/media'
+
 # CustomUser  AUTH USER MODEL
 AUTH_USER_MODEL = 'dgmenu_account.CustomUser'
 # Default primary key field type
