@@ -24,7 +24,10 @@ SECRET_KEY = 'django-insecure-ij1n60o7xzw@2b^o6un!vr3+7xs=92r@9ha0p2rogak6moip^x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['hamyarmenu.ir','www.hamyarmenu.ir']
+if DEBUG is True:
+    ALLOWED_HOSTS = ['*']
+else:
+    ALLOWED_HOSTS = ['hamyarmenu.ir', 'www.hamyarmenu.ir']
 
 # Application definition
 
@@ -103,26 +106,28 @@ WSGI_APPLICATION = 'dgmenu.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hamyarme_db',
-        'USER': 'hamyarme_db',
-        'PASSWORD': 'Bgy@lC}-ZiD*l.{=!G',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {
-            'sql_mode': 'STRICT_ALL_TABLES'
+if DEBUG is True:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'hamyarme_db',
+            'USER': 'hamyarme_db',
+            'PASSWORD': 'Bgy@lC}-ZiD*l.{=!G',
+            'HOST': 'localhost',
+            'PORT': '3306',
+            'OPTIONS': {
+                'sql_mode': 'STRICT_ALL_TABLES'
+            }
+        }
+    }
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
