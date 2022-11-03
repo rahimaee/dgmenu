@@ -1,0 +1,1 @@
+from dgmenu.wsgi import application

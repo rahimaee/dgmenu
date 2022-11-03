@@ -16,7 +16,7 @@ def cafe_home_page(request, *args, **kwargs):
     cafe = Cafe.objects.filter(Cafe_UserName=cafe_name).first()
     if cafe is None:
         raise Http404("کافه پیدا نشد")
-    if cafe.Is_Active is True:
+    if cafe.Is_Active is False:
         raise Http404("کافه غیرفعال می باشد")
     category = FoodCategory.objects.filter(Cafe_id=cafe.id, IsActive=True, IsActiveAdmin=True).all()
     if category is not None:
@@ -52,7 +52,7 @@ def cafe_food_detail(request, *args, **kwargs):
     food_id = kwargs.get('id')
     if cafe is None:
         raise Http404("کافه پیدا نشد")
-    if cafe.Is_Active is True:
+    if cafe.Is_Active is False:
         raise Http404("کافه غیرفعال می باشد")
     category = FoodCategory.objects.filter(Cafe_id=cafe.id, IsActive=True, IsActiveAdmin=True).all()
     if category is not None:
@@ -105,7 +105,7 @@ def partial_view(request, *args, **kwargs):
     url2 = request.build_absolute_uri().split('/')[2]
     if cafe is None:
         raise Http404("کافه پیدا نشد")
-    if cafe.Is_Active is True:
+    if cafe.Is_Active is False:
         raise Http404("کافه غیرفعال می باشد")
     cx = {'cafe': cafe}
     return render(request, 'shared/cafe/_HeaderReferences.html', cx)
@@ -118,7 +118,7 @@ def header_partial_view(request, *args, **kwargs):
     url2 = request.build_absolute_uri().split('/')[2]
     if cafe is None:
         raise Http404("کافه پیدا نشد")
-    if cafe.Is_Active is True:
+    if cafe.Is_Active is False:
         raise Http404("کافه غیرفعال می باشد")
     url = url1 + '//' + url2 + "/" + cafe.Cafe_UserName
     cx = {'cafe': cafe,
@@ -132,7 +132,7 @@ def footer_partial_view(request, *args, **kwargs):
     cafe = Cafe.objects.filter(id=CafeUserId).first()
     if cafe is None:
         raise Http404("کافه پیدا نشد")
-    if cafe.Is_Active is True:
+    if cafe.Is_Active is False:
         raise Http404("کافه غیرفعال می باشد")
     cafe_gallery = CafeGallery.objects.filter(Cafe_id=cafe.id, IsActiveAdmin=True).all()
     cafe_gallery = cafe_gallery[:5]
