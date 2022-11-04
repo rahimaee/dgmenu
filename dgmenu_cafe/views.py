@@ -13,7 +13,7 @@ import uuid
 
 def cafe_home_page(request, *args, **kwargs):
     cafe_name = str(request.path).split('/')[1]
-    cafe = Cafe.objects.filter(Cafe_UserName=cafe_name).first()
+    cafe = Cafe.objects.filter(Cafe_UserName=cafe_name, Admin_Is_Active=True).first()
     if cafe is None:
         raise Http404("کافه پیدا نشد")
     if cafe.Is_Active is False:
@@ -48,7 +48,7 @@ def cafe_home_page(request, *args, **kwargs):
 
 def cafe_food_detail(request, *args, **kwargs):
     cafe_name = str(request.path).split('/')[1]
-    cafe = Cafe.objects.filter(Cafe_UserName=cafe_name).first()
+    cafe = Cafe.objects.filter(Cafe_UserName=cafe_name, Admin_Is_Active=True).first()
     food_id = kwargs.get('id')
     if cafe is None:
         raise Http404("کافه پیدا نشد")
@@ -100,7 +100,7 @@ def cafe_food_detail(request, *args, **kwargs):
 
 def partial_view(request, *args, **kwargs):
     CafeUserId = kwargs['CafeUserId']
-    cafe = Cafe.objects.filter(id=CafeUserId).first()
+    cafe = Cafe.objects.filter(id=CafeUserId, Admin_Is_Active=True).first()
     url1 = request.build_absolute_uri().split('/')[0]
     url2 = request.build_absolute_uri().split('/')[2]
     if cafe is None:
@@ -113,7 +113,7 @@ def partial_view(request, *args, **kwargs):
 
 def header_partial_view(request, *args, **kwargs):
     CafeUserId = kwargs['CafeUserId']
-    cafe = Cafe.objects.filter(id=CafeUserId).first()
+    cafe = Cafe.objects.filter(id=CafeUserId, Admin_Is_Active=True).first()
     url1 = request.build_absolute_uri().split('/')[0]
     url2 = request.build_absolute_uri().split('/')[2]
     if cafe is None:
@@ -129,7 +129,7 @@ def header_partial_view(request, *args, **kwargs):
 
 def footer_partial_view(request, *args, **kwargs):
     CafeUserId = kwargs['CafeUserId']
-    cafe = Cafe.objects.filter(id=CafeUserId).first()
+    cafe = Cafe.objects.filter(id=CafeUserId, Admin_Is_Active=True).first()
     if cafe is None:
         raise Http404("کافه پیدا نشد")
     if cafe.Is_Active is False:
