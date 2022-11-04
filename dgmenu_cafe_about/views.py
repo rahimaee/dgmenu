@@ -1,22 +1,19 @@
 import uuid
 import datetime
-
 from django.shortcuts import render, Http404
 from dgmenu_cafe.models import Cafe
 from dgmenu_cafe_about.models import CafeAbout
-
-# Create your views here.
 from dgmenu_cafe_viewers.models import ViewOfPage
 
 
 def cafe_about(request, *args, **kwargs):
     cafe_name = str(request.path).split('/')[1]
-    cafe = Cafe.objects.filter(Cafe_UserName=cafe_name).first()
+    cafe = Cafe.objects.filter(Cafe_UserName=cafe_name, Admin_Is_Active=True).first()
     if cafe is not None:
         about = CafeAbout.objects.filter(Cafe_id=cafe.id).first()
     else:
         raise Http404("مشکل دیتابیس")
-    if cafe.Is_Active is True:
+    if cafe.Is_Active is False:
         raise Http404("کافه غیرفعال می باشد")
     cx = {'cafe': cafe,
           'CafeUserId': cafe.id, 'about': about}
