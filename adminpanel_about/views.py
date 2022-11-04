@@ -11,11 +11,11 @@ def about(request, *args, **kwargs):
     ctx = {}
     if not request.user.is_authenticated:
         raise Http404()
-    cafe = Cafe.objects.filter(Manager_id=request.user.id).first()
+    cafe = Cafe.objects.filter(Manager_id=request.user.id, Admin_Is_Active=True).first()
     if cafe is None:
         raise Http404()
 
-    About = CafeAbout.objects.filter(Cafe__Manager_id=request.user.id).first()
+    About = CafeAbout.objects.filter(Cafe__Manager_id=request.user.id, Admin_Is_Active=True).first()
     if request.method == "GET":
         form = AboutForm()
         if About is None:

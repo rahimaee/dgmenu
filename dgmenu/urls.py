@@ -33,7 +33,7 @@ class MenuViewSitemap(sitemaps.Sitemap):
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
-
+from .views import handler404, handler500
 # debug setting for static files
 from django.conf import settings
 from django.conf.urls.static import static
@@ -85,8 +85,11 @@ urlpatterns = [
         navbar_panel_partial_view,
         name='navbar_panel_partial_view'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
-         name='django.contrib.sitemaps.views.sitemap')
+         name='django.contrib.sitemaps.views.sitemap'),
+
 ]
+handler404 = handler404
+handler500 = handler500
 
 # add root static files
 urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
