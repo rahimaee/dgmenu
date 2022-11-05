@@ -22,12 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ij1n60o7xzw@2b^o6un!vr3+7xs=92r@9ha0p2rogak6moip^x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 if DEBUG is True:
     ALLOWED_HOSTS = ['*']
+    SECURE_SSL_REDIRECT = False
 else:
     ALLOWED_HOSTS = ['hamyarmenu.ir', 'www.hamyarmenu.ir']
+    SECURE_SSL_REDIRECT = True
 
 # Application definition
 

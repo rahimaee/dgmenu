@@ -90,3 +90,10 @@ class Cafe(models.Model):
     Is_Active = models.BooleanField(default=False, verbose_name='فعال/غیرفعال کاربر')
     Submit_Time = models.DateTimeField()
     Last_Edit_Time = models.DateTimeField()
+
+    class Meta:
+        verbose_name = 'کافه'
+        verbose_name_plural = 'کافه ها'
+
+    def __str__(self):
+        return str(self.id) + "-" + self.Cafe_UserName

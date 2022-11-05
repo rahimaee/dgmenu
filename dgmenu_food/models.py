@@ -50,5 +50,9 @@ class Food(models.Model):
     Last_Edit_Time = models.DateTimeField()
     First = models.IntegerField(verbose_name='ترتیب نمایش')
 
+    class Meta:
+        verbose_name_plural = 'محصولات'
+        verbose_name = 'محصول'
 
-
+    def __str__(self):
+        return self.Cafe.Cafe_UserName + "/" + self.Title
