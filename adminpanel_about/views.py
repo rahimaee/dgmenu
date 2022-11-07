@@ -15,7 +15,7 @@ def about(request, *args, **kwargs):
     if cafe is None:
         raise Http404()
 
-    About = CafeAbout.objects.filter(Cafe__Manager_id=request.user.id, Admin_Is_Active=True).first()
+    About = CafeAbout.objects.filter(Cafe__Manager_id=request.user.id).first()
     if request.method == "GET":
         form = AboutForm()
         if About is None:

@@ -7,8 +7,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>همیار منو | منو دیجیتال رستوران و کافی شاپ</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    <meta content="" name="همیار منو |بهترین راه برای بروز کردن کافه یا رستوران شما">
+    <meta content="" name="hamyarmenu,همیارمنو,منو دیجیتال رستوران,منو دیجیتال رستوران و کافی شاپ,">
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="57x57" href="{% static 'site/fav/apple-icon-57x57.png' %}">
@@ -28,10 +28,6 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{% static 'site/fav/ms-icon-144x144.png' %}">
     <meta name="theme-color" content="#ffffff">
-
-    <!-- Google Fonts -->
-    {#    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"#}
-    {#          rel="stylesheet">#}
     <link href="{% static 'site/css/fount.css' %}" rel="stylesheet">
     <!-- Vendor CSS Files -->
     <link href="{% static 'site/css/aos.css' %}" rel="stylesheet">
@@ -41,7 +37,6 @@
     <link href="{% static 'site/css/glightbox.min.css' %}" rel="stylesheet">
     <link href="{% static 'site/css/remixicon.css' %}" rel="stylesheet">
     <link href="{% static 'site/css/swiper-bundle.min.css' %}" rel="stylesheet">
-
     <!-- Template Main CSS File -->
     <link href="{% static 'site/css/style.css' %}" rel="stylesheet">
     <link href="{% static 'site/css/rtl.css' %}" rel="stylesheet">
@@ -57,12 +52,12 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a class="nav-link scrollto active" href="#hero">خانه</a></li>
-                <li><a class="nav-link scrollto" href="#about">درباره ما</a></li>
-                <li><a class="nav-link scrollto" href="#services">خدمات</a></li>
-                <li><a class="nav-link scrollto" href="#team">تیم ما</a></li>
+                <li><a class="nav-link scrollto" href="#whatis">همیار منو چیه</a></li>
+                <li><a class="nav-link scrollto" href="#why">چرا همیارمنو</a></li>
                 <li><a class="nav-link scrollto" href="#pricing">قیمت</a></li>
+                <li><a class="nav-link scrollto" href="#about">درباره ما</a></li>
                 <li><a class="nav-link scrollto" href="#contact">تماس با ما</a></li>
-                <li><a class="getstarted scrollto" href="#about">شروع</a></li>
+                <li><a class="getstarted scrollto" href="#whatis">شروع</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
@@ -80,14 +75,14 @@
             </div>
         </div>
         <div class="text-center">
-            <a href="#about" class="btn-get-started scrollto">همین حالا شروع کن!</a>
+            <a href="#whatis" class="btn-get-started scrollto">همین حالا شروع کن!</a>
         </div>
 
         <div class="row icon-boxes">
             <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in"
                  data-aos-delay="200">
                 <div class="icon-box">
-                    <div class="icon"><i class="ri-stack-line"></i></div>
+                    <div class="icon"><i class="ri-time-line"></i></div>
                     <h4 class="title"><a href="">کاهش وظایف پرسنلی</a></h4>
                     <p class="description">با انجام برخی از وظایف پرسنلی مثل تحویل و گرفتن منو از مشتری،سفارشگیری ،
                         صندوقداری و...از توان پرسنلت بیشتر استفاده کن.
@@ -98,7 +93,7 @@
             <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in"
                  data-aos-delay="300">
                 <div class="icon-box">
-                    <div class="icon"><i class="ri-palette-line"></i></div>
+                    <div class="icon"><i class="ri-money-dollar-circle-line"></i></div>
                     <h4 class="title"><a href="">افزایش فروش</a></h4>
                     <p class="description">با کمک المان های جذاب در همیار منو فروشت زیاد میشه
                     </p>
@@ -108,7 +103,7 @@
             <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in"
                  data-aos-delay="400">
                 <div class="icon-box">
-                    <div class="icon"><i class="ri-command-line"></i></div>
+                    <div class="icon"><i class="ri-user-search-line"></i></div>
                     <h4 class="title"><a href="">شناخت بهتر مشتریان</a></h4>
                     <p class="description">به کمک سیستم تحلیل آماری دقیق همیارمنو انتخابات مشتریانت رو بهتر بشناس
                     </p>
@@ -118,7 +113,7 @@
             <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in"
                  data-aos-delay="500">
                 <div class="icon-box">
-                    <div class="icon"><i class="ri-fingerprint-line"></i></div>
+                    <div class="icon"><i class="ri-refresh-line"></i></div>
                     <h4 class="title"><a href="">آپدیت لحظه ای منو</a></h4>
                     <p class="description">با کمک امکانات همیارمنو بسته به خواسته های خودت ایتم های منو رو کم یا زیاد
                         کن.
@@ -132,12 +127,12 @@
 
 <main id="main">
 
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
+    <!-- ======= whatis Section ======= -->
+    <section id="whatis" class="services section-bg">
         <div class="container" data-aos="fade-up">
 
             <div class="section-title">
-                <h2>همیار منو چیه و برات چیکار میکنه</h2>
+                <h2>همیار منو چیه و برات چیکار میکنه؟</h2>
             </div>
 
             <div class="row">
@@ -149,7 +144,7 @@
                                 <path stroke="none" stroke-width="0" fill="#f5f5f5"
                                       d="M300,541.5067337569781C382.14930387511276,545.0595476570109,479.8736841581634,548.3450877840088,526.4010558755058,480.5488172755941C571.5218469581645,414.80211281144784,517.5187510058486,332.0715597781072,496.52539010469104,255.14436215662573C477.37192572678356,184.95920475031193,473.57363656557914,105.61284051026155,413.0603344069578,65.22779650032875C343.27470386102294,18.654635553484475,251.2091493199835,5.337323636656869,175.0934190732945,40.62881213300186C97.87086631185822,76.43348514350839,51.98124368387456,156.15599469081315,36.44837278890362,239.84606092416172C21.716077023791087,319.22268207091537,43.775223500013084,401.1760424656574,96.891909868211,461.97329694683043C147.22146801428983,519.5804099606455,223.5754009179313,538.201503339737,300,541.5067337569781"></path>
                             </svg>
-                            <i class="bx bx-angry"></i>
+                            <i class="bx bx-rss"></i>
                         </div>
                         <h4><a href=""> اعلام تمام شدن غذا </a></h4>
                     </div>
@@ -163,7 +158,7 @@
                                 <path stroke="none" stroke-width="0" fill="#f5f5f5"
                                       d="M300,541.5067337569781C382.14930387511276,545.0595476570109,479.8736841581634,548.3450877840088,526.4010558755058,480.5488172755941C571.5218469581645,414.80211281144784,517.5187510058486,332.0715597781072,496.52539010469104,255.14436215662573C477.37192572678356,184.95920475031193,473.57363656557914,105.61284051026155,413.0603344069578,65.22779650032875C343.27470386102294,18.654635553484475,251.2091493199835,5.337323636656869,175.0934190732945,40.62881213300186C97.87086631185822,76.43348514350839,51.98124368387456,156.15599469081315,36.44837278890362,239.84606092416172C21.716077023791087,319.22268207091537,43.775223500013084,401.1760424656574,96.891909868211,461.97329694683043C147.22146801428983,519.5804099606455,223.5754009179313,538.201503339737,300,541.5067337569781"></path>
                             </svg>
-                            <i class="bx bx-tachometer"></i>
+                            <i class="bx bx-category"></i>
                         </div>
                         <h4><a href="">بی نهایت ایتم و دسته بندی </a></h4>
                     </div>
@@ -177,20 +172,20 @@
                                 <path stroke="none" stroke-width="0" fill="#f5f5f5"
                                       d="M300,541.5067337569781C382.14930387511276,545.0595476570109,479.8736841581634,548.3450877840088,526.4010558755058,480.5488172755941C571.5218469581645,414.80211281144784,517.5187510058486,332.0715597781072,496.52539010469104,255.14436215662573C477.37192572678356,184.95920475031193,473.57363656557914,105.61284051026155,413.0603344069578,65.22779650032875C343.27470386102294,18.654635553484475,251.2091493199835,5.337323636656869,175.0934190732945,40.62881213300186C97.87086631185822,76.43348514350839,51.98124368387456,156.15599469081315,36.44837278890362,239.84606092416172C21.716077023791087,319.22268207091537,43.775223500013084,401.1760424656574,96.891909868211,461.97329694683043C147.22146801428983,519.5804099606455,223.5754009179313,538.201503339737,300,541.5067337569781"></path>
                             </svg>
-                            <i class="bx bx-tachometer"></i>
+                            <i class="bx bxs-discount"></i>
                         </div>
                         <h4><a href="">تخفیف دهی لحظه ای </a></h4>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="icon-box iconbox-red">
+                    <div class="icon-box iconbox-pink">
                         <div class="icon">
                             <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke="none" stroke-width="0" fill="#f5f5f5"
                                       d="M300,532.3542879108572C369.38199826031484,532.3153073249985,429.10787420159085,491.63046689027357,474.5244479745417,439.17860296908856C522.8885846962883,383.3225815378663,569.1668002868075,314.3205725914397,550.7432151929288,242.7694973846089C532.6665558377875,172.5657663291529,456.2379748765914,142.6223662098291,390.3689995646985,112.34683881706744C326.66090330228417,83.06452184765237,258.84405631176094,53.51806209861945,193.32584062364296,78.48882559362697C121.61183558270385,105.82097193414197,62.805066853699245,167.19869350419734,48.57481801355237,242.6138429142374C34.843463184063346,315.3850353017275,76.69343916112496,383.4422959591041,125.22947124332185,439.3748458443577C170.7312796277747,491.8107796887764,230.57421082200815,532.3932930995766,300,532.3542879108572"></path>
                             </svg>
-                            <i class="bx bx-slideshow"></i>
+                            <i class="bx bx-station"></i>
                         </div>
                         <h4><a href="">دسترسی راحت و کامل به همیارمنو حتی در هنگام ملی شدن اینترینت</a></h4>
                     </div>
@@ -204,7 +199,7 @@
                                 <path stroke="none" stroke-width="0" fill="#f5f5f5"
                                       d="M300,541.5067337569781C382.14930387511276,545.0595476570109,479.8736841581634,548.3450877840088,526.4010558755058,480.5488172755941C571.5218469581645,414.80211281144784,517.5187510058486,332.0715597781072,496.52539010469104,255.14436215662573C477.37192572678356,184.95920475031193,473.57363656557914,105.61284051026155,413.0603344069578,65.22779650032875C343.27470386102294,18.654635553484475,251.2091493199835,5.337323636656869,175.0934190732945,40.62881213300186C97.87086631185822,76.43348514350839,51.98124368387456,156.15599469081315,36.44837278890362,239.84606092416172C21.716077023791087,319.22268207091537,43.775223500013084,401.1760424656574,96.891909868211,461.97329694683043C147.22146801428983,519.5804099606455,223.5754009179313,538.201503339737,300,541.5067337569781"></path>
                             </svg>
-                            <i class="bx bx-tachometer"></i>
+                            <i class="bx bx-notepad"></i>
                         </div>
                         <h4><a href="">دکمه تماس و یادداشت در همیارمنو</a></h4>
                     </div>
@@ -217,7 +212,7 @@
                                 <path stroke="none" stroke-width="0" fill="#f5f5f5"
                                       d="M300,541.5067337569781C382.14930387511276,545.0595476570109,479.8736841581634,548.3450877840088,526.4010558755058,480.5488172755941C571.5218469581645,414.80211281144784,517.5187510058486,332.0715597781072,496.52539010469104,255.14436215662573C477.37192572678356,184.95920475031193,473.57363656557914,105.61284051026155,413.0603344069578,65.22779650032875C343.27470386102294,18.654635553484475,251.2091493199835,5.337323636656869,175.0934190732945,40.62881213300186C97.87086631185822,76.43348514350839,51.98124368387456,156.15599469081315,36.44837278890362,239.84606092416172C21.716077023791087,319.22268207091537,43.775223500013084,401.1760424656574,96.891909868211,461.97329694683043C147.22146801428983,519.5804099606455,223.5754009179313,538.201503339737,300,541.5067337569781"></path>
                             </svg>
-                            <i class="bx bx-tachometer"></i>
+                            <i class="bx bx-data"></i>
                         </div>
                         <h4><a href="">تصاویر متعدد و با کیفیت از غذا </a></h4>
                     </div>
@@ -226,9 +221,9 @@
             </div>
 
         </div>
-    </section><!-- End Sevices Section -->
+    </section><!-- End whatis Section -->
 
-    <section id="pricing" class="pricing">
+    <section id="why" class="pricing">
         <div class="container" data-aos="fade-up">
 
             <div class="section-title">
@@ -268,6 +263,35 @@
             </div>
 
         </div>
+    </section><!-- End why Section -->
+    <section id="pricing" class="pricing">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>تعرفه خدمات ما</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="box featured">
+                        <h3>منو دیداری</h3>
+                        <h4><sup>سالانه</sup>1000000<span> / تومان</span></h4>
+                        <ul>
+                            <li>مشاوره رایگان</li>
+                            <li>بی نهایت محصول</li>
+                            <li>بی نهایت دسته بندی</li>
+                            <li>گالری تصاویر</li>
+                            <li>آمار حرفه ای</li>
+                        </ul>
+                        <div class="btn-wrap">
+                            <a href="#contact" class="btn-buy">درخواست مشاوره</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </section><!-- End Pricing Section -->
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
@@ -291,7 +315,6 @@
 
         </div>
     </section><!-- End About Section -->
-
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
         <div class="container" data-aos="fade-up">
@@ -380,21 +403,12 @@
                         </li>
                         <li><i class="bx bx-chevron-left"></i> <a href="{% url 'dgmenu_cafe_account:login' %}">پنل
                             مدیرت</a></li>
-                        <li><i class="bx bx-chevron-left"></i> <a href="#">خدمات ما</a></li>
-                        <li><i class="bx bx-chevron-left"></i> <a href="#">قوانین</a></li>
-                        <li><i class="bx bx-chevron-left"></i> <a href="#">حریم خصوصی</a></li>
+
                     </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>سرویس ها</h4>
-                    <ul>
-                        <li><i class="bx bx-chevron-left"></i> <a href="#"></a></li>
-                        <li><i class="bx bx-chevron-left"></i> <a href="#">توسعه وب</a></li>
-                        <li><i class="bx bx-chevron-left"></i> <a href="#">مدیرت فروش</a></li>
-                        <li><i class="bx bx-chevron-left"></i> <a href="#">فروشگاه</a></li>
-                        <li><i class="bx bx-chevron-left"></i> <a href="#">طراح گرافیک</a></li>
-                    </ul>
                 </div>
 
                 <div class="col-lg-4 col-md-6 footer-newsletter">
@@ -418,11 +432,7 @@
             </div>
         </div>
         <div class="social-links text-center text-md-right pt-3 pt-md-0">
-            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            <a href="https://instagram.com/hamyarmenu" class="instagram"><i class="bx bxl-instagram"></i></a>
         </div>
     </div>
 </footer><!-- End Footer -->
