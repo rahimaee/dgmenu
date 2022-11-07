@@ -1,4 +1,5 @@
 import os
+import uuid
 from random import randint
 
 from django.db import models
@@ -16,7 +17,7 @@ def upload_image_path(instance, filename):
     new_name = randint(1, 100000)
     name, ext = get_filename_ext(filename)
     final_name = f"{new_name}{ext}"
-    return f"profile/{final_name}"
+    return f"profile/{uuid.uuid4().hex}{final_name}"
 
 
 class CustomUser(AbstractUser):

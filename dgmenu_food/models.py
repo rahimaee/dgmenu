@@ -1,4 +1,5 @@
 import os
+import uuid
 from random import randint
 
 from django.db import models
@@ -15,15 +16,17 @@ def get_filename_ext(filepath):
 def upload_image_path(instance, filename):
     new_name = randint(1, 100000)
     name, ext = get_filename_ext(filename)
-    final_name = f"{new_name}{ext}"
-    return f"comestible/{final_name}"
+    cafe_username = instance.Cafe.Cafe_UserName
+    final_name = f"{uuid.uuid4().hex}{new_name}{ext}"
+    return f"{cafe_username}/comestible/{final_name}"
 
 
 def upload_image_gallery_path(instance, filename):
     new_name = randint(1, 100000)
     name, ext = get_filename_ext(filename)
-    final_name = f"{new_name}{ext}"
-    return f"comestible/gallery/{final_name}"
+    cafe_username = instance.Cafe.Cafe_UserName
+    final_name = f"{uuid.uuid4().hex}{new_name}{ext}"
+    return f"{cafe_username}/comestible/gallery/{final_name}"
 
 
 # Create your models here.
