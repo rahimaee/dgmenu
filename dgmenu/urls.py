@@ -1,5 +1,7 @@
 from django.contrib import sitemaps
 from django.urls import reverse
+from django.views.generic import TemplateView
+
 from dgmenu_cafe.models import Cafe
 
 all_cafe = Cafe.objects.filter(Admin_Is_Active=True).all()
@@ -86,6 +88,7 @@ urlpatterns = [
         name='navbar_panel_partial_view'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
          name='django.contrib.sitemaps.views.sitemap'),
+    path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
 
 ]
 handler404 = handler404
