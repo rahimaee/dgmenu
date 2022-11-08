@@ -39,7 +39,8 @@ class FoodForm(forms.Form):
     Calories = forms.CharField(
         widget=forms.TextInput(
             attrs={'class': "form-control", 'id': "Calories", 'placeholder': "کالری(انرژی) محصول "}),
-        label='کالری'
+        label='کالری',
+        required=False
     )
     Tag = forms.CharField(
         widget=forms.TextInput(
@@ -49,7 +50,9 @@ class FoodForm(forms.Form):
     Allergy = forms.CharField(
         widget=forms.TextInput(
             attrs={'class': "form-control", 'id': "Allergy", 'placeholder': "آلرژی را با استفاده از, بنویسید "}),
-        label='آلرژی'
+        label='آلرژی',
+        required=False
+
     )
     Price = forms.CharField(
         widget=forms.TextInput(
