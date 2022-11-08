@@ -62,7 +62,8 @@ class FoodForm(forms.Form):
     Discount = forms.CharField(
         widget=forms.TextInput(
             attrs={'class': "form-control", 'id': "Discount", 'placeholder': "قیمت تخفیف خورده محصول به تومان "}),
-        label='قیمت با تخفیف'
+        label='قیمت با تخفیف',
+        required=False
     )
     Is_Active = forms.BooleanField(
         widget=forms.CheckboxInput(

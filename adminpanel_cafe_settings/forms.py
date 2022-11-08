@@ -26,7 +26,7 @@ class SettingsForm(forms.Form):
     Cafe_Address = forms.CharField(
         widget=forms.TextInput(
             attrs={'class': "form-control", 'id': "Cafe_Address"}),
-        label='ادرس کافه'
+        label='ادرس کافه',
 
     )
     Cafe_Tel1 = forms.CharField(
@@ -56,31 +56,36 @@ class SettingsForm(forms.Form):
     Cafe_Instagram = forms.CharField(
         widget=forms.TextInput(
             attrs={'class': "form-control", 'id': "Cafe_Instagram"}),
-        label='اینستاگرام'
+        label='اینستاگرام',
+        required=False
 
     )
     Cafe_Facebook = forms.CharField(
         widget=forms.TextInput(
             attrs={'class': "form-control", 'id': "Cafe_Facebook"}),
-        label='فیس بوک'
+        label='فیس بوک',
+        required=False
 
     )
     Cafe_YouTube = forms.CharField(
         widget=forms.TextInput(
             attrs={'class': "form-control", 'id': "Cafe_YouTube"}),
-        label='یوتیوب'
+        label='یوتیوب',
+        required=False
 
     )
     Cafe_Twitter = forms.CharField(
         widget=forms.TextInput(
             attrs={'class': "form-control", 'id': "Cafe_Twitter"}),
-        label='توتیتر'
+        label='توتیتر',
+        required=False
 
     )
     Cafe_Opening_Hours = forms.CharField(
         widget=forms.TextInput(
             attrs={'class': "form-control", 'id': "Cafe_Opening_Hours"}),
-        label='ساعت کاری'
+        label='ساعت کاری',
+        required=False
 
     )
     Cafe_Header_Logo = forms.ImageField(widget=ImageWidget,
