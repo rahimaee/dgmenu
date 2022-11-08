@@ -138,6 +138,9 @@ class SettingsUpdate(LoginRequiredMixin, View):
         if cafe.Cafe_Header_Team_Background is not None:
             form.fields['Cafe_Header_Team_Background'].initial = cafe.Cafe_Header_Team_Background
 
+        if cafe.Cafe_Msapplication is not None:
+            form.fields['Cafe_Msapplication'].initial = cafe.Cafe_Msapplication
+
         if cafe.Cafe_Banner_Home is not None:
             form.fields['Cafe_Banner_Home'].initial = cafe.Cafe_Banner_Home
 
@@ -186,6 +189,9 @@ class SettingsUpdate(LoginRequiredMixin, View):
                 form.fields['Cafe_Apple_Touch_Icon196'].initial = cafe.Cafe_Apple_Touch_Icon196
             if cafe.Cafe_Apple_Touch_Icon16 is not None:
                 form.fields['Cafe_Apple_Touch_Icon16'].initial = cafe.Cafe_Apple_Touch_Icon16
+
+            if cafe.Cafe_Msapplication is not None:
+                form.fields['Cafe_Msapplication'].initial = cafe.Cafe_Msapplication
 
             if cafe.Cafe_Header_Home_Background is not None:
                 form.fields['Cafe_Header_Home_Background'].initial = cafe.Cafe_Header_Home_Background
