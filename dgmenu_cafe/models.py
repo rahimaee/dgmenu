@@ -15,7 +15,7 @@ def get_filename_ext(filepath):
 def upload_image_path(instance, filename):
     new_name = randint(1, 100000)
     name, ext = get_filename_ext(filename)
-    cafe_username = instance.Cafe.Cafe_UserName
+    cafe_username = instance.Cafe_UserName
     final_name = f"{uuid.uuid4().hex}{new_name}{ext}"
     return f"{cafe_username}/{final_name}"
 
