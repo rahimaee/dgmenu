@@ -60,6 +60,9 @@ class FoodCreate(LoginRequiredMixin, View):
         fd.Cafe = cafe
         fd.Image = form.cleaned_data['Image']
         fd.Title = form.cleaned_data['Title']
+        cat_id = form.cleaned_data['FoodCategory']
+        cat = FoodCategory.objects.filter(id=cat_id).first()
+        fd.FoodCategory = cat
         fd.Description_Short = form.cleaned_data['Description_Short']
         fd.Description_Long = form.cleaned_data['Description_Long']
         fd.Ingredients = form.cleaned_data['Ingredients']
