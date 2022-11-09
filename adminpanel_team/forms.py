@@ -31,19 +31,22 @@ class TeamForm(forms.Form):
     facebook = forms.CharField(
         widget=forms.TextInput(
             attrs={'class': "form-control", 'id': "facebook"}),
-        label='فیس ‌بوک'
+        label='فیس ‌بوک',
+        required=False
 
     )
     instagram = forms.CharField(
         widget=forms.TextInput(
             attrs={'class': "form-control", 'id': "instagram"}),
-        label='ایسنتاگرام'
+        label='ایسنتاگرام',
+        required=False
 
     )
     linkedin = forms.CharField(
         widget=forms.TextInput(
             attrs={'class': "form-control", 'id': "linkedin"}),
-        label='لینکدین'
+        label='لینکدین',
+        required=False
 
     )
     IsActive = forms.BooleanField(
