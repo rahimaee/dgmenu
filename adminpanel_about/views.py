@@ -27,7 +27,6 @@ def about(request, *args, **kwargs):
             ctx = {'form': form}
     if request.method == "POST":
         form = AboutForm(request.POST, request.FILES or None, )
-        form.fields['Image'].initial = About.Image
         if not form.is_valid():
             if About is None:
                 ctx = {'form': form}
@@ -45,6 +44,7 @@ def about(request, *args, **kwargs):
                 a.Image = form.cleaned_data['Image']
                 a.Cafe = cafe
                 a.save()
+                return redirect('adminpanel:starting_page')
             else:
                 About.Image = form.cleaned_data['Image']
                 About.Title = form.cleaned_data['Title']
