@@ -15,7 +15,7 @@ class AboutForm(forms.Form):
         label='عنوان'
     )
     Description = forms.CharField(
-        widget=forms.TextInput(
+        widget=forms.Textarea(
             attrs={'class': "form-control", 'id': "Description"}),
         label='توضیح کامل'
 
