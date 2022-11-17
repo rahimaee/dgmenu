@@ -26,7 +26,10 @@ def about(request, *args, **kwargs):
             form.fields['Description'].initial = About.Description
             ctx = {'form': form}
     if request.method == "POST":
-        form = AboutForm(request.POST, request.FILES or None, )
+        if About is None:
+            form = AboutForm(request.POST, request.FILES or None, )
+        else:
+            form = AboutForm(request.POST, request.FILES or None, initial={"Image":About.Image})
         if not form.is_valid():
             if About is None:
                 ctx = {'form': form}
