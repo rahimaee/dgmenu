@@ -5644,7 +5644,7 @@ select:-webkit-autofill:focus {
   border-bottom: none;
 }
 
-.product-info p span {   
+.product-info p span {
   position: absolute;
   left: 15px;
   bottom: 11px;

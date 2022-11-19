@@ -5645,6 +5645,7 @@ select:-webkit-autofill:focus {
 }
 
 .product-info p span {
+  position: absolute;
   left: 15px;
   bottom: 11px;
   color: #333;
