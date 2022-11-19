@@ -54,6 +54,18 @@
                     {% else %}
                         <p>شماره تماس ثبت نشده</p>
                     {% endif %}
+                   {% if cafe.Cafe_Tel2 %}
+                        <p><span class="yellow-color"><a href="tel:{{ cafe.Cafe_Tel2 }}">{{ cafe.Cafe_Tel2 }}</a></span>
+                        </p>
+                    {% else %}
+                        <p>شماره تماس ثبت نشده</p>
+                    {% endif %}
+                   {% if cafe.Cafe_Tel3 %}
+                        <p><span class="yellow-color"><a href="tel:{{ cafe.Cafe_Tel3 }}">{{ cafe.Cafe_Tel3 }}</a></span>
+                        </p>
+                    {% else %}
+                        <p>شماره تماس ثبت نشده</p>
+                    {% endif %}
 
 
                 </div>
