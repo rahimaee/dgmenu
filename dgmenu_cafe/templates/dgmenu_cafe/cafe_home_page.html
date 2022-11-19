@@ -62,7 +62,15 @@
 
                                             <!-- Price -->
                                             <div class="menu-7-price bg-coffee">
-                                                <h5 class="h5-xs yellow-color">{{ Foo.Price }} ت</h5>
+
+                                                {% if fs.Discount %}
+                                                    <h5 class="h5-xs yellow-color">
+                                                        <del>{{ Foo.Price }} ت</del>
+                                                        {{ Foo.Discount }} ت
+                                                    </h5>
+                                                {% else %}
+                                                    <h5 class="h5-xs yellow-color">{{ Foo.Price }} ت</h5>
+                                                {% endif %}
                                             </div>
 
                                         </div>
@@ -109,7 +117,14 @@
 
                                                     <!-- Price -->
                                                     <div class="menu-7-price bg-coffee">
-                                                        <h5 class="h5-xs yellow-color">{{ Foo.Price }} ت</h5>
+                                                        {% if Foo.Discount %}
+                                                            <h5 class="h5-xs yellow-color">
+                                                                <del>{{ Foo.Price }} ت</del>
+                                                                {{ Foo.Discount }} ت
+                                                            </h5>
+                                                        {% else %}
+                                                            <h5 class="h5-xs yellow-color">{{ Foo.Price }} ت</h5>
+                                                        {% endif %}
                                                     </div>
 
                                                 </div>
