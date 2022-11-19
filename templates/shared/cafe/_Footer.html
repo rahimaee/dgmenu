@@ -35,18 +35,12 @@
                     <!-- Address -->
                     {% if cafe.Cafe_Address %}
                         <p style="width: 200px">{{ cafe.Cafe_Address }}</p>
-                    {% else %}
-                        <p>آدرس کافه ثبت نشده</p>
                     {% endif %}
-
-
                     <!-- Contacts -->
                     {% if cafe.Cafe_Email %}
                         <p class="foo-email txt-500 mt-15"><a
                                 href="mailto:{{ cafe.Cafe_Email }}">{{ cafe.Cafe_Email }}</a>
                         </p>
-                    {% else %}
-                        <p>آدرس ایمیل ثبت نشده</p>
                     {% endif %}
                     {% if cafe.Cafe_Tel1 %}
                         <p><span class="yellow-color"><a href="tel:{{ cafe.Cafe_Tel1 }}">{{ cafe.Cafe_Tel1 }}</a></span>
