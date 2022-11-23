@@ -29,7 +29,7 @@ class MenuViewSitemap(sitemaps.Sitemap):
         return cafe
 
     def location(self, item):
-        return reverse('dgmenu_cafe:cafe_home', kwargs={'cafename': 'demo'})
+        return reverse('dgmenu_cafe:cafe_home', kwargs={'cafename': item})
 
 
 from django.conf.urls import url
