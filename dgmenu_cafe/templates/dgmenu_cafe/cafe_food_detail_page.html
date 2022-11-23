@@ -112,9 +112,16 @@
 
                             <!-- Price -->
                             <div class="project-price">
-                                <h4 class="h4-xl yellow-color"><span
-                                        class="old-price">{{ food.Price }} ت</span> {{ food.Discount }} ت
-                                </h4>
+                                {% if food.Discount %}
+                                    <h4 class="h4-xl yellow-color"><span
+                                            class="old-price">{{ food.Price }} ت</span> {{ food.Discount }} ت
+                                    </h4>
+                                {% else %}
+                                    <h4 class="h4-xl yellow-color">
+                                        <span>{{ food.Price }} ت</span>
+                                    </h4>
+                                {% endif %}
+
                             </div>
 
                         </div>
@@ -130,7 +137,8 @@
                             <!-- Product Data -->
                             <div class="product-info">
                                 {% if food.Ingredients %}
-                                    <p>مواد تشکیل دهنده: <span style="position: revert;">{{ food.Ingredients }}</span></p>
+                                    <p>مواد تشکیل دهنده: <span style="position: revert;">{{ food.Ingredients }}</span>
+                                    </p>
                                 {% endif %}
                                 {% if food.Calories %}
                                     <p>کالری: <span>{{ food.Calories }} کیلو کالری</span></p>
@@ -253,7 +261,16 @@
 
                                     <!-- Price -->
                                     <div class="menu-6-price bg-coffee">
-                                        <h5 class="h5-xs yellow-color">{{ fs.Price }} ت</h5>
+                                        {% if fs.Discount %}
+                                            <h5 class="h5-xs yellow-color">
+                                            <span
+                                                    class="old-price">{{ fs.Price }} ت</span> {{ fs.Discount }} ت
+                                            </h5>
+                                        {% else %}
+                                            <h5 class="h5-xs yellow-color">
+                                                <span>{{ fs.Price }} ت</span>
+                                            </h5>
+                                        {% endif %}
                                     </div>
 
                                     <!-- Add To Cart -->
