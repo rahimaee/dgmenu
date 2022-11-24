@@ -6,6 +6,20 @@ from django.db import models
 from dgmenu_cafe.models import Cafe
 from dgmenu_food_category.models import FoodCategory
 
+from io import BytesIO
+from PIL import Image
+from django.core.files import File
+
+
+def compress(image):
+    im = Image.open(image)
+    im_io = BytesIO()
+    size = (600, 500)
+    im = im.resize(size, Image.ANTIALIAS)
+    im.save(im_io, "PNG", optimize=True, quality=25, progressive=True)
+    new_image = File(im_io, name=image.name)
+    return new_image
+
 
 def get_filename_ext(filepath):
     base_name = os.path.basename(filepath)
@@ -46,12 +60,23 @@ class Food(models.Model):
     Discount = models.CharField(max_length=200, null=True, blank=True, verbose_name='قیمت باتخفیف')
     Gallery_Image_1 = models.ImageField(default='avatar.png', upload_to=upload_image_path, verbose_name='عکس اصلی غذا')
     Gallery_Image_2 = models.ImageField(default='avatar.png', upload_to=upload_image_path, verbose_name='عکس اصلی غذا')
-    Gallery_Image_3 = models.ImageField(default='avatar.png', upload_to=upload_image_path, verbose_name='عکس اصلی غذا')
     Admin_Is_Active = models.BooleanField(default=False, verbose_name='فعال/غیرفعال مدیر')
     Is_Active = models.BooleanField(default=False, verbose_name='فعال/غیرفعال')
     Submit_Time = models.DateTimeField()
     Last_Edit_Time = models.DateTimeField()
     First = models.IntegerField(verbose_name='ترتیب نمایش')
+
+    def save(self, *args, **kwargs):
+        new_image = compress(self.Image)
+        self.Image = new_image
+
+        new_Gallery_Image_1 = compress(self.Gallery_Image_1)
+        self.Gallery_Image_1 = new_Gallery_Image_1
+
+        new_Gallery_Image_2 = compress(self.Gallery_Image_2)
+        self.Gallery_Image_2 = new_Gallery_Image_2
+
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = 'محصولات'
