@@ -53,12 +53,7 @@
                                          alt="menu-image"/>
                                 </div>
                             {% endif %}
-                            {% if food.Gallery_Image_3 %}
-                                <div id="tab-4-img" class="tab-content text-center">
-                                    <img class="img-fluid" src="{{ food.Gallery_Image_3.url }}"
-                                         alt="menu-image"/>
-                                </div>
-                            {% endif %}
+
 
 
                         </div>    <!-- END TABS CONTENT -->
@@ -82,11 +77,6 @@
                                         {% if food.Gallery_Image_2 %}
                                             <li class="tab-link" data-tab="tab-3-img">
                                                 <img src="{{ food.Gallery_Image_2.url }}" alt="menu-image"/>
-                                            </li>
-                                        {% endif %}
-                                        {% if food.Gallery_Image_3 %}
-                                            <li class="tab-link" data-tab="tab-4-img">
-                                                <img src="{{ food.Gallery_Image_3.url }}" alt="menu-image"/>
                                             </li>
                                         {% endif %}
                                     </ul>

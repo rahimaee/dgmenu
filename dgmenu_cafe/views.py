@@ -71,8 +71,6 @@ def cafe_food_detail(request, *args, **kwargs):
         gallery.append(food.Gallery_Image_1)
     if food.Gallery_Image_2 is not None:
         gallery.append(food.Gallery_Image_2)
-    if food.Gallery_Image_3 is not None:
-        gallery.append(food.Gallery_Image_3)
     cx = {'cafe': cafe,
           'CafeUserId': cafe.id,
           'category': category,

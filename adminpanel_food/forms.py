@@ -82,8 +82,3 @@ class FoodForm(forms.Form):
         required=False,
         label='گالری محصول 2'
     )
-    Gallery_Img_3 = forms.ImageField(
-        widget=ImageWidget,
-        required=False,
-        label='گالری محصول 3'
-    )

@@ -78,7 +78,6 @@ class FoodCreate(LoginRequiredMixin, View):
         fd.First = count
         fd.Gallery_Image_1 = form.cleaned_data['Gallery_Img_1']
         fd.Gallery_Image_2 = form.cleaned_data['Gallery_Img_2']
-        fd.Gallery_Image_3 = form.cleaned_data['Gallery_Img_3']
         fd.save()
         return redirect(self.success_url)
 
@@ -108,8 +107,6 @@ class FoodUpdate(LoginRequiredMixin, View):
             form.fields['Gallery_Img_1'].initial = fd.Gallery_Image_1
         if fd.Gallery_Image_2 is not None:
             form.fields['Gallery_Img_2'].initial = fd.Gallery_Image_2
-        if fd.Gallery_Image_3 is not None:
-            form.fields['Gallery_Img_3'].initial = fd.Gallery_Image_3
         get_cat_food = FoodCategory.objects.filter(Cafe__Manager_id=request.user.id).all()
         get_cat_food_list = []
         for item in get_cat_food:
@@ -136,8 +133,6 @@ class FoodUpdate(LoginRequiredMixin, View):
             form.fields['Gallery_Img_1'].initial = fd.Gallery_Image_1
         if fd.Gallery_Image_2 is not None:
             form.fields['Gallery_Img_2'].initial = fd.Gallery_Image_2
-        if fd.Gallery_Image_3 is not None:
-            form.fields['Gallery_Img_3'].initial = fd.Gallery_Image_3
         get_cat_food = FoodCategory.objects.filter(Cafe__Manager_id=request.user.id).all()
         get_cat_food_list = []
         for item in get_cat_food:
@@ -177,10 +172,6 @@ class FoodUpdate(LoginRequiredMixin, View):
             fd.Gallery_Image_2.delete()
         else:
             fd.Gallery_Image_2 = form.cleaned_data['Gallery_Img_2']
-        if not form.cleaned_data['Gallery_Img_3']:
-            fd.Gallery_Image_3.delete()
-        else:
-            fd.Gallery_Image_3 = form.cleaned_data['Gallery_Img_3']
         fd.save()
         return redirect(self.success_url)
 
