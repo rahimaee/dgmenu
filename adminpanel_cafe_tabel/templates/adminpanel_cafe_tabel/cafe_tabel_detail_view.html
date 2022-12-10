@@ -1,0 +1,129 @@
+{% extends 'shared/panel/_PanelMain.html' %}
+{% load static %}
+{% block header %}
+    <link href="{% static 'panel/css/sweetalert2.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+    <div class="ms-content-wrapper">
+        <div class="row">
+
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb pl-0">
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel:starting_page' %}"><i
+                                class="material-icons">home</i> خانه</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel_cafe_tabel:all' %}"> میز</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">جزییات میز</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class=" col-md-6">
+                <div class="ms-panel ms-panel-fh">
+                    <div class="ms-panel-body">
+                        <h4 class="section-title bold">اطلاعات میز</h4>
+                        <table class="table ms-profile-information">
+                            <tbody>
+                            <tr>
+                                <th scope="row">عکس میز</th>
+                                <td><img src="{{ cafe_tabel.Img.url }}" alt="icon"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">نام</th>
+                                <td>{{ cafe_tabel.Name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">وضعیت نمایش</th>
+                                {% if cafe_tabel.IsActive %}
+                                    <td><span class="badge badge-pill badge-success">فعال</span></td>
+                                {% else %}
+                                    <td><span class="badge badge-pill badge-primary">غیرفعال</span></td>
+
+                                {% endif %}
+
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button type="button"
+                                onclick="location.href='{% url 'cafe_tabel:cafe_tabel_update' pk=cafe_tabel.id %}';"
+                                class="btn btn-primary">ویرایش
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="Delete()">حذف</button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class=" col-md-6">
+                <div class="ms-panel ms-panel-fh">
+                    <div class="ms-panel-body">
+
+                        <h4 class="section-title bold">امار بازدید </h4>
+                        <p class="description">امار بازدید از تمامی ایتم های موجود در {{ cafe_tabel.Name }}</p>
+
+
+                    </div>
+                    <div class="ms-quick-stats">
+                        <div class="ms-stats-grid">
+                            <i class="fa fa-eye"></i>
+                            <p class="ms-text-dark">{{ vpfd }}</p>
+                            <span>بازدید روز</span>
+                        </div>
+                        <div class="ms-stats-grid">
+                            <i class="fa fa-eye"></i>
+                            <p class="ms-text-dark">{{ vpfm }}</p>
+                            <span>بازدید ماه</span>
+                        </div>
+                    </div>
+                    <div class="ms-quick-stats">
+                        <div class="ms-stats-grid">
+                            <i class="fa fa-eye"></i>
+                            <p class="ms-text-dark">{{ vpfy }}</p>
+                            <span>بازدید سال</span>
+                        </div>
+                        <div class="ms-stats-grid">
+                            <i class="fa fa-eye"></i>
+                            <p class="ms-text-dark">{{ vpft }}</p>
+                            <span>بازدید کل</span>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script>
+        function Delete() {
+            Swal.fire({
+                title: 'مطمئن هستید؟',
+                text: "این عملیات غیرقابل بازگشت ست!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله!'
+            }).then(function (result) {
+                if (result.value) {
+                    $.post("{% url 'cafe_tabel:cafe_tabel_delete' pk=cafe_tabel.pk %}");
+                    window.location.href = '{% url 'cafe_tabel:all' %}';
+                }
+            });
+        }
+
+    </script>
+
+
+
+{% endblock %}
+
+
+{% block footer %}
+
+    <script src="{% static 'panel/js/sweetalert2.min.js' %}">
+    </script>
+    <script src="{% static 'panel/js/sweet-alerts.js' %}"></script>
+{% endblock %}

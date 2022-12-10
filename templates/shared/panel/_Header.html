@@ -1,21 +1,21 @@
 {% load static %}
 <!-- Preloader -->
-{#<div id="preloader-wrap">#}
-{#    <div class="spinner spinner-8">#}
-{#        <div class="ms-circle1 ms-child"></div>#}
-{#        <div class="ms-circle2 ms-child"></div>#}
-{#        <div class="ms-circle3 ms-child"></div>#}
-{#        <div class="ms-circle4 ms-child"></div>#}
-{#        <div class="ms-circle5 ms-child"></div>#}
-{#        <div class="ms-circle6 ms-child"></div>#}
-{#        <div class="ms-circle7 ms-child"></div>#}
-{#        <div class="ms-circle8 ms-child"></div>#}
-{#        <div class="ms-circle9 ms-child"></div>#}
-{#        <div class="ms-circle10 ms-child"></div>#}
-{#        <div class="ms-circle11 ms-child"></div>#}
-{#        <div class="ms-circle12 ms-child"></div>#}
-{#    </div>#}
-{#</div>#}
+<div id="preloader-wrap">
+    <div class="spinner spinner-8">
+        <div class="ms-circle1 ms-child"></div>
+        <div class="ms-circle2 ms-child"></div>
+        <div class="ms-circle3 ms-child"></div>
+        <div class="ms-circle4 ms-child"></div>
+        <div class="ms-circle5 ms-child"></div>
+        <div class="ms-circle6 ms-child"></div>
+        <div class="ms-circle7 ms-child"></div>
+        <div class="ms-circle8 ms-child"></div>
+        <div class="ms-circle9 ms-child"></div>
+        <div class="ms-circle10 ms-child"></div>
+        <div class="ms-circle11 ms-child"></div>
+        <div class="ms-circle12 ms-child"></div>
+    </div>
+</div>
 <!-- Overlayss -->
 {% if request.user.is_authenticated %}
 
@@ -64,6 +64,19 @@
                 </ul>
             </li>
             <!-- food end -->
+            <!-- tabel-->
+            <li class="menu-item">
+                <a href="#" class="has-chevron" data-toggle="collapse" data-target="#tabel" aria-expanded="false"
+                   aria-controls="tabel"> <span><i class="fa fa-coffee fs-16"></i>میز</span>
+                </a>
+                <ul id="tabel" class="collapse" aria-labelledby="tabel" data-parent="#side-nav-accordion">
+                    <li><a href="{% url 'cafe_tabel:all' %}">میز ها</a>
+                    </li>
+                    <li><a href="{% url 'cafe_tabel:cafe_tabel_create' %}">افزودن میز</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- tabel end -->
 
             <!-- gallery -->
             <li class="menu-item">

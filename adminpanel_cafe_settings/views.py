@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -8,6 +8,7 @@ from django.views import View
 
 from adminpanel_cafe_settings.forms import SettingsForm
 from dgmenu_cafe.models import Cafe
+from dgmenu_account_role.models import Role
 
 
 class SettingsUpdate(LoginRequiredMixin, View):
@@ -15,7 +16,10 @@ class SettingsUpdate(LoginRequiredMixin, View):
     template = 'adminpanel_cafe_settings/cafe_settings_form.html'
 
     def get(self, request):
-        cafe = Cafe.objects.filter(Manager_id=request.user.id).first()
+        role = Role.objects.filter(User_id=request.user.id, Cafe_settings_edit=True).first()
+        if role is None:
+            return HttpResponse("عدم دسترسیس")
+        cafe = Cafe.objects.filter(id=role.Cafe.id).first()
         if cafe is None:
             raise Http404()
         form = SettingsForm()
@@ -88,7 +92,10 @@ class SettingsUpdate(LoginRequiredMixin, View):
         return render(request, self.template, ctx)
 
     def post(self, request):
-        cafe = Cafe.objects.filter(Manager_id=request.user.id).first()
+        role = Role.objects.filter(User_id=request.user.id, Cafe_settings_edit=True).first()
+        if role is None:
+            return HttpResponse("عدم دسترسیس")
+        cafe = Cafe.objects.filter(id=role.Cafe.id).first()
         if cafe is None:
             raise Http404()
 

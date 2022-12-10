@@ -1,0 +1,45 @@
+{% extends 'shared/panel/_PanelMain.html' %}
+{% load static %}
+{% block main %}
+    <div class="ms-content-wrapper box">
+
+        <div class="row">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb pl-0">
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel:starting_page' %}"><i
+                                class="material-icons">home</i> خانه</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'adminpanel_cafe_tabel:all' %}">میز ها</a></li>
+                    </ol>
+                </nav>
+            </div>
+
+            {% if cafe_tabel %}
+                {% for ct in cafe_tabel %}
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="ms-card">
+                            <div class="ms-card-img">
+                                <img style="height: 150px;width: 150px" src="{{ ct.Img.url }}" alt="cafe_tabel_img_t{{ ct.id }}">
+                            </div>
+                            <div class="ms-card-body ">
+                                <div class="wrapper-new2 ">
+                                    <h6>{{ ct.Name }}</h6>
+
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button type="button"
+                                            onclick="location.href='{% url 'cafe_tabel:cafe_tabel_detail' pk=ct.id %}';"
+                                            class="btn btn-primary">جزئیات
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            {% endif %}
+
+        </div>
+
+    </div>
+{% endblock %}

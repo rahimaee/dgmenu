@@ -1,6 +1,7 @@
 import datetime
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -10,12 +11,15 @@ from django.views import View
 from adminpanel_team.forms import TeamForm
 from dgmenu_cafe.models import Cafe
 from dgmenu_cafe_team.models import CafeTeam
+from dgmenu_account_role.models import Role
 
 
 class MainView(LoginRequiredMixin, View):
     def get(self, request):
-        user = request.user
-        cafe_team = CafeTeam.objects.filter(Cafe__Manager_id=user.id, IsActiveAdmin=True).all()
+        role = Role.objects.filter(User_id=request.user.id, Cafe_team_view=True).first()
+        if role is None:
+            return HttpResponse("عدم دسترسیس")
+        cafe_team = CafeTeam.objects.filter(Cafe_id=role.Cafe.id, IsActiveAdmin=True).all()
         ctx = {'cafe_team': cafe_team, }
         return render(request, 'adminpanel_team/team_list.html', ctx)
 
@@ -25,19 +29,24 @@ class TeamCreate(LoginRequiredMixin, View):
     success_url = reverse_lazy('team:all')
 
     def get(self, request):
+        role = Role.objects.filter(User_id=request.user.id, Cafe_team_add=True).first()
+        if role is None:
+            return HttpResponse("عدم دسترسیس")
         form = TeamForm(initial={'IsActive': True})
         ctx = {'form': form, 'cf': 'TeamCreate'}
         return render(request, self.template, ctx)
 
     def post(self, request):
+        role = Role.objects.filter(User_id=request.user.id, Cafe_team_add=True).first()
+        if role is None:
+            return HttpResponse("عدم دسترسیس")
         form = TeamForm(request.POST, request.FILES or None)
         if not form.is_valid():
             ctx = {'form': form, 'cf': 'TeamCreate'}
             return render(request, self.template, ctx)
 
-        user = request.user
         cafe_team = CafeTeam()
-        cafe = Cafe.objects.filter(Manager_id=user.id).first()
+        cafe = Cafe.objects.filter(id=role.Cafe.id).first()
         cafe_team.IsActiveAdmin = True
         cafe_team.IsActive = form.cleaned_data['IsActive']
         cafe_team.Cafe = cafe
@@ -59,7 +68,10 @@ class TeamUpdate(LoginRequiredMixin, View):
     template = 'adminpanel_team/team_form.html'
 
     def get(self, request, pk):
-        cafe_team = CafeTeam.objects.filter(pk=pk, Cafe__Manager_id=request.user.id).first()
+        role = Role.objects.filter(User_id=request.user.id, Cafe_team_edit=True).first()
+        if role is None:
+            return HttpResponse("عدم دسترسیس")
+        cafe_team = CafeTeam.objects.filter(pk=pk, Cafe_id=role.Cafe.id).first()
         form = TeamForm(initial={'Profile': cafe_team.Profile})
         form.initial["Name"] = cafe_team.Name
         form.initial["Family"] = cafe_team.Family
@@ -72,7 +84,10 @@ class TeamUpdate(LoginRequiredMixin, View):
         return render(request, self.template, ctx)
 
     def post(self, request, pk):
-        cafe_team = CafeTeam.objects.filter(pk=pk, Cafe__Manager_id=request.user.id).first()
+        role = Role.objects.filter(User_id=request.user.id, Cafe_team_edit=True).first()
+        if role is None:
+            return HttpResponse("عدم دسترسیس")
+        cafe_team = CafeTeam.objects.filter(pk=pk, Cafe_id=role.Cafe.id).first()
         form = TeamForm(request.POST, request.FILES or None, initial={'Profile': cafe_team.Profile})
         if not form.is_valid():
             ctx = {'form': form, 'cf': 'TeamUpdate'}

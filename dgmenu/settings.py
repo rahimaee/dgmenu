@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # users account
-    'dgmenu_account',
     # Cafe
     'dgmenu_cafe',
     # Cafe team
@@ -56,10 +54,14 @@ INSTALLED_APPS = [
     'dgmenu_cafe_viewers',
     # food category
     'dgmenu_food_category',
+    # cafe tabel
+    'dgmenu_cafe_tabel',
     # send data to partial view
     'django_render_partial',
     # site
     'dgmenu_site_home',
+    'dgmenu_account',
+    'dgmenu_account_role',
     ## admin panel ##
     # admin panel
     'adminpanel',
@@ -68,6 +70,7 @@ INSTALLED_APPS = [
     'adminpanel_gallery',
     'adminpanel_team',
     'adminpanel_about',
+    'adminpanel_cafe_tabel',
     'adminpanel_cafe_settings',
     'django.forms',
     'django.contrib.sitemaps',

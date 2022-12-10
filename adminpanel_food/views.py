@@ -15,13 +15,20 @@ from dgmenu_food.models import Food
 from dgmenu_food_category.models import FoodCategory
 import datetime
 from dgmenu_cafe_viewers.models import ViewOfPage
+from dgmenu_account_role.models import Role
 
 
 class MainView(LoginRequiredMixin, View):
     def get(self, request):
-        user = request.user
-        cafe_id = Cafe.objects.filter(Manager_id=user.id).first()
-        food = Food.objects.filter(Cafe_id=cafe_id, Cafe__Manager_id=user.id, Admin_Is_Active=True).order_by('First')
+        role = Role.objects.filter(User_id=request.user.id, Cafe_food_view=True).first()
+        if role is None:
+            return HttpResponse("عدم دسترسیس")
+        cafe_id = Cafe.objects.filter(id=role.Cafe.id).first()
+        if cafe_id is None:
+            raise Http404()
+        food = Food.objects.filter(Cafe_id=cafe_id, Admin_Is_Active=True).order_by('First')
+        if food is None:
+            raise Http404()
         ctx = {'Food': food, }
         return render(request, 'adminpanel_food/food_list.html', ctx)
 
@@ -32,8 +39,12 @@ class FoodCreate(LoginRequiredMixin, View):
 
     def get(self, request):
         form = FoodForm(initial={'Is_Active': True})
-
-        get_cat_food = FoodCategory.objects.filter(Cafe__Manager_id=request.user.id).all()
+        role = Role.objects.filter(User_id=request.user.id, Cafe_food_add=True).first()
+        if role is None:
+            return HttpResponse("عدم دسترسیس")
+        get_cat_food = FoodCategory.objects.filter(Cafe_id=role.Cafe.id).all()
+        if get_cat_food is None:
+            raise Http404()
         get_cat_food_list = []
         for item in get_cat_food:
             get_cat_food_list.append((item.id, item.NameFa))
@@ -44,7 +55,12 @@ class FoodCreate(LoginRequiredMixin, View):
 
     def post(self, request):
         form = FoodForm(request.POST, request.FILES or None)
-        get_cat_food = FoodCategory.objects.filter(Cafe__Manager_id=request.user.id).all()
+        role = Role.objects.filter(User_id=request.user.id, Cafe_food_add=True).first()
+        if role is None:
+            return HttpResponse("عدم دسترسیس")
+        get_cat_food = FoodCategory.objects.filter(Cafe_id=role.Cafe.id).all()
+        if get_cat_food is None:
+            raise Http404()
         get_cat_food_list = []
         for item in get_cat_food:
             get_cat_food_list.append((item.id, item.NameFa))
@@ -55,8 +71,13 @@ class FoodCreate(LoginRequiredMixin, View):
             return render(request, self.template, ctx)
         fd = Food()
         user = request.user
-        cafe = Cafe.objects.filter(Manager_id=user.id).first()
-        count = Food.objects.filter(Cafe_id=cafe.id, Admin_Is_Active=True, Cafe__Manager_id=user.id).count()
+        cafe = Cafe.objects.filter(id=role.Cafe.id).first()
+        if cafe is None:
+            raise Http404()
+
+        count = Food.objects.filter(Cafe_id=role.Cafe.id, Admin_Is_Active=True).count()
+        if count is None:
+            raise Http404()
         fd.Cafe = cafe
         fd.Image = form.cleaned_data['Image']
         fd.Title = form.cleaned_data['Title']
@@ -86,6 +107,9 @@ class FoodDetail(LoginRequiredMixin, View):
     template = 'adminpanel_food/food_detail_view.html'
 
     def get(self, request, pk):
+        role = Role.objects.filter(User_id=request.user.id, Cafe_food_view=True).first()
+        if role is None:
+            return HttpResponse("عدم دسترسیس")
         food = Food.objects.filter(id=pk, Admin_Is_Active=True).first()
         vpfd = '/' + food.Cafe.Cafe_UserName + "/" + "p" + "/" + str(food.id)
         vp = ViewOfPage.objects.filter(Page=vpfd).all().count()
@@ -101,13 +125,18 @@ class FoodUpdate(LoginRequiredMixin, View):
     template = 'adminpanel_food/food_form.html'
 
     def get(self, request, pk):
+        role = Role.objects.filter(User_id=request.user.id, Cafe_food_edit=True).first()
+        if role is None:
+            return HttpResponse("عدم دسترسیس")
         fd = Food.objects.filter(pk=pk).first()
         form = FoodForm(initial={'Image': fd.Image, 'Is_Active': fd.Is_Active, })
         if fd.Gallery_Image_1 is not None:
             form.fields['Gallery_Img_1'].initial = fd.Gallery_Image_1
         if fd.Gallery_Image_2 is not None:
             form.fields['Gallery_Img_2'].initial = fd.Gallery_Image_2
-        get_cat_food = FoodCategory.objects.filter(Cafe__Manager_id=request.user.id).all()
+        get_cat_food = FoodCategory.objects.filter(Cafe_id=role.Cafe.id).all()
+        if get_cat_food is None:
+            raise Http404()
         get_cat_food_list = []
         for item in get_cat_food:
             get_cat_food_list.append((item.id, item.NameFa))
@@ -127,20 +156,24 @@ class FoodUpdate(LoginRequiredMixin, View):
 
     def post(self, request, pk):
         fd = Food.objects.filter(id=pk).first()
-
+        role = Role.objects.filter(User_id=request.user.id, Cafe_food_edit=True).first()
+        if role is None:
+            return HttpResponse("عدم دسترسیس")
         form = FoodForm(request.POST, request.FILES or None, initial={'Image': fd.Image, 'Is_Active': fd.Is_Active, })
         if fd.Gallery_Image_1 is not None:
             form.fields['Gallery_Img_1'].initial = fd.Gallery_Image_1
         if fd.Gallery_Image_2 is not None:
             form.fields['Gallery_Img_2'].initial = fd.Gallery_Image_2
-        get_cat_food = FoodCategory.objects.filter(Cafe__Manager_id=request.user.id).all()
+        get_cat_food = FoodCategory.objects.filter(Cafe_id=role.Cafe.id).all()
+        if get_cat_food is None:
+            raise Http404()
         get_cat_food_list = []
         for item in get_cat_food:
             get_cat_food_list.append((item.id, item.NameFa))
         form.fields['FoodCategory'].choices = get_cat_food_list
         form.fields['FoodCategory'].initial = fd.FoodCategory_id
         if not form.is_valid():
-            get_cat_food = FoodCategory.objects.filter(Cafe__Manager_id=request.user.id).all()
+            get_cat_food = FoodCategory.objects.filter(Cafe_id=role.Cafe.id).all()
             get_cat_food_list = []
             for item in get_cat_food:
                 get_cat_food_list.append((item.id, item.NameFa))
@@ -179,22 +212,24 @@ class FoodUpdate(LoginRequiredMixin, View):
 @csrf_exempt
 def save_data(request):
     if request.user.is_authenticated:
+        role = Role.objects.filter(User_id=request.user.id, Cafe_food_edit=True).first()
+        if role is None:
+            return HttpResponse("عدم دسترسیس")
         if request.method == 'POST':
             json_data = json.loads(request.body)
             data = json_data['data']
             data = list(data)
             for item in data:
                 food_id = str(item).split('_')[1]
-                a_user = Food.objects.filter(Cafe__Manager_id=request.user.id, pk=food_id).first()
+                a_user = Food.objects.filter(Cafe_id=role.Cafe.id, pk=food_id).first()
                 if a_user is None:
                     return HttpResponse("error")
             temp = 1
             for item in data:
                 food_id = str(item).split('_')[1]
 
-                cafe = Cafe.objects.filter(Manager_id=request.user.id).first()
-                f_food = Food.objects.filter(pk=food_id, Cafe_id=cafe.id, Admin_Is_Active=True,
-                                             Cafe__Manager_id=request.user.id).first()
+                cafe = Cafe.objects.filter(id=role.Cafe.id).first()
+                f_food = Food.objects.filter(pk=food_id, Cafe_id=cafe.id, Admin_Is_Active=True).first()
                 f_food.First = temp
                 temp = temp + 1
                 f_food.save()
@@ -204,9 +239,12 @@ def save_data(request):
 
 @csrf_exempt
 def FoodDelete(request, *args, **kwargs):
+    role = Role.objects.filter(User_id=request.user.id, Cafe_food_delete=True).first()
+    if role is None:
+        return HttpResponse("عدم دسترسیس")
     success_url = reverse_lazy('food:all')
     food_id = kwargs.get('pk')
     if food_id is not None:
-        food = Food.objects.filter(pk=food_id, Cafe__Manager_id=request.user.id).delete()
+        food = Food.objects.filter(pk=food_id, Cafe_id=role.id).delete()
         return redirect(success_url)
     raise Http404()
