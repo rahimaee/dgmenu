@@ -17,22 +17,57 @@
         </div>       <!-- End container -->
     </div>    <!-- END PAGE HERO -->
     <!-- MENU-8
+
         ============================================= -->
+
+    <section class="browse-cat section-padding hhh111">
+        <div class="container">
+            <div class="tabs-nav">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="tabs-1">
+                            <div class="category-slider swiper-container">
+                                <div class="swiper-wrapper">
+                                    {% for cat in category %}
+                                        <div class="swiper-slide">
+                                            <li class="categories" data-tab="tab-{{ cat.First }}">
+                                                <div class="icon text-custom-white bg-light-green">
+                                                    <img
+                                                            src="{{ cat.Img.url }}"
+                                                            class="rounded-circle"
+                                                            alt="categories">
+                                                </div>
+                                                <span class="text-light-black cat-name"
+                                                      style="padding-left: 5px">{{ cat.NameFa }}</span>
+                                            </li>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <!-- Add Arrows -->
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
     <section id="menu-8" class="wide-70 menu-section division">
         <div class="container">
-
-
             <!-- TABS NAVIGATION -->
-            <div id="tabs-nav">
+            <div id="tabs-nav" class="hhh222">
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <ul class="tabs-1 ico-55 red-tabs clearfix">
                             {% if category %}
                                 {% for cat in category %}
                                     <li class="tab-link current" data-tab="tab-{{ cat.First }}">
+                                        <a href="#tabs-content">
                                         <span><img style="width: 45px;height: 45px;" src="{{ cat.Img.url }}"
                                                    alt="{{ cat.First }}"></span>
-                                        <a href="#tabs-content"><h5 class="h5-sm">{{ cat.NameFa }}</h5></a>
+                                            <h5 class="h5-sm">{{ cat.NameFa }}</h5></a>
                                     </li>
                                 {% endfor %}
                             {% else %}
