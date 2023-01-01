@@ -97,8 +97,11 @@ class FoodCreate(LoginRequiredMixin, View):
         fd.Submit_Time = datetime.datetime.now()
         fd.Last_Edit_Time = datetime.datetime.now()
         fd.First = count
-        fd.Gallery_Image_1 = form.cleaned_data['Gallery_Img_1']
-        fd.Gallery_Image_2 = form.cleaned_data['Gallery_Img_2']
+        if form.cleaned_data['Gallery_Img_1'] is not None:
+            fd.Gallery_Image_1 = form.cleaned_data['Gallery_Img_1']
+
+        if form.cleaned_data['Gallery_Img_2'] is not None:
+            fd.Gallery_Image_2 = form.cleaned_data['Gallery_Img_2']
         fd.save()
         return redirect(self.success_url)
 

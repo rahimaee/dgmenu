@@ -58,8 +58,8 @@ class Food(models.Model):
     Allergy = models.CharField(max_length=250, verbose_name='الرژی')
     Price = models.CharField(max_length=100, verbose_name='قیمت')
     Discount = models.CharField(max_length=200, null=True, blank=True, verbose_name='قیمت باتخفیف')
-    Gallery_Image_1 = models.ImageField(default='avatar.png', upload_to=upload_image_path, verbose_name='عکس اصلی غذا')
-    Gallery_Image_2 = models.ImageField(default='avatar.png', upload_to=upload_image_path, verbose_name='عکس اصلی غذا')
+    Gallery_Image_1 = models.ImageField(blank=True, null=True, upload_to=upload_image_path, verbose_name='عکس اصلی غذا')
+    Gallery_Image_2 = models.ImageField(blank=True, null=True, upload_to=upload_image_path, verbose_name='عکس اصلی غذا')
     Admin_Is_Active = models.BooleanField(default=False, verbose_name='فعال/غیرفعال مدیر')
     Is_Active = models.BooleanField(default=False, verbose_name='فعال/غیرفعال')
     Submit_Time = models.DateTimeField()
@@ -71,20 +71,23 @@ class Food(models.Model):
         food = Food.objects.filter(id=self.id).first()
         if food is None:
             self.Image = compress(self.Image)
-            if self.Gallery_Image_1 is not None:
+            if self.Gallery_Image_1.name is not None:
                 self.Gallery_Image_1 = compress(self.Gallery_Image_1)
-            if self.Gallery_Image_2 is not None:
+
+            if self.Gallery_Image_2.name is not None:
                 self.Gallery_Image_2 = compress(self.Gallery_Image_2)
         else:
             if food.Image != self.Image:
                 new_image = compress(self.Image)
-            self.Image = new_image
-            if food.Gallery_Image_1 != self.Gallery_Image_1:
-                new_Gallery_Image_1 = compress(self.Gallery_Image_1)
-            self.Gallery_Image_1 = new_Gallery_Image_1
-            if food.Gallery_Image_2 != self.Gallery_Image_2:
-                new_Gallery_Image_2 = compress(self.Gallery_Image_2)
-            self.Gallery_Image_2 = new_Gallery_Image_2
+                self.Image = new_image
+            if food.Gallery_Image_1.name != self.Gallery_Image_1.name:
+                if self.Gallery_Image_1.name is not None:
+                    new_Gallery_Image_1 = compress(self.Gallery_Image_1)
+                    self.Gallery_Image_1 = new_Gallery_Image_1
+            if food.Gallery_Image_2.name != self.Gallery_Image_2.name:
+                if self.Gallery_Image_2.name is not None:
+                    new_Gallery_Image_2 = compress(self.Gallery_Image_2)
+                    self.Gallery_Image_2 = new_Gallery_Image_2
 
         super().save(*args, **kwargs)
 
