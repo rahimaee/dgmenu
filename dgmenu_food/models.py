@@ -67,15 +67,23 @@ class Food(models.Model):
     First = models.IntegerField(verbose_name='ترتیب نمایش')
 
     def save(self, *args, **kwargs):
+
         food = Food.objects.filter(id=self.id).first()
-        if food.Image != self.Image:
-            new_image = compress(self.Image)
+        if food is None:
+            self.Image = compress(self.Image)
+            if self.Gallery_Image_1 is not None:
+                self.Gallery_Image_1 = compress(self.Gallery_Image_1)
+            if self.Gallery_Image_2 is not None:
+                self.Gallery_Image_2 = compress(self.Gallery_Image_2)
+        else:
+            if food.Image != self.Image:
+                new_image = compress(self.Image)
             self.Image = new_image
-        if food.Gallery_Image_1 != self.Gallery_Image_1:
-            new_Gallery_Image_1 = compress(self.Gallery_Image_1)
+            if food.Gallery_Image_1 != self.Gallery_Image_1:
+                new_Gallery_Image_1 = compress(self.Gallery_Image_1)
             self.Gallery_Image_1 = new_Gallery_Image_1
-        if food.Gallery_Image_2 != self.Gallery_Image_2:
-            new_Gallery_Image_2 = compress(self.Gallery_Image_2)
+            if food.Gallery_Image_2 != self.Gallery_Image_2:
+                new_Gallery_Image_2 = compress(self.Gallery_Image_2)
             self.Gallery_Image_2 = new_Gallery_Image_2
 
         super().save(*args, **kwargs)

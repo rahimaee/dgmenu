@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="69753dc4-1ccb-4c4a-a335-d13549cf5313" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/js/PersianNum.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dgmenu.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dgmenu.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="69753dc4-1ccb-4c4a-a335-d13549cf5313" name="Changes" comment="speed fix number">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dgmenu_cafe/templates/dgmenu_cafe/cafe_home_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/dgmenu_cafe/templates/dgmenu_cafe/cafe_home_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/shared/cafe/_FooterReferences.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/shared/cafe/_FooterReferences.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dgmenu/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/dgmenu/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dgmenu_food/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/dgmenu_food/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,8 +78,18 @@
       <workItem from="1672007483148" duration="207000" />
       <workItem from="1672008117599" duration="294000" />
       <workItem from="1672009019454" duration="822000" />
-      <workItem from="1672045893044" duration="238000" />
+      <workItem from="1672045893044" duration="640000" />
+      <workItem from="1672087111389" duration="682000" />
+      <workItem from="1672598227772" duration="1396000" />
     </task>
+    <task id="LOCAL-00001" summary="speed fix number">
+      <created>1672046156459</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1672046156459</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,5 +105,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="speed fix number" />
+    <option name="LAST_COMMIT_MESSAGE" value="speed fix number" />
   </component>
 </project>
