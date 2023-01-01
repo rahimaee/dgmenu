@@ -248,8 +248,6 @@ def FoodDelete(request, *args, **kwargs):
     success_url = reverse_lazy('food:all')
     food_id = kwargs.get('pk')
     if food_id is not None:
-        food = Food.objects.filter(pk=food_id, Cafe_id=role.id).first()
-        food.delete()
-        food.save()
+        food = Food.objects.filter(pk=food_id, Cafe_id=role.Cafe.id).delete()
         return redirect(success_url)
     raise Http404()

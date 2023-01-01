@@ -88,7 +88,7 @@ class Food(models.Model):
                 if self.Gallery_Image_2.name is not None:
                     new_Gallery_Image_2 = compress(self.Gallery_Image_2)
                     self.Gallery_Image_2 = new_Gallery_Image_2
-
+        print("ssssssssssssssssssssssssssssssssssssssssssssssssssssss")
         super().save(*args, **kwargs)
 
     class Meta:
