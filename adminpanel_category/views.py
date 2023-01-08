@@ -155,7 +155,7 @@ def save_data(request):
             temp = 1
             for item in data:
                 cat_id = str(item).split('_')[1]
-                cafe = Cafe.objects.filter(Cafe__id=role.Cafe.id).first()
+                cafe = Cafe.objects.filter(id=role.Cafe.id).first()
                 f_cat_food = FoodCategory.objects.filter(pk=cat_id, Cafe_id=cafe.id, IsActiveAdmin=True).first()
                 f_cat_food.First = temp
                 temp = temp + 1
